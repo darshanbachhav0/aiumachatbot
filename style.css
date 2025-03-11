@@ -642,6 +642,47 @@ body {
   overflow: hidden;
 }
 
+/* Responsive Header */
+.header-container {
+  position: absolute;
+  top: 2%;
+  text-align: center;
+  z-index: 10;
+  width: 100%;
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+}
+
+.floating-logo {
+  display: flex;
+  justify-content: center;
+  animation: float 3s ease-in-out infinite;
+}
+
+.university-logo {
+  height: 80px;
+  width: 80px;
+  max-width: 100%;
+}
+
+.university-title {
+  font-size: 1.2rem;
+  color: #d1244c;
+  margin-top: 5px;
+  text-align: center;
+  word-break: break-word;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
 /* Chatbot Popup Window - Fixed for Mobile */
 .chatbot-popup {
   position: fixed;
@@ -759,6 +800,20 @@ body {
     width: 95%;
     height: 90vh;
     border-radius: 10px;
+  }
+
+  .header-container {
+    top: 1%;
+    padding: 5px;
+  }
+
+  .university-logo {
+    height: 60px;
+    width: 60px;
+  }
+
+  .university-title {
+    font-size: 1rem;
   }
 
   .chat-footer .chat-form {
