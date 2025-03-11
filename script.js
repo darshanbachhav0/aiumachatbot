@@ -47,6 +47,24 @@ messageInput.addEventListener("keypress", (e) => {
   }
 });
 
+
+
+
+
+const floatingListening = document.createElement("div");
+floatingListening.classList.add("floating-listening");
+floatingListening.textContent = "🎤 Listening...";
+document.body.appendChild(floatingListening);
+
+const showListeningMessage = () => {
+    floatingListening.style.display = "block";
+};
+
+const hideListeningMessage = () => {
+    floatingListening.style.display = "none";
+};
+
+
 recordVoiceButton.addEventListener("touchstart", () => {
   startVoiceRecognition();
   recordVoiceButton.classList.add("recording");

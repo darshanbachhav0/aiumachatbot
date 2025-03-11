@@ -606,6 +606,28 @@ body.show-chatbot .chatbot-popup {
 
 
 
+/* Floating message for voice recording */
+.floating-listening {
+  position: fixed;
+  bottom: 110px; /* Adjusted for better visibility above mic button */
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-size: 1rem;
+  display: none;
+  z-index: 100;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.3);
+}
+
+.floating-listening.show {
+  display: block;
+  opacity: 1;
+}
 
 
 
