@@ -60,8 +60,9 @@ body {
 }
 
 
+/* Ensure chatbot toggler button does not appear in the blurred background */
 #chatbot-toggler {
-  position: absolute;
+  position: fixed;
   bottom: 50px;
   left: 50%;
   transform: translateX(-50%);
@@ -75,10 +76,11 @@ body {
   border-radius: 50%;
   background: #f0244c;
   transition: all 0.2s ease;
+  z-index: 100; /* Ensure it's always on top */
 }
-
 body.show-chatbot #chatbot-toggler {
   transform: rotate(90deg);
+  display: none;
 }
 
 #chatbot-toggler span {
@@ -96,8 +98,8 @@ body.show-chatbot #chatbot-toggler span:last-child {
 }
 
 .chatbot-popup {
-  position: absolute;
-  top: 220px; 
+  position: fixed;
+  top: 27%; 
   left: 50%;
   transform: translateX(-50%);
   width: 800px;
@@ -113,7 +115,6 @@ body.show-chatbot #chatbot-toggler span:last-child {
   transition: opacity 0.3s ease, z-index 0.3s ease;
 }
 
-/* When the chatbot is shown */
 body.show-chatbot .chatbot-popup {
   opacity: 1; /* Make it visible */
   pointer-events: auto; /* Allow interaction */
@@ -432,7 +433,7 @@ body.show-chatbot .chatbot-popup {
   padding: 15px;
   border-radius: 10px;
   max-width: 75%;
-  font-size: 1.2rem;
+  font-size: 1rem;
   line-height: 1.5;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
   position: relative;
@@ -523,7 +524,7 @@ body.show-chatbot .chatbot-popup {
   padding: 15px;
   border-radius: 10px;
   max-width: 75%;
-  font-size: 1.2rem;
+  font-size: 1rem;
   line-height: 1.5;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
   position: relative;
@@ -544,7 +545,7 @@ body.show-chatbot .chatbot-popup {
 
 .bot-message-card {
   font-family: 'Poppins', sans-serif;  /* Apply updated font */
-  font-size: 1.3rem; /* Match reference */
+  font-size: 1rem; /* Match reference */
   font-weight: 500;
   color: #333;
   line-height: 1.5;
@@ -556,7 +557,7 @@ body.show-chatbot .chatbot-popup {
 
 .user-message-card {
   font-family: 'Poppins', sans-serif;  /* Apply updated font */
-  font-size: 1.3rem; /* Match reference */
+  font-size: 1rem; /* Match reference */
   font-weight: 500;
   color: white;
   line-height: 1.5;
