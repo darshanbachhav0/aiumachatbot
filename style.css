@@ -592,3 +592,189 @@ body.show-chatbot .chatbot-popup {
   pointer-events: none; /* Prevents interaction issues */
   background: black; /* Optional: Set the background color */
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Updated CSS for better mobile compatibility */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Inter", sans-serif;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  background: linear-gradient(#eeeeff, #c8c7ff);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+}
+
+/* Chatbot Popup Window - Fixed for Mobile */
+.chatbot-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%; /* Adjust for mobile */
+  max-width: 800px;
+  height: 80vh; /* Adjust height dynamically */
+  max-height: 600px;
+  background: rgba(255, 255, 255, 0.1);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  overflow: hidden;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Chat Body - Fixed Scrolling on Mobile */
+.chat-body {
+  flex: 1; /* Allows it to expand properly */
+  padding: 15px;
+  overflow-y: auto;
+  background: transparent;
+}
+
+.chat-body::-webkit-scrollbar {
+  width: 5px;
+}
+
+.chat-body::-webkit-scrollbar-thumb {
+  background: #aaa;
+  border-radius: 10px;
+}
+
+/* Chat Footer - Fixed to Bottom on Mobile */
+.chat-footer {
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Chat Form - Responsive Fix */
+.chat-footer .chat-form {
+  display: flex;
+  align-items: center;
+  background: white;
+  border-radius: 32px;
+  outline: 2px solid #cccce5;
+  width: 95%;
+  padding: 10px;
+}
+
+.chat-footer .chat-form .message-input {
+  border: none;
+  outline: none;
+  flex-grow: 1; /* Allows full-width on mobile */
+  min-height: 45px;
+  font-size: 1rem;
+  padding: 10px;
+  border-radius: inherit;
+}
+
+/* Mic and Send Button Styling */
+.chat-form .chat-controls {
+  display: flex;
+  align-items: center;
+  padding-left: 8px;
+}
+
+.chat-form .chat-controls button {
+  height: 45px;
+  width: 45px;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  background: none;
+  border-radius: 50%;
+  transition: 0.2s ease;
+}
+
+/* Mic Button Animation */
+.chat-form .chat-controls #record-voice {
+  background: #58b7e7;
+  color: #fff;
+  font-size: 1.5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease-in-out;
+}
+
+.chat-form .chat-controls #record-voice.recording {
+  background: #f0244c;
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 10px rgba(255, 0, 0, 0.5); }
+  50% { box-shadow: 0 0 20px rgba(255, 0, 0, 0.8); }
+  100% { box-shadow: 0 0 10px rgba(255, 0, 0, 0.5); }
+}
+
+/* Responsive Fixes for Smaller Screens */
+@media screen and (max-width: 600px) {
+  .chatbot-popup {
+    width: 95%;
+    height: 90vh;
+    border-radius: 10px;
+  }
+
+  .chat-footer .chat-form {
+    border-radius: 25px;
+    width: 100%;
+    padding: 8px;
+  }
+
+  .chat-footer .chat-form .message-input {
+    font-size: 1rem;
+    padding: 8px;
+  }
+
+  .chat-footer .chat-form .chat-controls button {
+    height: 40px;
+    width: 40px;
+    font-size: 1.3rem;
+  }
+}

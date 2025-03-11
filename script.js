@@ -47,16 +47,16 @@ messageInput.addEventListener("keypress", (e) => {
   }
 });
 
-// Mic button press & hold effect
-recordVoiceButton.addEventListener("mousedown", () => {
+recordVoiceButton.addEventListener("touchstart", () => {
   startVoiceRecognition();
   recordVoiceButton.classList.add("recording");
 });
 
-recordVoiceButton.addEventListener("mouseup", () => {
+recordVoiceButton.addEventListener("touchend", () => {
   stopVoiceRecognition();
   recordVoiceButton.classList.remove("recording");
 });
+
 
 const displayUserMessage = (message) => {
   const userMessageContainer = document.createElement("div");
