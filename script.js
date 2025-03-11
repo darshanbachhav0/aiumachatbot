@@ -51,18 +51,6 @@ messageInput.addEventListener("keypress", (e) => {
 
 
 
-const floatingListening = document.createElement("div");
-floatingListening.classList.add("floating-listening");
-floatingListening.textContent = "🎤 Listening...";
-document.body.appendChild(floatingListening);
-
-const showListeningMessage = () => {
-    floatingListening.style.display = "block";
-};
-
-const hideListeningMessage = () => {
-    floatingListening.style.display = "none";
-};
 
 
 recordVoiceButton.addEventListener("touchstart", () => {
@@ -181,7 +169,6 @@ const generateBotResponse = async (userMessage) => {
       botMessageContainer.querySelector(".message-text").textContent = "⚠️ Error: No se pudo obtener una respuesta.";
   }
 };
-// Voice recognition functions
 const startVoiceRecognition = () => {
   if (!("SpeechRecognition" in window || "webkitSpeechRecognition" in window)) {
       alert("Your browser does not support voice recognition.");
@@ -189,27 +176,38 @@ const startVoiceRecognition = () => {
   }
 
   recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
-  
   recognition.lang = "es-ES";
-  recognition.interimResults = false;
-  recognition.continuous = false;
+  recognition.interimResults = true; // Enable live transcription like Google Translate
+  recognition.continuous = true;
   recognition.maxAlternatives = 1;
 
   recognition.start();
 
-  recognition.onstart = () => {
-      console.log("Voice recognition started...");
-  };
+  const listeningIndicator = document.createElement("div");
+  listeningIndicator.classList.add("listening-indicator");
+  listeningIndicator.innerHTML = `<div class="wave-container">
+      <span class="wave"></span>
+      <span class="wave"></span>
+      <span class="wave"></span>
+      <span class="wave"></span>
+      <span class="wave"></span>
+  </div><p>Listening...</p>`;
+  document.body.appendChild(listeningIndicator);
 
   recognition.onresult = (event) => {
-      const transcript = event.results[0][0].transcript;
-      displayUserMessage(transcript);
-      generateBotResponse(transcript);
+      let transcript = "";
+      for (let i = 0; i < event.results.length; i++) {
+          transcript += event.results[i][0].transcript + " ";
+      }
+      messageInput.value = transcript.trim(); // Live transcription effect
   };
 
   recognition.onerror = (event) => {
       console.error("Speech recognition error:", event.error);
-      displayUserMessage("⚠️ Could not transcribe audio.");
+  };
+
+  recognition.onend = () => {
+      listeningIndicator.remove();
   };
 };
 
@@ -218,6 +216,16 @@ const stopVoiceRecognition = () => {
       recognition.stop();
   }
 };
+
+recordVoiceButton.addEventListener("mousedown", () => {
+  startVoiceRecognition();
+  recordVoiceButton.classList.add("recording");
+});
+
+recordVoiceButton.addEventListener("mouseup", () => {
+  stopVoiceRecognition();
+  recordVoiceButton.classList.remove("recording");
+});
 
 // Stop first response GIF after playing once
 document.addEventListener("DOMContentLoaded", () => {
@@ -410,3 +418,29 @@ function animateChatbotStars() {
   requestAnimationFrame(animateChatbotStars);
 }
 animateChatbotStars();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

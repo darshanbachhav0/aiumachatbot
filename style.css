@@ -606,27 +606,56 @@ body.show-chatbot .chatbot-popup {
 
 
 
-/* Floating message for voice recording */
-.floating-listening {
+/* Listening Indicator (Google Translate Style) */
+.listening-indicator {
   position: fixed;
-  bottom: 110px; /* Adjusted for better visibility above mic button */
+  bottom: 120px;
   left: 50%;
   transform: translateX(-50%);
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.9);
   color: white;
-  padding: 10px 20px;
-  border-radius: 20px;
-  font-size: 1rem;
-  display: none;
-  z-index: 100;
-  opacity: 0;
-  transition: opacity 0.3s ease-in-out;
-  box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.3);
+  padding: 15px 25px;
+  border-radius: 30px;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease-in-out;
 }
 
-.floating-listening.show {
-  display: block;
-  opacity: 1;
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateX(-50%) translateY(10px); }
+  to { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+/* Animated Waves for Listening Effect */
+.wave-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+}
+
+.wave {
+  width: 6px;
+  height: 20px;
+  background: white;
+  display: inline-block;
+  border-radius: 10px;
+  animation: wave 1.2s infinite ease-in-out;
+}
+
+.wave:nth-child(1) { animation-delay: 0s; }
+.wave:nth-child(2) { animation-delay: 0.2s; }
+.wave:nth-child(3) { animation-delay: 0.4s; }
+.wave:nth-child(4) { animation-delay: 0.6s; }
+.wave:nth-child(5) { animation-delay: 0.8s; }
+
+@keyframes wave {
+  0%, 100% { transform: scaleY(1); }
+  50% { transform: scaleY(1.5); }
 }
 
 
