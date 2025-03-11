@@ -20,12 +20,12 @@ body {
 }
 
 .header-container {
-  position: absolute;
-  top: 5%;
+  position: relative;
   text-align: center;
-  z-index: 10; /* Higher than chatbot */
+  z-index: 10; /* Ensure it's above chatbot */
   width: 100%;
   background: transparent;
+  margin-bottom: 20px; /* Add space below */
 }
 
 
@@ -34,6 +34,7 @@ body {
   display: flex;
   justify-content: center;
   animation: float 3s ease-in-out infinite;
+  margin-bottom: 10px; /* Ensure space between logo and title */
 }
 
 .university-logo {
@@ -44,7 +45,8 @@ body {
 .university-title {
   font-size: 1.5rem;
   color: #d1244c;
-  margin-top: 10px;
+  margin-top: 5px;
+  margin-bottom: 20px; /* Add space below title */
 }
 
 @keyframes float {
@@ -97,22 +99,21 @@ body.show-chatbot #chatbot-toggler span:last-child {
   opacity: 1;
 }
 
+/* Fix chatbot position */
 .chatbot-popup {
-  position: fixed;
-  top: 27%; 
-  left: 50%;
-  transform: translateX(-50%);
+  position: relative; /* Remove fixed position */
   width: 800px;
-  height: 600px;
+  height: auto; /* Auto height to remove black space */
+  max-height: 600px;
   background: rgba(255, 255, 255, 0.1);
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   border-radius: 15px;
   overflow: hidden;
-  pointer-events: none; /* Initially, chatbot should not be clickable */
-  z-index: -1; /* Hide the chatbot initially */
-  opacity: 0; /* Hide chatbot until toggled */
-  transition: opacity 0.3s ease, z-index 0.3s ease;
+  pointer-events: auto;
+  z-index: 5;
+  opacity: 1;
+  margin-top: 20px; /* Space below title */
 }
 
 body.show-chatbot .chatbot-popup {
@@ -193,10 +194,9 @@ body.show-chatbot .chatbot-popup {
   display: flex;
   flex-direction: column;
   gap: 15px;
-  height: 400px;
+  max-height: 400px; /* Ensure content does not overflow */
   overflow-y: auto;
-  scroll-behavior: smooth;
-  background: transparent; /* Remove white background */
+  background: transparent;
 }
 
 /* Ensure scroll works in all browsers */
@@ -216,13 +216,13 @@ body.show-chatbot .chatbot-popup {
   align-items: center;
 }
 
+/* Remove the unnecessary black space */
 .chat-footer {
-  position: absolute;
-  bottom: 0;
+  position: relative; /* Remove absolute positioning */
   width: 100%;
-  background: rgba(0, 0, 0, 0.3); /* Dark semi-transparent */
+  background: rgba(0, 0, 0, 0.3);
   border-top: 1px solid rgba(255, 255, 255, 0.2);
-  padding: 15px 22px 20px;
+  padding: 15px 22px;
   display: flex;
   justify-content: center;
 }
@@ -621,215 +621,3 @@ body.show-chatbot .chatbot-popup {
 
 
 
-/* Updated CSS for better mobile compatibility */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap');
-
-* {
-  margin: 0;
-  padding: 0;
-  font-family: "Inter", sans-serif;
-  box-sizing: border-box;
-}
-
-body {
-  min-height: 100vh;
-  background: linear-gradient(#eeeeff, #c8c7ff);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  overflow: hidden;
-}
-
-/* Responsive Header */
-.header-container {
-  position: absolute;
-  top: 2%;
-  text-align: center;
-  z-index: 10;
-  width: 100%;
-  background: transparent;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 10px;
-}
-
-.floating-logo {
-  display: flex;
-  justify-content: center;
-  animation: float 3s ease-in-out infinite;
-}
-
-.university-logo {
-  height: 80px;
-  width: 80px;
-  max-width: 100%;
-}
-
-.university-title {
-  font-size: 1.2rem;
-  color: #d1244c;
-  margin-top: 5px;
-  text-align: center;
-  word-break: break-word;
-}
-
-@keyframes float {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
-  100% { transform: translateY(0px); }
-}
-
-/* Chatbot Popup Window - Fixed for Mobile */
-.chatbot-popup {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 90%; /* Adjust for mobile */
-  max-width: 800px;
-  height: 80vh; /* Adjust height dynamically */
-  max-height: 600px;
-  background: rgba(255, 255, 255, 0.1);
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
-  border-radius: 15px;
-  overflow: hidden;
-  z-index: 5;
-  display: flex;
-  flex-direction: column;
-}
-
-/* Chat Body - Fixed Scrolling on Mobile */
-.chat-body {
-  flex: 1; /* Allows it to expand properly */
-  padding: 15px;
-  overflow-y: auto;
-  background: transparent;
-}
-
-.chat-body::-webkit-scrollbar {
-  width: 5px;
-}
-
-.chat-body::-webkit-scrollbar-thumb {
-  background: #aaa;
-  border-radius: 10px;
-}
-
-/* Chat Footer - Fixed to Bottom on Mobile */
-.chat-footer {
-  position: relative;
-  bottom: 0;
-  width: 100%;
-  background: rgba(0, 0, 0, 0.3);
-  padding: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* Chat Form - Responsive Fix */
-.chat-footer .chat-form {
-  display: flex;
-  align-items: center;
-  background: white;
-  border-radius: 32px;
-  outline: 2px solid #cccce5;
-  width: 95%;
-  padding: 10px;
-}
-
-.chat-footer .chat-form .message-input {
-  border: none;
-  outline: none;
-  flex-grow: 1; /* Allows full-width on mobile */
-  min-height: 45px;
-  font-size: 1rem;
-  padding: 10px;
-  border-radius: inherit;
-}
-
-/* Mic and Send Button Styling */
-.chat-form .chat-controls {
-  display: flex;
-  align-items: center;
-  padding-left: 8px;
-}
-
-.chat-form .chat-controls button {
-  height: 45px;
-  width: 45px;
-  border: none;
-  font-size: 1.5rem;
-  cursor: pointer;
-  background: none;
-  border-radius: 50%;
-  transition: 0.2s ease;
-}
-
-/* Mic Button Animation */
-.chat-form .chat-controls #record-voice {
-  background: #58b7e7;
-  color: #fff;
-  font-size: 1.5rem;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background 0.2s ease-in-out;
-}
-
-.chat-form .chat-controls #record-voice.recording {
-  background: #f0244c;
-  animation: pulse 1s infinite;
-}
-
-@keyframes pulse {
-  0% { box-shadow: 0 0 10px rgba(255, 0, 0, 0.5); }
-  50% { box-shadow: 0 0 20px rgba(255, 0, 0, 0.8); }
-  100% { box-shadow: 0 0 10px rgba(255, 0, 0, 0.5); }
-}
-
-/* Responsive Fixes for Smaller Screens */
-@media screen and (max-width: 600px) {
-  .chatbot-popup {
-    width: 95%;
-    height: 90vh;
-    border-radius: 10px;
-  }
-
-  .header-container {
-    top: 1%;
-    padding: 5px;
-  }
-
-  .university-logo {
-    height: 60px;
-    width: 60px;
-  }
-
-  .university-title {
-    font-size: 1rem;
-  }
-
-  .chat-footer .chat-form {
-    border-radius: 25px;
-    width: 100%;
-    padding: 8px;
-  }
-
-  .chat-footer .chat-form .message-input {
-    font-size: 1rem;
-    padding: 8px;
-  }
-
-  .chat-footer .chat-form .chat-controls button {
-    height: 40px;
-    width: 40px;
-    font-size: 1.3rem;
-  }
-}
