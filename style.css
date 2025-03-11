@@ -114,6 +114,8 @@ body.show-chatbot #chatbot-toggler span:last-child {
   z-index: 5;
   opacity: 1;
   margin-top: 20px; /* Space below title */
+  display: flex;
+  flex-direction: column;
 }
 
 body.show-chatbot .chatbot-popup {
@@ -197,11 +199,14 @@ body.show-chatbot .chatbot-popup {
   max-height: 400px; /* Ensure content does not overflow */
   overflow-y: auto;
   background: transparent;
+  scrollbar-width: thin; /* Ensures thin scrollbar */
+  scrollbar-color: #aaa transparent;
+  flex-grow: 1;
+  
 }
 
-/* Ensure scroll works in all browsers */
 .chat-body::-webkit-scrollbar {
-  width: 6px;
+  width: 8px;
 }
 
 .chat-body::-webkit-scrollbar-thumb {
@@ -225,6 +230,7 @@ body.show-chatbot .chatbot-popup {
   padding: 15px 22px;
   display: flex;
   justify-content: center;
+  flex-shrink: 0;
 }
 
 .chat-footer .chat-form {
