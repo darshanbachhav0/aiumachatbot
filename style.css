@@ -20,14 +20,13 @@ body {
 }
 
 .header-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   position: relative;
-  text-align: center;
-  z-index: 10; /* Ensure it's above chatbot */
-  width: 100%;
-  background: transparent;
-  margin-bottom: 20px; /* Add space below */
+  z-index: 10;
 }
-
 
 
 .floating-logo {
@@ -71,7 +70,7 @@ body {
   height: 80px;
   width: 80px;
   border: none;
-  display: flex;
+  display: none !important;
   align-items: center;
   justify-content: center;
   cursor: pointer;
@@ -79,6 +78,9 @@ body {
   background: #f0244c;
   transition: all 0.2s ease;
   z-index: 100; /* Ensure it's always on top */
+  
+  
+  
 }
 body.show-chatbot #chatbot-toggler {
   transform: rotate(90deg);
@@ -223,7 +225,7 @@ body.show-chatbot .chatbot-popup {
 
 /* Remove the unnecessary black space */
 .chat-footer {
-  position: relative; /* Remove absolute positioning */
+  position: relative;
   width: 100%;
   background: rgba(0, 0, 0, 0.3);
   border-top: 1px solid rgba(255, 255, 255, 0.2);
@@ -231,6 +233,8 @@ body.show-chatbot .chatbot-popup {
   display: flex;
   justify-content: center;
   flex-shrink: 0;
+  visibility: visible !important;
+  opacity: 1 !important;
 }
 
 .chat-footer .chat-form {
