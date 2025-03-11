@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Universidad María Auxiliadora</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,1,0" />
+    <link rel="stylesheet" href="style.css"/>
+  </head>
+  <body>
+    <canvas id="starsCanvas"></canvas>
+
+    <header class="header-container">
+      <div class="floating-logo">
+        <img src="logo1.png" alt="UMA Logo" class="university-logo">
+      </div>
+      <h1 class="university-title">Universidad María Auxiliadora</h1>
+      
+
+    </header>
+
+    <button id="chatbot-toggler">
+      <span class="material-symbols-outlined">mode_comment</span>
+      <span class="material-symbols-rounded">close</span>
+    </button>
+
+    <div class="chatbot-popup">
+      <canvas id="chatbotStarsCanvas"></canvas>  <!-- Star animation inside chatbot -->
+      <div class="chat-header">
+        <button id="close-chatbot" class="material-symbols-rounded">keyboard_arrow_down</button>
+      </div>
+
+      <!-- Chatbot Body -->
+      <div class="chat-body">
+        <div class="bot-message-container first-message">
+          <div class="logo-container">
+              <img src="girltalk.gif" alt="Chatbot Avatar" class="bot-gif" id="initial-bot-gif">
+          </div>
+          <div class="bot-message-card">
+              <div class="message-text">Hey there 👋 <br /> How can I help you today?</div>
+          </div>
+      </div>
+      </div>
+
+      <!-- Chatbot Footer -->
+      <div class="chat-body"></div>
+      <div class="chat-footer">
+        <form action="#" class="chat-form">
+          <textarea placeholder="Message..." class="message-input" required></textarea>
+          <div class="chat-controls">
+            
+            <button type="button" id="record-voice" class="material-symbols-rounded">mic</button>
+            <button type="submit" id="send-message" class="material-symbols-rounded">arrow_upward</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
