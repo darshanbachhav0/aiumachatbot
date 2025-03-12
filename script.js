@@ -86,7 +86,37 @@ const displayUserMessage = (message) => {
 
 const universityResponses = {
   "admisión": "📝 Para información sobre el proceso de admisión, visita: <a href='https://uma.edu.pe/admision/'>Proceso de Admisión UMA</a>",
-  "curso": "🎓 Explora nuestra amplia oferta de cursos y especializaciones:\n\n- Ingeniería en Inteligencia Artificial\n- Ingeniería de Sistemas\n- Ingeniería Industrial\n- Farmacia y Bioquímica\n- Enfermería\n- Tecnología Médica en Laboratorio Clínico\n- Tecnología Médica en Terapia Física\n- Nutrición y Dietética\n- Contabilidad y Finanzas\n- Administración y Marketing\n- Administración de Negocios\n- Negocios Internacionales\n- Derecho\n- Psicología\n- MBA\n- Maestría en Salud Pública\n- Especialización en Neurología\n- Especialización en Enfermería en Cuidados Intensivos\n- Especialización en Enfermería Familiar y Comunitaria\n- Enfermería en Atención Integral del Niño\n- Enfermería en Emergencias y Desastres\n- Especialización en Enfermería de Centro Quirúrgico\n- Especialización en Farmacia\n- Asuntos Regulatorios Farmacéuticos\n- Especialización en Toxicología Ambiental\n- Enfermedades Crónicas No Transmisibles\n- Salud Mental Comunitaria\n\nPequeña descripción: Encuentra el curso que se adapte a tus intereses y comienza a construir tu futuro profesional.",
+  "curso": `🎓 Explora nuestra amplia oferta de cursos y especializaciones:
+
+  1. Ingeniería en Inteligencia Artificial  
+  2. Ingeniería de Sistemas  
+  3. Ingeniería Industrial  
+  4. Farmacia y Bioquímica  
+  5. Enfermería  
+  6. Tecnología Médica en Laboratorio Clínico  
+  7. Tecnología Médica en Terapia Física  
+  8. Nutrición y Dietética  
+  9. Contabilidad y Finanzas  
+  10. Administración y Marketing  
+  11. Administración de Negocios  
+  12. Negocios Internacionales  
+  13. Derecho  
+  14. Psicología  
+  15. MBA  
+  16. Maestría en Salud Pública  
+  17. Especialización en Neurología  
+  18. Especialización en Enfermería en Cuidados Intensivos  
+  19. Especialización en Enfermería Familiar y Comunitaria  
+  20. Enfermería en Atención Integral del Niño  
+  21. Enfermería en Emergencias y Desastres  
+  22. Especialización en Enfermería de Centro Quirúrgico  
+  23. Especialización en Farmacia  
+  24. Asuntos Regulatorios Farmacéuticos  
+  25. Especialización en Toxicología Ambiental  
+  26. Enfermedades Crónicas No Transmisibles  
+  27. Salud Mental Comunitaria
+  
+  Pequeña descripción: Encuentra el curso que se adapte a tus intereses y comienza a construir tu futuro profesional.`,
   "biblioteca": "📚 Accede a nuestra biblioteca virtual para recursos académicos: <a href='https://bibliovirtual.uma.edu.pe/'>Biblioteca Virtual UMA</a>",
   "pregrado": "📚 Ofrecemos una variedad de programas de pregrado en diversas facultades. Descubre más aquí: <a href='https://uma.edu.pe/pregrado/'>Programas de Pregrado UMA</a>",
   "posgrado": "🎓 Nuestros programas de posgrado incluyen maestrías y especializaciones profesionales. Más información en: <a href='https://uma.edu.pe/posgrado/'>Programas de Posgrado UMA</a>",
