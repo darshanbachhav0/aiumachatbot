@@ -11,8 +11,14 @@ let recognition;
 let isRecording = false;
 
 
-const GEMINI_API_KEY = "AIzaSyDArqnsWAtexq94vTi-fbMt3FtvgEYcPeg";
-const GEMINI_API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`;
+const API_KEYS = [
+  "AIzaSyDArqnsWAtexq94vTi-fbMt3FtvgEYcPeg", // current key
+  "AIzaSyB1Ex3LXaO32GaxIpLxTaCH4q0HJE4iASA",
+  "AIzaSyBv4cWgsoeiPqkrAvrZTxwezoD7JLh8BBI",
+  "AIzaSyD6gi_wcgD3kXmk_QXNcxHeMCMGGxph8Hc"
+];
+let currentKeyIndex = 0;
+
 
 chatbotToggler.addEventListener("click", () => {
   document.body.classList.toggle("show-chatbot");
@@ -121,17 +127,10 @@ const generateBotResponse = async (userMessage) => {
           <div class="message-text">🤔</div>
       </div>
   `;
-
   chatBody.appendChild(botMessageContainer);
   chatBody.scrollTo({ top: chatBody.scrollHeight, behavior: "smooth" });
 
-  // Replace GIF with static image after 4 seconds
-  const botGif = botMessageContainer.querySelector(".bot-gif");
-  setTimeout(() => {
-      botGif.src = "girltalks.png";
-  }, 4000);
-
-  // **Check for predefined responses**
+  // Predefined responses check
   let responseText = null;
   const lowerCaseMessage = userMessage.toLowerCase();
   for (const key in universityResponses) {
@@ -142,27 +141,38 @@ const generateBotResponse = async (userMessage) => {
   }
 
   if (responseText) {
-      // Simulate delay so the thinking icon shows first
       setTimeout(() => {
           botMessageContainer.querySelector(".message-text").innerHTML = responseText;
       }, 4000);
       return;
   }
 
-  // **If no predefined response, call Gemini API**
   try {
       const requestBody = {
           contents: [{ role: "user", parts: [{ text: userMessage }] }]
       };
 
-      const response = await fetch(GEMINI_API_URL, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(requestBody),
-      });
+      let response, data, success = false;
+      // Loop through the keys until a valid response is received
+      while (!success && currentKeyIndex < API_KEYS.length) {
+          const currentKey = API_KEYS[currentKeyIndex];
+          const GEMINI_API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${currentKey}`;
+          response = await fetch(GEMINI_API_URL, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(requestBody),
+          });
+          data = await response.json();
+          if (response.ok) {
+              success = true;
+          } else {
+              // Log the error and move to the next key
+              console.error(`Key ${currentKey} failed: ${data.error ? data.error.message : "Unknown error"}`);
+              currentKeyIndex++;
+          }
+      }
 
-      const data = await response.json();
-      if (!response.ok) throw new Error(data.error.message);
+      if (!success) throw new Error("All API keys have been exhausted or are invalid.");
 
       const botResponse = data.candidates[0].content.parts[0].text.trim();
       botMessageContainer.querySelector(".message-text").textContent = botResponse;
@@ -172,6 +182,7 @@ const generateBotResponse = async (userMessage) => {
       botMessageContainer.querySelector(".message-text").textContent = "⚠️ Error: No se pudo obtener una respuesta.";
   }
 };
+
 
 
 const startVoiceRecognition = () => {
