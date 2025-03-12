@@ -142,7 +142,10 @@ const generateBotResponse = async (userMessage) => {
   }
 
   if (responseText) {
-      botMessageContainer.querySelector(".message-text").innerHTML = `🤔 ${responseText}`;
+      // Simulate delay so the thinking icon shows first
+      setTimeout(() => {
+          botMessageContainer.querySelector(".message-text").innerHTML = responseText;
+      }, 4000);
       return;
   }
 
@@ -162,13 +165,14 @@ const generateBotResponse = async (userMessage) => {
       if (!response.ok) throw new Error(data.error.message);
 
       const botResponse = data.candidates[0].content.parts[0].text.trim();
-      botMessageContainer.querySelector(".message-text").textContent = `🤔 ${botResponse}`;
+      botMessageContainer.querySelector(".message-text").textContent = botResponse;
 
   } catch (error) {
       console.error("Chatbot API Error:", error);
       botMessageContainer.querySelector(".message-text").textContent = "⚠️ Error: No se pudo obtener una respuesta.";
   }
 };
+
 
 const startVoiceRecognition = () => {
   if (!("SpeechRecognition" in window || "webkitSpeechRecognition" in window)) {
