@@ -682,3 +682,49 @@ body.show-chatbot .chatbot-popup {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.bot-message-card, .user-message-card, .bot-message-card * {
+  background-color: transparent !important;
+  background: transparent !important;
+}
+body, .bot-message-card, .user-message-card {
+  font-family: 'Poppins', 'Noto Sans', 'Segoe UI Emoji', sans-serif;
+}
+@font-face {
+  font-family: 'MyWebFont';
+  src: url('mywebfont.woff2') format('woff2');
+  unicode-range: U+0000-00FF, /* Basic Latin, etc. */
+                 U+0100-024F; /* Latin Extended */
+  /* Exclude the common emoji range so they’re rendered by the system */
+}
+::selection {
+  background: yellow; /* or something else */
+}
+.bot-message-card {
+  background: #f1f1f1; /* or your container’s color */
+  color: #333;
+  font-family: 'Poppins', 'Noto Sans', 'Segoe UI Emoji', sans-serif;
+}
+
+.bot-message-card * {
+  background: transparent !important;
+}
