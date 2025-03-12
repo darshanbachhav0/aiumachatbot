@@ -130,6 +130,12 @@ const generateBotResponse = async (userMessage) => {
   chatBody.appendChild(botMessageContainer);
   chatBody.scrollTo({ top: chatBody.scrollHeight, behavior: "smooth" });
 
+   // Replace GIF with static image after 4 seconds
+   const botGif = botMessageContainer.querySelector(".bot-gif");
+   setTimeout(() => {
+       botGif.src = "girltalks.png";
+   }, 4000);
+
   // Predefined responses check
   let responseText = null;
   const lowerCaseMessage = userMessage.toLowerCase();
