@@ -213,7 +213,7 @@ const startVoiceRecognition = () => {
       <span class="wave"></span>
       <span class="wave"></span>
       <span class="wave"></span>
-  </div><p>Listening...</p>`;
+  </div><p>Escucha...</p>`;
   document.body.appendChild(listeningIndicator);
 
   recognition.onresult = (event) => {
