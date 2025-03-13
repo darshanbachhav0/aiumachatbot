@@ -103,7 +103,7 @@ const generateBotResponse = async (userMessage) => {
 
   try {
     // 1) Call your Flask endpoint
-    const mlRes = await fetch("http://localhost:5000/get_response", {
+    const mlRes = await fetch("/get_response", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ query: userMessage }),
