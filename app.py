@@ -1,3 +1,4 @@
+import os
 from flask import Flask, request, jsonify
 import requests
 from bs4 import BeautifulSoup
@@ -83,5 +84,6 @@ def get_response():
     })
 
 if __name__ == '__main__':
-    # Run the Flask server in debug mode
-    app.run(debug=True)
+    # Grab the PORT environment variable provided by Render, default to 5000 locally
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port, debug=True)
