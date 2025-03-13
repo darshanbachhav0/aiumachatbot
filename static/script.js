@@ -171,8 +171,12 @@ const generateBotResponse = async (userMessage) => {
 
     // 5) Extract the final Gemini response
     const botResponse = data.candidates[0].content.parts[0].text.trim();
-    botMessageContainer.querySelector(".message-text").innerHTML = botResponse;
 
+    // Convert the raw text with asterisks into bullet points
+    const formattedResponse = convertDoubleAsteriskToBullets(botResponse);
+
+    // Render as HTML
+    botMessageContainer.querySelector(".message-text").innerHTML = formattedResponse;
 
   } catch (error) {
     console.error("Chatbot API Error:", error);
@@ -180,6 +184,45 @@ const generateBotResponse = async (userMessage) => {
       "⚠️ Error: No se pudo obtener una respuesta.";
   }
 };
+
+/**
+ * Converts lines starting with **Some Title**: Some description
+ * into a bullet list. The portion inside **...** is bold.
+ */
+function convertDoubleAsteriskToBullets(rawText) {
+  // Split text by newlines so each line becomes a potential bullet
+  const lines = rawText.split('\n');
+  const listItems = [];
+
+  for (let line of lines) {
+    line = line.trim();
+    if (!line) continue; // skip empty lines
+
+    // Try to match the pattern **Title**: description
+    // Group 1: Title (inside the asterisks)
+    // Group 2: Everything after the second **
+    const match = line.match(/\*\*(.*?)\*\*(.*)/);
+    if (match) {
+      const boldPart = match[1].trim(); // text inside ** **
+      const rest = match[2].trim();     // text after
+      // Build a list item with bold text, plus the rest if any
+      listItems.push(
+        `<li><strong>${boldPart}</strong>${rest ? ': ' + rest : ''}</li>`
+      );
+    } else {
+      // If a line doesn’t match the **pattern**, just wrap it in <li>
+      listItems.push(`<li>${line}</li>`);
+    }
+  }
+
+  // Wrap all <li> items in a <ul>
+  // Adjust styles or move them to your CSS as needed
+  return `
+    <ul style="list-style-type: disc; margin-left: 20px;">
+      ${listItems.join('')}
+    </ul>
+  `;
+}
 
 // Voice recognition functions
 const startVoiceRecognition = () => {
@@ -256,13 +299,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-// (Include your canvas animation code below if needed)
-
-
-
-
-
-
+// Canvas Animation (Stars) for Background
 const canvas = document.getElementById("starsCanvas");
 const ctx = canvas.getContext("2d");
 
@@ -366,18 +403,12 @@ function createBurst(x, y) {
   animateBurst();
 }
 
-// Add Event Listener for Click Effects
+// Add Event Listener for Click Effects on the Canvas
 canvas.addEventListener("click", (event) => {
   createBurst(event.clientX, event.clientY);
 });
 
-
-
-
-
-
-
-
+// Chatbot Canvas Animation (Optional)
 const chatbotCanvas = document.getElementById("chatbotStarsCanvas");
 const chatbotCtx = chatbotCanvas.getContext("2d");
 
@@ -438,29 +469,3 @@ function animateChatbotStars() {
   requestAnimationFrame(animateChatbotStars);
 }
 animateChatbotStars();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
