@@ -172,7 +172,7 @@ const generateBotResponse = async (userMessage) => {
     // 5) Extract the final Gemini response
     const botResponse = data.candidates[0].content.parts[0].text.trim();
 
-    // Convert the raw text with asterisks into bullet points
+    // Convert the raw text with asterisks into bullet points (only if >= 4 lines)
     const formattedResponse = convertDoubleAsteriskToBullets(botResponse);
 
     // Render as HTML
@@ -186,39 +186,45 @@ const generateBotResponse = async (userMessage) => {
 };
 
 /**
- * Converts lines starting with **Some Title**: Some description
- * into a bullet list. The portion inside **...** is bold.
+ * Converts lines starting with **Some Title** into a bullet list,
+ * BUT only if the text has 4 or more lines.
+ * The portion inside **...** is bold. Removes left margin for bullets.
  */
 function convertDoubleAsteriskToBullets(rawText) {
-  // Split text by newlines so each line becomes a potential bullet
+  // Split text by newlines and remove empty lines
   const lines = rawText.split('\n');
-  const listItems = [];
+  const nonEmptyLines = lines.filter(line => line.trim());
 
+  // If message has fewer than 4 lines, show it as-is (no bullet points)
+  if (nonEmptyLines.length < 4) {
+    // Convert any newlines to <br> for readability
+    return rawText.replace(/\n/g, '<br>');
+  }
+
+  // Otherwise, convert to bullet points
+  const listItems = [];
   for (let line of lines) {
     line = line.trim();
-    if (!line) continue; // skip empty lines
+    if (!line) continue;
 
-    // Try to match the pattern **Title**: description
-    // Group 1: Title (inside the asterisks)
-    // Group 2: Everything after the second **
+    // Try to match the pattern **Title** followed by the rest
     const match = line.match(/\*\*(.*?)\*\*(.*)/);
     if (match) {
-      const boldPart = match[1].trim(); // text inside ** **
-      const rest = match[2].trim();     // text after
-      // Build a list item with bold text, plus the rest if any
+      const boldPart = match[1].trim();
+      const rest = match[2].trim();
+      // <li><strong>Title</strong>: rest of line</li>
       listItems.push(
         `<li><strong>${boldPart}</strong>${rest ? ': ' + rest : ''}</li>`
       );
     } else {
-      // If a line doesn’t match the **pattern**, just wrap it in <li>
+      // If no pattern match, just put line in <li>
       listItems.push(`<li>${line}</li>`);
     }
   }
 
-  // Wrap all <li> items in a <ul>
-  // Adjust styles or move them to your CSS as needed
+  // Return a <ul> with no left margin
   return `
-    <ul style="list-style-type: disc; margin-left: 20px;">
+    <ul style="list-style-type: disc; margin-left: 0; padding-left: 0;">
       ${listItems.join('')}
     </ul>
   `;
