@@ -171,7 +171,8 @@ const generateBotResponse = async (userMessage) => {
 
     // 5) Extract the final Gemini response
     const botResponse = data.candidates[0].content.parts[0].text.trim();
-    botMessageContainer.querySelector(".message-text").textContent = botResponse;
+    botMessageContainer.querySelector(".message-text").innerHTML = botResponse;
+
 
   } catch (error) {
     console.error("Chatbot API Error:", error);

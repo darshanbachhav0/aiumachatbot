@@ -559,10 +559,20 @@ body.show-chatbot .chatbot-popup {
   font-weight: 500;
   color: #333;
   line-height: 1.5;
-  text-align: justify;  /* Ensures text is justified */
+  text-align: left; ;  /* Ensures text is justified */
   display: flex;
   justify-content: flex-start; /* Aligns text inside */
   word-break: break-word; /* Prevents text overflow */
+}
+
+.bot-message-card ul {
+  list-style-type: disc;  /* Use bullet points */
+  margin: 10px 0;         /* Vertical spacing before and after the list */
+  padding-left: 20px;     /* Indent the list from the left edge */
+}
+
+.bot-message-card li {
+  margin-bottom: 5px;     /* Spacing between bullet points */
 }
 
 .user-message-card {
