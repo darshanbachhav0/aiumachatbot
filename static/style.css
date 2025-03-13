@@ -566,13 +566,18 @@ body.show-chatbot .chatbot-popup {
 }
 
 .bot-message-card ul {
-  list-style-type: disc;  /* Use bullet points */
-  margin: 10px 0;         /* Vertical spacing before and after the list */
-  padding-left: 20px;     /* Indent the list from the left edge */
+  list-style-type: disc;   /* standard bullet style */
+  margin: 10px 0 10px 20px; /* top, right, bottom, left spacing */
+  padding: 0;  /* Indent the list from the left edge */
 }
 
 .bot-message-card li {
-  margin-bottom: 5px;     /* Spacing between bullet points */
+  margin-bottom: 6px;     /* Spacing between bullet points */
+}
+
+/* Add some spacing to paragraphs */
+.bot-message-card p {
+  margin-bottom: 10px;
 }
 
 .user-message-card {
