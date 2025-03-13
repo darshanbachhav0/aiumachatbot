@@ -186,45 +186,43 @@ const generateBotResponse = async (userMessage) => {
 };
 
 /**
- * Converts lines starting with **Some Title** into a bullet list,
- * BUT only if the text has 4 or more lines.
- * The portion inside **...** is bold. Removes left margin for bullets.
+ * Converts lines starting with **Some Title** into bullet points,
+ * BUT only if the text has >= 4 non-empty lines.
+ * Uses list-style-position: inside to ensure the bullet is fully visible.
  */
 function convertDoubleAsteriskToBullets(rawText) {
-  // Split text by newlines and remove empty lines
+  // Split text by newlines
   const lines = rawText.split('\n');
+  // Filter out empty lines
   const nonEmptyLines = lines.filter(line => line.trim());
 
-  // If message has fewer than 4 lines, show it as-is (no bullet points)
+  // If message has fewer than 4 lines, just replace newlines with <br>
   if (nonEmptyLines.length < 4) {
-    // Convert any newlines to <br> for readability
     return rawText.replace(/\n/g, '<br>');
   }
 
-  // Otherwise, convert to bullet points
+  // Convert to bullet points
   const listItems = [];
   for (let line of lines) {
     line = line.trim();
     if (!line) continue;
 
-    // Try to match the pattern **Title** followed by the rest
+    // Try to match the pattern **Title**: rest
     const match = line.match(/\*\*(.*?)\*\*(.*)/);
     if (match) {
       const boldPart = match[1].trim();
       const rest = match[2].trim();
-      // <li><strong>Title</strong>: rest of line</li>
       listItems.push(
         `<li><strong>${boldPart}</strong>${rest ? ': ' + rest : ''}</li>`
       );
     } else {
-      // If no pattern match, just put line in <li>
       listItems.push(`<li>${line}</li>`);
     }
   }
 
-  // Return a <ul> with no left margin
+  // Return a <ul> with bullet points fully visible
   return `
-    <ul style="list-style-type: disc; margin-left: 0; padding-left: 0;">
+    <ul style="list-style-type: disc; list-style-position: inside; margin-left: 0; padding-left: 0;">
       ${listItems.join('')}
     </ul>
   `;
