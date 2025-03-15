@@ -35,24 +35,9 @@ def scrape_page(url):
 urls = [
     "https://uma.edu.pe/",
     "https://uma.edu.pe/admision/",
-    "https://uma.edu.pe/proyectos-de-investigacion/",
-    "https://uma.edu.pe/uma-barrio/",
-    "https://uma.edu.pe/alumni/",
-    "https://uma.edu.pe/docentes/",
-    "https://uma.edu.pe/oficina-de-gestion-docente/",
+   
   
-"https://uma.edu.pe/dici-uma/",
-"https://uma.edu.pe/contactos/",
-"https://uma.edu.pe/curso-ia40/",
-"https://uma.edu.pe/uma-solar/",
-"https://uma.edu.pe/proyecto-suma/",
-"https://uma.edu.pe/voluntariado/",
-"https://uma.edu.pe/postula-aqui/",
-"https://uma.edu.pe/expoferia-virtual-uma-exhibira-productos-de-emprendedores/",
-"https://uma.edu.pe/uma-lanza-cursos-cortos-para-emprendedores-y-mipymes/",
-"https://uma.edu.pe/22-oct-uma-10-anos-10-momentos-que-marcaron-nuestra-historia/",
-"https://uma.edu.pe/uma-realizo-congreso-internacional-de-investigacion/",
-"https://uma.edu.pe/uma-realizo-con-exito-el-expo-emprendedor-2021/"
+
 
 
 ]
