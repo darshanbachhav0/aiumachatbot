@@ -4,5 +4,8 @@ requests
 beautifulsoup4
 scikit-learn
 symspellpy
+whisper
+torch
+numpy
 
 
