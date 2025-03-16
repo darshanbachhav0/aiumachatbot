@@ -14,6 +14,8 @@ import torch
 import numpy as np
 whisper_model = whisper.load_model("small")
 
+
+
 app = Flask(__name__, static_folder='static', static_url_path='')
 CORS(app)
 

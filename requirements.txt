@@ -4,7 +4,9 @@ requests
 beautifulsoup4
 scikit-learn
 symspellpy
-whisper
+git+https://github.com/openai/whisper.git
+ffmpeg-python
+
 torch
 numpy
 soundfile
