@@ -69,6 +69,20 @@
       </div>
     </div>
 
+    <!-- 🔹 Phone Call & WhatsApp Popup UI -->
+    <div class="phone-overlay" id="phoneOverlay" onclick="closePhoneOptions()"></div>
+
+    <div class="phone-options" id="phoneOptions" style="display: none;">
+      <p>📲 ¿Cómo deseas contactar?</p>
+      <button class="call-button" id="callButton">
+        <img src="https://static.vecteezy.com/system/resources/previews/015/730/539/original/eps10-red-phone-call-or-telephone-abstract-icon-isolated-on-white-background-contact-us-or-hotline-symbol-in-a-simple-flat-trendy-modern-style-for-your-website-design-logo-and-mobile-app-vector.jpg" alt="Phone Icon"> Llamar
+      </button>
+      <button class="whatsapp-button" id="whatsappButton">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Icon"> WhatsApp
+      </button>
+      <button class="close-button" onclick="closePhoneOptions()">❌ Cancelar</button>
+    </div>
+
     <script src="script.js"></script>
   </body>
 </html>

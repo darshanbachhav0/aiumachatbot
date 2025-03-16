@@ -699,6 +699,118 @@ body.show-chatbot .chatbot-popup {
 
 
 
+/* Overlay background */
+.phone-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  display: none;
+}
+
+/* Pop-up box */
+.phone-options {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  text-align: center;
+  width: 280px;
+}
+
+/* Buttons inside popup */
+.phone-options button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin: 10px 0;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+/* Call button styling */
+.call-button {
+  background-color: #28a745;
+  color: white;
+}
+
+.call-button:hover {
+  background-color: #218838;
+}
+
+/* WhatsApp button styling */
+.whatsapp-button {
+  background-color: #25D366;
+  color: white;
+}
+
+.whatsapp-button:hover {
+  background-color: #1da851;
+}
+
+/* Icons inside buttons */
+.phone-options button img {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}
+
+/* Close button */
+.close-button {
+  background-color: #dc3545;
+  color: white;
+}
+
+.close-button:hover {
+  background-color: #c82333;
+}
+
+/* Clickable phone links */
+.phone-link {
+  color: blue;
+  text-decoration: underline;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

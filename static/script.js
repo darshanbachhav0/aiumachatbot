@@ -18,11 +18,100 @@ let currentKeyIndex = 0;
 
 // Predefined fallback responses
 const universityResponses = {
-  "examen": "📝 Prepárate para nuestro próximo examen de admisión. Conoce las fechas y requisitos en: <a href='https://uma.edu.pe/admision/'>Examen de Admisión UMA</a>",
-  "investigación": "🔬 Fomentamos la investigación en diversas áreas del conocimiento. Descubre nuestros proyectos y publicaciones en: <a href='https://uma.edu.pe/proyectos-de-investigacion/'>Investigación UMA</a>",
-  "responsabilidad": "🤝 Comprometidos con la sociedad, desarrollamos programas de responsabilidad social. Conoce nuestras iniciativas en: <a href='https://uma.edu.pe/uma-barrio/'>Responsabilidad Social UMA</a>",
-  "alumni": "🎓 Mantente conectado con la comunidad UMA a través de nuestra red de egresados. Visita: <a href='https://uma.edu.pe/alumni/'>Alumni UMA</a>"
+  "examen": "📝 Prepárate para nuestro próximo examen de admisión. Conoce las fechas y requisitos en: <a href='https://uma.edu.pe/admisionpregrado/'>Examen de Admisión UMA</a>",
+  
+  "carreras": "📚 En la UMA ofrecemos diversas carreras de pregrado en Ingeniería, Negocios, Ciencias de la Salud y más. Consulta nuestra lista completa aquí: <a href='https://uma.edu.pe/'>Carreras UMA</a>",
+
+  "maestrías": "🎓 La UMA ofrece maestrías como MBA y Salud Pública. Encuentra más información en: <a href='https://uma.edu.pe/mba/'>Maestría en Administraciónde Empresas - MBA</a><br><a href='https://uma.edu.pe/maestria-en-salud-publica/'>Maestría en Salud Pública UMA</a>",
+
+  "especialización": "🏥 Contamos con programas de Segunda Especialización Profesional en Enfermería, Farmacia y más. Revisa nuestros programas aquí: <a href='https://uma.edu.pe/psee/'>Especializaciones UMA</a>",
+
+  "diplomado": "📜 Explora nuestros diplomados en Especialización en Toxicología Ambiental y Seguridad Alimentaria, Seguridad Alimentaria,Asuntos Regulatorios del Sector Farmacéutico,enfermedades crónicas no transmisibles y Salud Mental Comunitaria.",
+
+  "admisión": "📄 ¿Quieres estudiar en la UMA? Conoce nuestros requisitos y procesos de admisión en: <a href='https://uma.edu.pe/admisionpregrado/'>Admisión UMA</a>",
+
+
+
+  "ingeniería": "🖥️ Nuestra Facultad de Ingeniería y Negocios ofrece carreras como:\n- Ingeniería de Inteligencia Artificial\n- Ingeniería de Sistemas (Nuevo)\n- Ingeniería Industrial (Nuevo)\n📌",
+
+  "derecho": "⚖️ La carrera de Derecho ahora está disponible en la UMA. Consulta más información aquí: <a href='https://uma.edu.pe/derecho/'>Derecho UMA</a>",
+
+  "administración": "📊 La Facultad de Ingeniería y Negocios ofrece Administración en:\n- Empresas (Nuevo)\n- Negocios Internacionales\n- Marketing\n- Contabilidad y Finanzas\n📌",
+
+  "farmacia": "💊 Nuestra Facultad de Farmacia y Bioquímica ofrece la carrera de Farmacia y Bioquímica. Consulta más información aquí: <a href='https://uma.edu.pe/'>Farmacia UMA</a>",
+
+  "salud": "🏥 La Facultad de Ciencias de la Salud de la UMA incluye programas como:\n- Tecnología Médica en Laboratorio Clínico\n- Tecnología Médica en Terapia Física y Rehabilitación\n- Enfermería\n- Nutrición y Dietética\n- Psicología\n📌",
+
+  "mba": "🎓 La UMA ofrece la Maestría en Administración de Empresas (MBA) (Nuevo). 📌 Más información: <a href='https://uma.edu.pe/mba/'>UMA MBA</a>",
+
+  "psicología": "🧠 La carrera de Psicología en la UMA prepara profesionales para trabajar en hospitales, empresas y centros educativos. Más información aquí: <a href='https://uma.edu.pe/psicologia/'>Psicología UMA</a>",
+
+  "enfermería": "🏥 La UMA ofrece especializaciones en Enfermería, incluyendo:\n- Cuidados Intensivos\n- Salud Familiar y Comunitaria\n- Emergencias y Desastres\n- Centro Quirúrgico\n📌 Más información aquí: <a href='https://uma.edu.pe/psee/'>Especialización en Enfermería</a>",
+
+  "urología": "🩺 La UMA ahora ofrece la especialización en Urología (Nuevo). 📌 Más información aquí: <a href='https://uma.edu.pe/see-en-urologia/'>Especialización en Urología</a>",
+
+  "farmacia especialidad": "💊 Segunda Especialidad en Farmacia:\n- Asuntos Regulatorios del Sector Farmacéutico (Nuevo)\n📌 Más información: <a href='https://uma.edu.pe/asuntos-regulatorios-en-el-sector-farmaceutico/'>Especialización en Farmacia</a>",
+
+  
+
+  "contacto": `
+  📞 ¿Necesitas ayuda? Puedes contactar con nuestra oficina de admisión:<br><br>
+  - Ms. Katya Aponte: <a href="#" class="phone-link" data-phone="51982887246">982 887 246</a> | <a href="mailto:katia.aponte@uma.edu.pe">katia.aponte@uma.edu.pe</a><br>
+  - Ms. Sandy León: <a href="#" class="phone-link" data-phone="51923032722">923 032 722</a> | <a href="mailto:sandy.leon@uma.edu.pe">sandy.leon@uma.edu.pe</a><br>
+  - Ms. Esperanza Pérez: <a href="#" class="phone-link" data-phone="51923319253">923 319 253</a> | <a href="mailto:esperanza.perez@uma.edu.pe">esperanza.perez@uma.edu.pe</a><br>
+  - Ms. Antuanette Fernández: <a href="#" class="phone-link" data-phone="51922821832">922 821 832</a> | <a href="mailto:jahaira.fernandez@uma.edu.pe">jahaira.fernandez@uma.edu.pe</a><br>
+  - Ms. Karol Padilla: <a href="#" class="phone-link" data-phone="51914569310">914 569 310</a> | <a href="mailto:karol.padilla@uma.edu.pe">karol.padilla@uma.edu.pe</a><br>
+  `
+ 
 };
+
+
+document.addEventListener("DOMContentLoaded", function () {
+  // Attach event listener to all phone number links
+  document.body.addEventListener("click", function (event) {
+    if (event.target.classList.contains("phone-link")) {
+      event.preventDefault(); // Prevent default link behavior
+      const phoneNumber = event.target.getAttribute("data-phone");
+      openPhoneOptions(phoneNumber);
+    }
+  });
+});
+
+function openPhoneOptions(phoneNumber) {
+  document.getElementById("phoneOverlay").style.display = "block";
+  document.getElementById("phoneOptions").style.display = "block";
+
+  // Set actions for Call and WhatsApp buttons
+  document.getElementById("callButton").onclick = function () {
+    window.location.href = `tel:${phoneNumber}`;
+  };
+
+  document.getElementById("whatsappButton").onclick = function () {
+    window.location.href = `https://wa.me/${phoneNumber}`;
+  };
+}
+
+function closePhoneOptions() {
+  document.getElementById("phoneOverlay").style.display = "none";
+  document.getElementById("phoneOptions").style.display = "none";
+}
+
+async function correctSpelling(userInput) {
+  try {
+      const response = await fetch('/correct_spelling', {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ query: userInput })
+      });
+
+      const data = await response.json();
+      return data.corrected_query; // Return corrected query
+  } catch (error) {
+      console.error("Spelling Correction Error:", error);
+      return userInput; // If API fails, return original input
+  }
+}
+
 
 // Toggle chatbot popup
 chatbotToggler.addEventListener("click", () => {
@@ -88,6 +177,18 @@ const generateBotResponse = async (userMessage) => {
   // First, check for predefined keywords
   let responseText = null;
   const lowerCaseMessage = userMessage.toLowerCase();
+
+// Correct spelling before searching for predefined responses
+const correctedMessage = await correctSpelling(lowerCaseMessage);
+
+
+for (const key in universityResponses) {
+    if (correctedMessage.includes(key)) {
+        responseText = universityResponses[key];
+        break;
+    }
+}
+
   for (const key in universityResponses) {
     if (lowerCaseMessage.includes(key)) {
       responseText = universityResponses[key];
@@ -95,11 +196,15 @@ const generateBotResponse = async (userMessage) => {
     }
   }
   if (responseText) {
+    // Convert predefined response text into bullet points if applicable
+    const formattedResponse = convertDoubleAsteriskToBullets(responseText);
+
     setTimeout(() => {
-      botMessageContainer.querySelector(".message-text").innerHTML = responseText;
+        botMessageContainer.querySelector(".message-text").innerHTML = formattedResponse;
     }, 4000);
     return;
-  }
+}
+
 
   try {
     // 1) Call your Flask endpoint
@@ -228,6 +333,15 @@ function convertDoubleAsteriskToBullets(rawText) {
   `;
 }
 
+
+
+
+
+
+
+
+
+
 // Voice recognition functions
 const startVoiceRecognition = () => {
   if (!("SpeechRecognition" in window || "webkitSpeechRecognition" in window)) {
@@ -292,6 +406,97 @@ recordVoiceButton.addEventListener("mouseup", () => {
   stopVoiceRecognition();
   recordVoiceButton.classList.remove("recording");
 });
+
+
+
+let mediaRecorder;
+let audioStream;
+
+async function startLiveWhisper() {
+    try {
+        audioStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        mediaRecorder = new MediaRecorder(audioStream);
+
+        mediaRecorder.ondataavailable = async (event) => {
+            if (event.data.size > 0) {
+                sendAudioToBackend(event.data);
+            }
+        };
+
+        mediaRecorder.start(200); // Send chunks every 200ms
+    } catch (error) {
+        console.error("Microphone access error:", error);
+    }
+}
+
+async function sendAudioToBackend(audioBlob) {
+  const reader = new FileReader();
+  reader.readAsArrayBuffer(audioBlob);
+  reader.onloadend = async () => {
+      const audioData = reader.result;
+      try {
+          const response = await fetch("/speech_to_text_stream", {
+              method: "POST",
+              body: audioData,
+              headers: { "Content-Type": "application/octet-stream" }
+          });
+
+          const reader = response.body.getReader();
+          reader.read().then(function processText({ done, value }) {
+              if (done) return;
+              let text = new TextDecoder("utf-8").decode(value);
+              messageInput.value = text.trim(); // Update chat input in real-time
+              reader.read().then(processText);
+          });
+      } catch (error) {
+          console.error("Streaming error:", error);
+      }
+  };
+}
+function stopLiveWhisper() {
+  if (mediaRecorder) {
+      mediaRecorder.stop();
+  }
+  if (audioStream) {
+      audioStream.getTracks().forEach(track => track.stop());
+  }
+}
+
+
+// Ensure we only detect Spanish voice
+function startWebSpeechRecognition() {
+  if (!("SpeechRecognition" in window || "webkitSpeechRecognition" in window)) {
+      alert("Your browser does not support live speech recognition.");
+      return;
+  }
+
+  let recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+  recognition.lang = "es-ES"; // **Force Spanish-only speech recognition**
+  recognition.interimResults = true;
+  recognition.continuous = true;
+
+  recognition.onresult = (event) => {
+      let transcript = "";
+      for (let i = 0; i < event.results.length; i++) {
+          transcript += event.results[i][0].transcript + " ";
+      }
+      messageInput.value = transcript.trim();
+  };
+
+  recognition.onerror = (event) => {
+      console.error("Speech recognition error:", event.error);
+  };
+
+  recognition.start();
+}
+
+// Attach listeners for Whisper AI (Live speech-to-text in Spanish)
+recordVoiceButton.addEventListener("mousedown", startLiveWhisper);
+recordVoiceButton.addEventListener("mouseup", stopLiveWhisper);
+
+// Attach fallback Web Speech API for Spanish recognition
+recordVoiceButton.addEventListener("dblclick", startWebSpeechRecognition);
+
 
 // Stop initial GIF after 4 seconds
 document.addEventListener("DOMContentLoaded", () => {
