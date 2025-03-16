@@ -7,5 +7,6 @@ symspellpy
 whisper
 torch
 numpy
+soundfile
 
 
