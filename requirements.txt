@@ -3,5 +3,6 @@ flask-cors
 requests
 beautifulsoup4
 scikit-learn
+symspellpy
 
 
