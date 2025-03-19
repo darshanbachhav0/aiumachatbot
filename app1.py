@@ -7,7 +7,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 from flask_cors import CORS
 from symspellpy import SymSpell, Verbosity
-import whisper
+
 import soundfile as sf
 import io
 import torch
@@ -149,27 +149,27 @@ def get_response():
 #         g.whisper_model = whisper.load_model("tiny").to("cpu")  # Lighter model, use CPU to save RAM
 #     return g.whisper_model
 
-def transcribe_audio(audio_data):
-    try:
-        whisper_model = get_whisper_model()
-        audio, _ = sf.read(io.BytesIO(audio_data))
-        audio = np.array(audio, dtype=np.float32)
-        result = whisper_model.transcribe(audio, language="es")
-        return result["text"]
-    except Exception as e:
-        print("Error in transcription:", str(e))
-        return ""
+# def transcribe_audio(audio_data):
+#     try:
+#         whisper_model = get_whisper_model()
+#         audio, _ = sf.read(io.BytesIO(audio_data))
+#         audio = np.array(audio, dtype=np.float32)
+#         result = whisper_model.transcribe(audio, language="es")
+#         return result["text"]
+#     except Exception as e:
+#         print("Error in transcription:", str(e))
+#         return ""
 
-@app.route('/speech_to_text_stream', methods=['POST'])
-def speech_to_text_stream():
-    def generate():
-        while True:
-            audio_chunk = request.stream.read(4096)
-            if not audio_chunk:
-                break
-            text = transcribe_audio(audio_chunk)
-            yield f"data: {text}\n\n"
-    return Response(generate(), mimetype="text/event-stream")
+# @app.route('/speech_to_text_stream', methods=['POST'])
+# def speech_to_text_stream():
+#     def generate():
+#         while True:
+#             audio_chunk = request.stream.read(4096)
+#             if not audio_chunk:
+#                 break
+#             text = transcribe_audio(audio_chunk)
+#             yield f"data: {text}\n\n"
+#     return Response(generate(), mimetype="text/event-stream")
 
 # ----------------------------------------------------------------
 # 5) FLASK SERVER CONFIGURATION (Optimized for Render)
