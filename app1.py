@@ -169,7 +169,7 @@ def get_response():
 # 4) WHISPER FOR SPEECH-TO-TEXT
 # ----------------------------------------------------------------
 device = "cuda" if torch.cuda.is_available() else "cpu"
-whisper_model = whisper.load_model("large").to(device)
+whisper_model = whisper.load_model("small").to(device)
 
 def transcribe_audio(audio_data):
     try:
