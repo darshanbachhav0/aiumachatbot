@@ -6,9 +6,9 @@ scikit-learn
 symspellpy
 git+https://github.com/openai/whisper.git
 ffmpeg-python
-
+nltk
 torch
 numpy
 soundfile
 
-
+sentence_transformers
