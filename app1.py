@@ -144,10 +144,10 @@ def get_response():
 # ----------------------------------------------------------------
 # 4) WHISPER FOR SPEECH-TO-TEXT (Lazy Loading)
 # ----------------------------------------------------------------
-def get_whisper_model():
-    if not hasattr(g, 'whisper_model'):
-        g.whisper_model = whisper.load_model("tiny").to("cpu")  # Lighter model, use CPU to save RAM
-    return g.whisper_model
+# def get_whisper_model():
+#     if not hasattr(g, 'whisper_model'):
+#         g.whisper_model = whisper.load_model("tiny").to("cpu")  # Lighter model, use CPU to save RAM
+#     return g.whisper_model
 
 def transcribe_audio(audio_data):
     try:
@@ -175,5 +175,5 @@ def speech_to_text_stream():
 # 5) FLASK SERVER CONFIGURATION (Optimized for Render)
 # ----------------------------------------------------------------
 if __name__ == '__main__':
-    port = int(os.environ.get("PORT", 10000))  # Bind to the correct Render port
+    port = int(os.environ.get("PORT", 8080))  # Bind to the correct Render port
     app.run(host="0.0.0.0", port=port, debug=False, threaded=True)  # Disable debug mode, enable threading

@@ -4,8 +4,8 @@ requests
 beautifulsoup4
 scikit-learn
 symspellpy
-whisper
-ffmpeg-python
+
+
 nltk
 torch
 numpy
