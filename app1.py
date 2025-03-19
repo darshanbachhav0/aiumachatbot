@@ -169,7 +169,7 @@ def get_response():
 # 4) WHISPER FOR SPEECH-TO-TEXT
 # ----------------------------------------------------------------
 device = "cuda" if torch.cuda.is_available() else "cpu"
-whisper_model = whisper.load_model("small").to(device)
+whisper_model = whisper.load_model("tiny").to(device)
 
 def transcribe_audio(audio_data):
     try:
@@ -194,4 +194,4 @@ def speech_to_text_stream():
 
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 10000))
-    app.run(host="0.0.0.0", port=port, debug=False, threaded=True)
+    app.run(host="0.0.0.0", port=port, debug=True)
