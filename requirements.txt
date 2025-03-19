@@ -10,6 +10,7 @@ nltk
 torch
 numpy
 soundfile
+sentence-transformers
 
 
 
