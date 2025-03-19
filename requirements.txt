@@ -11,4 +11,6 @@ torch
 numpy
 soundfile
 
-sentence_transformers
+
+
+
