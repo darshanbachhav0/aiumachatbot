@@ -1,0 +1,1339 @@
+[
+    {
+      "category": "Coordinación Académica",
+      "question": "¿Cuándo inicia la matrícula para el próximo ciclo?",
+      "variations": [
+        "¿Cuándo se abre la matrícula para el próximo ciclo?",
+        "¿Cuál es la fecha de inicio de matrícula para el siguiente ciclo?",
+        "¿A partir de cuándo puedo matricularme en el próximo ciclo?",
+        "¿Cuándo comienza la inscripción para el próximo ciclo académico?",
+        "¿Desde qué fecha está abierta la matrícula del próximo semestre?",
+        "¿En qué día inicia la matrícula para el siguiente ciclo?",
+        "¿Cuándo empieza el proceso de matrícula para el próximo ciclo?",
+        "¿A partir de cuándo puedo inscribirme en el próximo ciclo?",
+        "¿Cuál es el inicio de las inscripciones para el siguiente ciclo?",
+        "¿Desde cuándo se puede realizar la matrícula para el próximo ciclo?",
+        "¿En qué fecha comienza el registro para el nuevo ciclo?",
+        "¿Cuándo se abre el período de matrícula?",
+        "¿Cuál es el calendario de matrícula para el próximo ciclo?",
+        "¿A partir de qué fecha se habilita la matrícula?",
+        "¿Cuándo se inicia la matrícula académica?"
+      ],
+      "synonyms": [
+        "matrícula",
+        "inscripción",
+        "registro",
+        "matriculación",
+        "inicio"
+      ],
+      "answer": "Las fechas de matrícula varían según el calendario académico. Puedes consultar las fechas actualizadas contactando a Coordinación Académica: 📞 (01) 389-1212 Anexo 318, 📱 WhatsApp: 933 670 445, 📧 coacademica@uma.edu.pe"
+    },
+    {
+      "category": "Coordinación Académica",
+      "question": "¿Cómo solicito un cambio de turno o sección?",
+      "variations": [
+        "¿De qué manera puedo solicitar un cambio de turno o sección?",
+        "¿Cómo puedo cambiar de turno o sección?",
+        "¿Qué procedimiento debo seguir para modificar mi turno?",
+        "¿Cómo puedo pedir un cambio de sección?",
+        "¿Cuál es el proceso para solicitar un cambio de turno?",
+        "¿Cómo realizo la solicitud para cambiar de turno o sección?",
+        "¿Qué pasos debo seguir para cambiar de sección?",
+        "¿De qué forma puedo gestionar un cambio de turno?",
+        "¿Cómo se solicita el cambio de sección?",
+        "¿Qué hago para solicitar un cambio de turno?",
+        "¿Cómo puedo gestionar la modificación de mi turno?",
+        "¿Cuál es el trámite para cambiar de sección?",
+        "¿Cómo actualizo mi turno?",
+        "¿Cómo puedo solicitar un ajuste en mi horario?",
+        "¿Qué requisitos debo cumplir para cambiar de turno?"
+      ],
+      "synonyms": [
+        "cambio",
+        "modificar",
+        "ajuste",
+        "sección",
+        "solicitud"
+      ],
+      "answer": "Para solicitar un cambio de turno o sección, debes presentar tu solicitud a Coordinación Académica dentro de las fechas establecidas. Puedes contactarlos para más detalles."
+    },
+    {
+      "category": "Coordinación Académica",
+      "question": "¿Qué hago si tengo un problema con mi horario de clases?",
+      "variations": [
+        "¿Qué puedo hacer si encuentro problemas con mi horario de clases?",
+        "¿Cómo resuelvo un conflicto en mi horario de clases?",
+        "Tengo un problema con mi horario, ¿qué debo hacer?",
+        "¿Cuál es el procedimiento para solucionar problemas de horario?",
+        "¿Qué pasos seguir si mi horario de clases tiene inconvenientes?",
+        "¿Cómo puedo resolver un problema con mi horario?",
+        "¿Qué hago ante un conflicto en el horario de clases?",
+        "¿Cómo gestiono un problema con mi horario?",
+        "Si tengo problemas en mi horario, ¿qué acción debo tomar?",
+        "¿Qué hago si mi horario de clases no me conviene?",
+        "¿Cómo puedo ajustar mi horario?",
+        "¿Qué alternativas tengo si mi horario presenta conflictos?",
+        "¿Cómo soluciono discrepancias en mi horario?",
+        "¿Qué proceso debo seguir para reportar un problema en mi horario?",
+        "¿Cómo puedo reorganizar mi horario de clases?"
+      ],
+      "synonyms": [
+        "conflicto",
+        "problema",
+        "ajuste",
+        "solución",
+        "discrepancia"
+      ],
+      "answer": "Si tienes inconvenientes con tu horario, debes comunicarte con Coordinación Académica lo antes posible para revisar tu caso y encontrar una solución."
+    },
+    {
+      "category": "Coordinación Académica",
+      "question": "¿Cómo puedo solicitar un curso adelantado?",
+      "variations": [
+        "¿De qué manera puedo solicitar adelantar un curso?",
+        "¿Cómo puedo inscribirme anticipadamente en un curso?",
+        "¿Cuál es el procedimiento para adelantar un curso?",
+        "¿Cómo pedir la aprobación para un curso adelantado?",
+        "¿Qué debo hacer para adelantar un curso?",
+        "¿Cómo se solicita un curso adelantado?",
+        "¿Puedo solicitar adelantar un curso y cómo?",
+        "¿Cómo puedo gestionar la inscripción anticipada de un curso?",
+        "¿Qué pasos seguir para adelantar un curso?",
+        "¿Cómo realizo la solicitud para cursar un curso antes de tiempo?",
+        "¿Es posible adelantar un curso y cuál es el proceso?",
+        "¿Cómo solicito tomar un curso de forma adelantada?",
+        "¿Qué requisitos debo cumplir para adelantar un curso?",
+        "¿Cuál es el trámite para cursar un curso anticipadamente?",
+        "¿Cómo puedo pedir adelantar una materia?"
+      ],
+      "synonyms": [
+        "adelanto",
+        "anticipación",
+        "previo",
+        "anticipado",
+        "avance"
+      ],
+      "answer": "Para adelantar un curso, debes cumplir con los requisitos académicos y presentar tu solicitud a Coordinación Académica. Contáctanos para más detalles."
+    },
+    {
+      "category": "Coordinación Académica",
+      "question": "¿Cuántas veces puedo desaprobar un curso antes de ser retirado?",
+      "variations": [
+        "¿Cuál es el límite de desaprobaciones antes de ser retirado de un curso?",
+        "¿Cuántas veces puedo fallar un curso sin ser retirado?",
+        "¿Qué cantidad de desaprobaciones me permite seguir en un curso?",
+        "¿Cuántos fallos puedo tener en un curso antes del retiro?",
+        "¿Existe un límite de desaprobaciones antes de ser dado de baja en un curso?",
+        "¿Cuántas veces puedo desaprobar sin ser retirado?",
+        "¿Cuál es el número máximo de desaprobaciones permitido?",
+        "¿Cuántas veces se puede reprobar un curso sin que me retiren?",
+        "¿Hasta cuántas desaprobaciones puedo llegar antes de ser excluido del curso?",
+        "¿Cuál es el límite de reprobaciones para no ser retirado de un curso?",
+        "¿Cuántas reprobaciones son permitidas?",
+        "¿Cuál es el máximo de reprobaciones permitido en un curso?",
+        "¿En qué cantidad de reprobaciones se activa la baja académica?",
+        "¿Cuántas veces puedo reprobar sin consecuencias?",
+        "¿Cuál es el tope de desaprobaciones en un curso?"
+      ],
+      "synonyms": [
+        "límite",
+        "máximo",
+        "reprobación",
+        "tope",
+        "fallo"
+      ],
+      "answer": "Según el reglamento académico, existe un límite de desaprobaciones antes de ser dado de baja en la asignatura. Te recomendamos revisar el reglamento o contactar a Coordinación Académica."
+    },
+    {
+      "category": "Coordinación Académica",
+      "question": "¿Cómo puedo solicitar una reubicación en un grupo de clases?",
+      "variations": [
+        "¿De qué manera puedo solicitar cambiarme de grupo de clases?",
+        "¿Cómo puedo pedir reubicación en mi grupo de clases?",
+        "¿Qué procedimiento debo seguir para reubicarme en otro grupo?",
+        "¿Cómo solicito cambiar de grupo?",
+        "¿Qué hago para solicitar un cambio de sección?",
+        "¿Cómo pedir la reubicación de mi grupo de clases?",
+        "¿Cuál es el proceso para solicitar reubicación en el grupo?",
+        "¿Puedo solicitar un cambio de grupo y cómo lo hago?",
+        "¿Cómo puedo gestionar mi cambio de grupo de clases?",
+        "¿Qué pasos debo seguir para reubicarme en otro grupo?",
+        "¿Es posible trasladarse de grupo y cuál es el trámite?",
+        "¿Cómo puedo solicitar la transferencia a otro grupo de clases?",
+        "¿Cómo gestiono un cambio de sección?",
+        "¿Qué requisitos necesito para cambiar de grupo?",
+        "¿Cómo puedo solicitar la reubicación de mi sección?"
+      ],
+      "synonyms": [
+        "cambio",
+        "traslado",
+        "reubicación",
+        "transferencia",
+        "modificación"
+      ],
+      "answer": "Debes presentar una solicitud formal indicando el motivo. La aprobación dependerá de la disponibilidad de cupos."
+    },
+    {
+      "category": "Coordinación Académica",
+      "question": "¿Cuáles son los requisitos para egresar de mi carrera?",
+      "variations": [
+        "¿Qué requisitos debo cumplir para graduarme?",
+        "¿Cuáles son los requisitos para terminar mi carrera?",
+        "¿Qué condiciones necesito para egresar?",
+        "¿Qué debo aprobar para egresar de mi carrera?",
+        "¿Cuáles son las condiciones para obtener mi título?",
+        "¿Qué requisitos tiene la universidad para graduarse?",
+        "¿Cuáles son las exigencias académicas para egresar?",
+        "¿Qué debo cumplir para finalizar mi carrera?",
+        "¿Cuáles son los criterios para egresar?",
+        "¿Qué requisitos establece la universidad para graduarse?",
+        "¿Cuáles son los parámetros para obtener mi grado?",
+        "¿Qué condiciones debo cumplir para ser egresado?",
+        "¿Qué documentos o aprobaciones necesito para graduarme?",
+        "¿Cuál es el procedimiento para egresar de la carrera?",
+        "¿Qué requisitos adicionales existen para egresar?"
+      ],
+      "synonyms": [
+        "requisitos",
+        "criterios",
+        "condiciones",
+        "parámetros",
+        "título"
+      ],
+      "answer": "Debes haber aprobado todos los cursos del plan de estudios, cumplir con el trabajo de titulación y no tener deudas pendientes con la universidad."
+    },
+    {
+      "category": "Oficina de Tesorería",
+      "question": "¿Cuáles son las opciones de pago de mis pensiones?",
+      "variations": [
+        "¿Qué métodos de pago tengo para mis pensiones?",
+        "¿Cómo puedo pagar mis pensiones?",
+        "¿Cuáles son las formas de pago para las pensiones?",
+        "¿De qué maneras puedo abonar mis pensiones?",
+        "¿Qué opciones de pago existen para mis pensiones?",
+        "¿Puedo pagar mis pensiones de diferentes maneras?",
+        "¿Cómo se pueden pagar las pensiones?",
+        "¿Qué métodos puedo usar para el pago de pensiones?",
+        "¿Cuáles son las alternativas para pagar mis pensiones?",
+        "¿De qué forma se pueden abonar las pensiones?",
+        "¿Qué alternativas de pago hay para mis pensiones?",
+        "¿Cuáles son las opciones disponibles para abonar mi pensión?",
+        "¿Qué modalidades de pago existen para las pensiones?",
+        "¿Cómo puedo efectuar el pago de mi pensión?",
+        "¿Existen opciones flexibles para pagar la pensión?"
+      ],
+      "synonyms": [
+        "pago",
+        "métodos",
+        "formas",
+        "opciones",
+        "alternativas"
+      ],
+      "answer": "Puedes pagar tus pensiones mediante transferencia bancaria, pago en ventanilla o a través de la plataforma virtual de la universidad. Para más información: 📞 (01) 389-1212 Anexo 321, 📱 WhatsApp: 970 408 211, 📧 contactotesoreria@uma.edu.pe"
+    },
+    {
+      "category": "Oficina de Tesorería",
+      "question": "¿Dónde veo mi estado de cuenta?",
+      "variations": [
+        "¿Cómo puedo consultar mi estado de cuenta?",
+        "¿Dónde puedo revisar mi cuenta?",
+        "¿Cómo ver mi balance de cuenta?",
+        "¿Dónde se encuentra mi estado de cuenta?",
+        "¿Cómo accedo a mi estado de cuenta?",
+        "¿En qué plataforma puedo ver mi cuenta?",
+        "¿Dónde puedo obtener información de mi cuenta?",
+        "¿Cómo revisar mi estado financiero de cuenta?",
+        "¿Cuál es el método para ver mi estado de cuenta?",
+        "¿Cómo verifico mi estado de cuenta?",
+        "¿Dónde se puede consultar el estado de mi cuenta?",
+        "¿Cómo puedo revisar mi situación financiera en la universidad?",
+        "¿Cuál es el proceso para obtener mi estado de cuenta?",
+        "¿Cómo puedo acceder a mi balance financiero?",
+        "¿Qué pasos seguir para consultar mi estado de cuenta?"
+      ],
+      "synonyms": [
+        "estado",
+        "balance",
+        "revisión",
+        "consulta",
+        "situación"
+      ],
+      "answer": "Puedes consultar tu estado de cuenta en la plataforma de autoservicio de la universidad o comunicándote con Tesorería."
+    },
+    {
+      "category": "Oficina de Tesorería",
+      "question": "¿Puedo fraccionar el pago de mi pensión?",
+      "variations": [
+        "¿Es posible dividir el pago de mi pensión?",
+        "¿Puedo abonar mi pensión en cuotas?",
+        "¿Se puede pagar la pensión a plazos?",
+        "¿Ofrecen fraccionamiento para el pago de pensión?",
+        "¿Puedo realizar el pago de mi pensión en partes?",
+        "¿Cómo puedo fraccionar el pago de mi pensión?",
+        "¿Divido mi pago de pensión en cuotas?",
+        "¿Existe opción para pagar la pensión en cuotas?",
+        "¿Puedo pagar mi pensión en varios pagos?",
+        "¿Se permite el pago fraccionado de la pensión?",
+        "¿Puedo hacer pagos parciales de mi pensión?",
+        "¿Cuáles son las modalidades de pago para la pensión?",
+        "¿Es posible abonar la pensión en diferentes partes?",
+        "¿Puedo dividir el pago de mi pensión?",
+        "¿Qué opciones tengo para fraccionar el pago de la pensión?"
+      ],
+      "synonyms": [
+        "fraccionar",
+        "cuotas",
+        "partes",
+        "dividir",
+        "plazos"
+      ],
+      "answer": "Sí, la universidad ofrece opciones de fraccionamiento. Debes coordinarlo directamente con Tesorería."
+    },
+    {
+      "category": "Oficina de Tesorería",
+      "question": "¿Qué sucede si no pago mi pensión a tiempo?",
+      "variations": [
+        "¿Cuáles son las consecuencias de pagar tarde la pensión?",
+        "¿Qué pasa si no realizo el pago de mi pensión a tiempo?",
+        "¿Qué ocurre si se retrasa el pago de mi pensión?",
+        "¿Qué penalización hay por pagar mi pensión tarde?",
+        "¿Qué efectos tiene no pagar mi pensión en la fecha establecida?",
+        "¿Cuáles son las repercusiones de un pago tardío de pensión?",
+        "¿Qué sucede al retrasar el pago de mi pensión?",
+        "¿Cuáles son las consecuencias de un pago fuera de plazo para mi pensión?",
+        "¿Qué inconvenientes hay si no pago mi pensión a tiempo?",
+        "¿Qué pasa si me atraso en el pago de mi pensión?",
+        "¿Cuáles son las sanciones por no pagar a tiempo?",
+        "¿Qué repercusiones económicas tiene el impago de la pensión?",
+        "¿Cómo afecta el retraso en el pago de la pensión?",
+        "¿Qué penalizaciones se aplican por impago de la pensión?",
+        "¿Qué consecuencias académicas tiene no pagar la pensión a tiempo?"
+      ],
+      "synonyms": [
+        "tardío",
+        "retraso",
+        "impago",
+        "mora",
+        "penalización"
+      ],
+      "answer": "Si no realizas el pago en la fecha establecida, se generarán intereses moratorios y podrías tener restricciones académicas."
+    },
+    {
+      "category": "Oficina de Tesorería",
+      "question": "¿Puedo pagar mi matrícula con tarjeta de crédito?",
+      "variations": [
+        "¿Es posible abonar mi matrícula con tarjeta de crédito?",
+        "¿Puedo realizar el pago de mi matrícula usando una tarjeta de crédito?",
+        "¿Aceptan pagos de matrícula con tarjeta de débito o crédito?",
+        "¿Cómo puedo pagar mi matrícula con tarjeta?",
+        "¿Se permite el pago de matrícula con tarjeta de crédito?",
+        "¿Puedo usar mi tarjeta para pagar la matrícula?",
+        "¿Puedo hacer el pago de mi matrícula mediante tarjeta?",
+        "¿Cuál es el método para pagar la matrícula con tarjeta?",
+        "¿Puedo abonar mi matrícula con una tarjeta de crédito?",
+        "¿Se puede pagar la matrícula con tarjeta?",
+        "¿Puedo pagar la matrícula utilizando un medio electrónico?",
+        "¿Qué métodos de pago con tarjeta están disponibles para la matrícula?",
+        "¿Puedo usar tarjeta de débito para abonar la matrícula?",
+        "¿Cuál es la forma más segura de pagar la matrícula con tarjeta?",
+        "¿Se acepta pago con tarjeta para la matrícula?"
+      ],
+      "synonyms": [
+        "tarjeta",
+        "crédito",
+        "abono",
+        "electrónico",
+        "digital"
+      ],
+      "answer": "Sí, aceptamos pagos con tarjeta de crédito o débito. Puedes realizarlo en línea o en la Tesorería de la universidad."
+    },
+    {
+      "category": "Oficina de Tesorería",
+      "question": "¿Cuáles son los bancos afiliados para el pago de pensiones?",
+      "variations": [
+        "¿En qué bancos puedo pagar mis pensiones?",
+        "¿Qué bancos tienen convenio para el pago de pensiones?",
+        "¿Cuáles son los bancos para abonar mis pensiones?",
+        "¿Dónde puedo realizar el pago de mis pensiones?",
+        "¿Qué bancos están afiliados para el pago de pensiones?",
+        "¿En qué instituciones bancarias se pueden pagar las pensiones?",
+        "¿Qué bancos aceptan el pago de pensiones?",
+        "¿Con qué bancos tiene convenio la universidad para las pensiones?",
+        "¿Cuáles son las opciones bancarias para pagar mi pensión?",
+        "¿Dónde puedo abonar el pago de mis pensiones?",
+        "¿Qué bancos colaboran para el pago de la pensión?",
+        "¿Cuáles son los bancos asociados para las pensiones?",
+        "¿En qué bancos puedo efectuar el pago de mis pensiones?",
+        "¿Qué instituciones bancarias están vinculadas a la universidad?",
+        "¿Con qué bancos puedo realizar el pago de mi pensión?"
+      ],
+      "synonyms": [
+        "bancos",
+        "convenio",
+        "instituciones",
+        "asociados",
+        "opciones"
+      ],
+      "answer": "Puedes realizar pagos en los bancos con los que la universidad tiene convenio. Para más detalles, contacta con Tesorería."
+    },
+    {
+      "category": "Oficina de Tesorería",
+      "question": "¿Cómo solicito un comprobante de pago?",
+      "variations": [
+        "¿Cómo puedo obtener un comprobante de pago?",
+        "¿De qué forma solicito un recibo de pago?",
+        "¿Cuál es el procedimiento para pedir un comprobante de pago?",
+        "¿Puedo solicitar un comprobante de pago, y cómo?",
+        "¿Cómo se solicita un recibo de pago?",
+        "¿Qué debo hacer para obtener un comprobante de pago?",
+        "¿Dónde pido un comprobante de pago?",
+        "¿Cómo pedir el comprobante de mi pago?",
+        "¿Cuál es el proceso para obtener un comprobante de pago?",
+        "¿Cómo puedo pedir mi comprobante de pago?",
+        "¿Puedo solicitar mi recibo de pago y cuál es el trámite?",
+        "¿Qué pasos debo seguir para solicitar un comprobante de pago?",
+        "¿Cómo consigo mi comprobante de pago?",
+        "¿Cuál es el método para solicitar mi recibo?",
+        "¿Cómo obtengo el comprobante de mi abono?"
+      ],
+      "synonyms": [
+        "recibo",
+        "electrónico",
+        "solicitar",
+        "obtener",
+        "documento"
+      ],
+      "answer": "Puedes solicitarlo directamente en Tesorería o mediante el correo electrónico oficial."
+    },
+    {
+      "category": "Oficina de Servicios Académicos (OSAR)",
+      "question": "¿Cómo solicito un certificado de estudios?",
+      "variations": [
+        "¿Cómo puedo obtener un certificado de estudios?",
+        "¿Cuál es el proceso para solicitar mi certificado de estudios?",
+        "¿De qué manera pido un certificado de estudios?",
+        "¿Cómo se solicita un certificado de estudios?",
+        "¿Cómo puedo pedir mi certificado académico?",
+        "¿Qué pasos seguir para obtener un certificado de estudios?",
+        "¿Dónde solicito el certificado de estudios?",
+        "¿Cómo gestiono la solicitud de certificado de estudios?",
+        "¿Cómo puedo tramitar un certificado de estudios?",
+        "¿Qué debo hacer para obtener un certificado de estudios?",
+        "¿Puedo solicitar mi constancia de estudios?",
+        "¿Cuál es el procedimiento para obtener mi certificado de estudios?",
+        "¿Cómo obtengo mi certificado académico?",
+        "¿Qué trámite debo realizar para un certificado de estudios?",
+        "¿Cómo puedo pedir mi constancia de estudios?"
+      ],
+      "synonyms": [
+        "certificado",
+        "constancia",
+        "documento",
+        "solicitud",
+        "tramitar"
+      ],
+      "answer": "Debes solicitarlo en la Oficina de Servicios Académicos (OSAR) y pagar el derecho correspondiente en tu plataforma SIGU. Más información en: 📞 (01) 389-1212 Anexo 313, 📱 WhatsApp: 934 563 160, 📧 osar@uma.edu.pe"
+    },
+    {
+      "category": "Oficina de Servicios Académicos (OSAR)",
+      "question": "¿Cuánto tiempo demora la emisión de una constancia de matrícula?",
+      "variations": [
+        "¿Cuál es el tiempo de emisión de la constancia de matrícula?",
+        "¿Cuánto se tarda en emitir una constancia de matrícula?",
+        "¿En cuántos días se emite la constancia de matrícula?",
+        "¿Cuánto demora la constancia de matrícula?",
+        "¿Cuál es el plazo para recibir la constancia de matrícula?",
+        "¿Cuántos días tarda en salir la constancia de matrícula?",
+        "¿En cuánto tiempo puedo obtener la constancia de matrícula?",
+        "¿Qué demora tiene la emisión de la constancia de matrícula?",
+        "¿Cuánto tiempo se necesita para emitir una constancia de matrícula?",
+        "¿En qué plazo se emite la constancia de matrícula?",
+        "¿Cuánto tardan en emitir la constancia de inscripción?",
+        "¿Cuál es el tiempo estimado para obtener mi constancia de matrícula?",
+        "¿En cuánto se finaliza la emisión de la constancia de matrícula?",
+        "¿Cuánto dura el proceso de emisión de la constancia de matrícula?",
+        "¿Cuál es el período de emisión de la constancia de matrícula?"
+      ],
+      "synonyms": [
+        "emisión",
+        "plazo",
+        "registro",
+        "inscripción",
+        "demora"
+      ],
+      "answer": "El tiempo de emisión varía, pero generalmente es entre 3 a 5 días hábiles."
+    },
+    {
+      "category": "Oficina de Servicios Académicos (OSAR)",
+      "question": "¿Cómo solicito la reprogramación de un examen?",
+      "variations": [
+        "¿Cómo puedo reprogramar un examen?",
+        "¿Cuál es el procedimiento para reprogramar un examen?",
+        "¿Cómo pido que reprogramen un examen?",
+        "¿De qué manera puedo solicitar la reprogramación de un examen?",
+        "¿Cómo gestiono la reprogramación de un examen?",
+        "¿Qué debo hacer para reprogramar un examen?",
+        "¿Cómo puedo pedir cambiar la fecha de un examen?",
+        "¿Cuál es el proceso para reprogramar un examen?",
+        "¿Puedo solicitar reprogramar un examen y cómo?",
+        "¿Cómo solicito que se reprograme un examen?",
+        "¿Qué pasos debo seguir para cambiar la fecha de un examen?",
+        "¿Cómo puedo ajustar la fecha de mi examen?",
+        "¿Cuál es el trámite para reprogramar un examen?",
+        "¿Cómo puedo modificar la fecha de mi examen?",
+        "¿Qué procedimiento sigo para reprogramar un examen?"
+      ],
+      "synonyms": [
+        "reprogramar",
+        "cambiar",
+        "modificar",
+        "ajustar",
+        "examen"
+      ],
+      "answer": "Para reprogramar un examen, debes presentar una solicitud justificada ante OSAR dentro del plazo establecido."
+    },
+    {
+      "category": "Oficina de Servicios Académicos (OSAR)",
+      "question": "¿Cómo puedo tramitar mi carné universitario?",
+      "variations": [
+        "¿Cómo solicito mi carné universitario?",
+        "¿Cuál es el proceso para obtener mi carné universitario?",
+        "¿De qué manera puedo tramitar mi carné?",
+        "¿Cómo puedo conseguir mi carné universitario?",
+        "¿Qué pasos debo seguir para tramitar mi carné?",
+        "¿Cómo gestiono la solicitud de mi carné universitario?",
+        "¿Dónde puedo solicitar mi carné universitario?",
+        "¿Cómo pido mi carné universitario?",
+        "¿Cuál es el procedimiento para tramitar mi carné?",
+        "¿Cómo hago para obtener mi carné universitario?",
+        "¿Qué requisitos se necesitan para obtener el carné?",
+        "¿Cómo puedo solicitar mi identificación estudiantil?",
+        "¿Cuál es el trámite para mi carné universitario?",
+        "¿Cómo puedo gestionar mi carné estudiantil?",
+        "¿Qué documentación necesito para tramitar mi carné?"
+      ],
+      "synonyms": [
+        "carné",
+        "identificación",
+        "solicitud",
+        "tramitar",
+        "estudiante"
+      ],
+      "answer": "Debes acercarte a OSAR y presentar tu solicitud junto con el pago correspondiente."
+    },
+    {
+      "category": "Oficina de Servicios Académicos (OSAR)",
+      "question": "¿Qué debo hacer si mi nombre aparece con un error en los documentos oficiales?",
+      "variations": [
+        "¿Cómo corrijo un error en mi nombre en los documentos oficiales?",
+        "¿Qué hago si mi nombre está mal en los documentos?",
+        "¿Cómo rectificar un error de nombre en mis documentos oficiales?",
+        "¿Qué procedimiento seguir si mi nombre es incorrecto en los documentos?",
+        "¿Cómo puedo corregir mi nombre en los documentos oficiales?",
+        "¿Qué debo hacer si hay un error en mi nombre en los documentos de la universidad?",
+        "¿Cómo soluciono el error en mi nombre en los documentos oficiales?",
+        "¿Qué pasos seguir para corregir mi nombre en los documentos?",
+        "¿Cómo se rectifica un error en mi nombre en los documentos oficiales?",
+        "¿Qué hago para arreglar mi nombre en los documentos oficiales?",
+        "¿Cómo puedo actualizar mi nombre en los registros oficiales?",
+        "¿Cuál es el proceso para corregir mi nombre en documentos universitarios?",
+        "¿Cómo puedo notificar un error en mi nombre en los documentos oficiales?",
+        "¿Qué trámite sigo para corregir mi nombre?",
+        "¿Cómo rectifico mi nombre en los registros académicos?"
+      ],
+      "synonyms": [
+        "error",
+        "corregir",
+        "rectificar",
+        "actualizar",
+        "incorrecto"
+      ],
+      "answer": "Debes presentar una solicitud de corrección junto con una copia de tu documento de identidad."
+    },
+    {
+      "category": "Oficina de Servicios Académicos (OSAR)",
+      "question": "¿Cómo solicito la reserva de matrícula?",
+      "variations": [
+        "¿Cómo puedo reservar mi matrícula?",
+        "¿Qué debo hacer para reservar mi matrícula?",
+        "¿Cuál es el procedimiento para solicitar la reserva de matrícula?",
+        "¿Cómo pido reservar mi matrícula?",
+        "¿De qué manera puedo solicitar la reserva de mi matrícula?",
+        "¿Cómo gestionar la reserva de matrícula?",
+        "¿Puedo reservar mi matrícula y cómo lo hago?",
+        "¿Qué proceso se sigue para reservar la matrícula?",
+        "¿Cómo se solicita la reserva de matrícula?",
+        "¿Qué pasos debo seguir para reservar mi matrícula?",
+        "¿Cómo puedo asegurar mi matrícula?",
+        "¿Cuál es el trámite para reservar mi cupo?",
+        "¿Cómo puedo confirmar mi reserva de matrícula?",
+        "¿Qué proceso debo seguir para reservar mi inscripción?",
+        "¿Cómo garantizo mi matrícula?"
+      ],
+      "synonyms": [
+        "reserva",
+        "asegurar",
+        "confirmar",
+        "tramitar",
+        "inscripción"
+      ],
+      "answer": "Para reservar tu matrícula, debes presentar una solicitud dentro de las fechas establecidas y cumplir con los requisitos administrativos."
+    },
+    {
+      "category": "Oficina de Servicios Académicos (OSAR)",
+      "question": "¿Dónde solicito una constancia de egresado?",
+      "variations": [
+        "¿Cómo puedo obtener una constancia de egresado?",
+        "¿Dónde puedo solicitar mi constancia de egresado?",
+        "¿Cuál es el procedimiento para solicitar una constancia de egresado?",
+        "¿Cómo pido una constancia de egresado?",
+        "¿De qué manera puedo solicitar la constancia de egresado?",
+        "¿Cómo gestiono la solicitud de constancia de egresado?",
+        "¿Dónde solicito el certificado de egresado?",
+        "¿Cómo solicito el documento de egresado?",
+        "¿Qué pasos debo seguir para obtener una constancia de egresado?",
+        "¿Cómo puedo pedir una constancia de egresado?",
+        "¿Cómo obtengo mi certificado de graduado?",
+        "¿Cuál es el proceso para tramitar mi constancia de egreso?",
+        "¿Cómo puedo solicitar mi constancia de egreso?",
+        "¿Qué requisitos necesito para una constancia de egreso?",
+        "¿Cómo puedo pedir mi diploma de egreso?"
+      ],
+      "synonyms": [
+        "certificado",
+        "constancia",
+        "documento",
+        "egreso",
+        "solicitud"
+      ],
+      "answer": "En la Oficina de Servicios Académicos, presentando una solicitud y pagando el derecho correspondiente dentro de tu plataforma SIGU."
+    },
+    {
+      "category": "Tecnología de la Información",
+      "question": "Olvidé mi contraseña del aula virtual, ¿cómo la recupero?",
+      "variations": [
+        "¿Cómo puedo recuperar mi contraseña del aula virtual?",
+        "Olvidé mi contraseña del aula virtual, ¿qué debo hacer?",
+        "¿Cuál es el proceso para restablecer mi contraseña del aula virtual?",
+        "¿Cómo restablezco mi contraseña del aula virtual?",
+        "¿Qué pasos debo seguir para recuperar mi contraseña del aula virtual?",
+        "¿Cómo puedo obtener una nueva contraseña para el aula virtual?",
+        "¿Qué hago si olvido la contraseña del aula virtual?",
+        "¿Cómo puedo restablecer mi password del aula virtual?",
+        "¿Cuál es el procedimiento para recuperar mi contraseña en el aula virtual?",
+        "¿Cómo puedo cambiar mi contraseña del aula virtual?",
+        "¿Cómo recupero mi acceso al aula virtual sin mi contraseña?",
+        "¿Qué métodos tengo para restablecer mi contraseña en el aula virtual?",
+        "¿Cómo se recupera la contraseña del aula virtual?",
+        "¿Cuál es el proceso de recuperación de contraseña del aula virtual?",
+        "¿Cómo puedo solicitar un reset de mi contraseña del aula virtual?"
+      ],
+      "synonyms": [
+        "recuperar",
+        "restablecer",
+        "nuevo",
+        "cambiar",
+        "olvidé"
+      ],
+      "answer": "Puedes restablecer tu contraseña en la plataforma o comunicarte con el área de TI: 📞 (01) 389-1212 Anexos 334 / 317, 📱 WhatsApp: 982 888 601, 📧 soporte.online@uma.edu.pe"
+    },
+    {
+      "category": "Tecnología de la Información",
+      "question": "¿Qué hago si la plataforma virtual no carga?",
+      "variations": [
+        "¿Qué puedo hacer si la plataforma virtual no funciona?",
+        "¿Cómo soluciono que la plataforma virtual no cargue?",
+        "¿Qué debo hacer cuando la plataforma virtual no carga?",
+        "¿Por qué no carga la plataforma virtual y qué hago?",
+        "¿Cómo puedo arreglar el problema de que la plataforma virtual no carga?",
+        "¿Qué pasos seguir si la plataforma virtual no arranca?",
+        "¿Cómo manejo la situación si la plataforma virtual falla al cargar?",
+        "¿Qué hago si la plataforma no se carga correctamente?",
+        "¿Cómo resolver que la plataforma virtual no se inicia?",
+        "¿Qué opciones tengo si la plataforma virtual no funciona?",
+        "¿Cómo reinicio la plataforma virtual?",
+        "¿Qué hago si la plataforma online está caída?",
+        "¿Cuál es el procedimiento para solucionar una falla en la plataforma?",
+        "¿Cómo puedo restablecer la conexión a la plataforma?",
+        "¿Qué debo hacer si la plataforma se cae?"
+      ],
+      "synonyms": [
+        "caída",
+        "falla",
+        "conexión",
+        "error",
+        "reiniciar"
+      ],
+      "answer": "Intenta limpiar la caché de tu navegador o usar otro dispositivo. Si el problema persiste, contacta a Tecnología de la Información."
+    },
+    {
+      "category": "Tecnología de la Información",
+      "question": "¿Cómo accedo al Wi-Fi de la universidad?",
+      "variations": [
+        "¿Cómo puedo conectarme al Wi-Fi de la universidad?",
+        "¿Cuál es la forma de acceder al Wi-Fi de la universidad?",
+        "¿Cómo logro conectarme al Wi-Fi universitario?",
+        "¿Qué debo hacer para acceder al Wi-Fi de la universidad?",
+        "¿Cómo puedo obtener acceso al Wi-Fi de la universidad?",
+        "¿Dónde encuentro la contraseña del Wi-Fi de la universidad?",
+        "¿Cómo conectarse a la red Wi-Fi de la universidad?",
+        "¿Cómo me conecto al Wi-Fi de la universidad?",
+        "¿Qué necesito para acceder al Wi-Fi universitario?",
+        "¿Cómo puedo usar el Wi-Fi de la universidad?",
+        "¿Cuál es el procedimiento para conectarme al Wi-Fi de la universidad?",
+        "¿Cómo ingreso a la red Wi-Fi de la universidad?",
+        "¿Qué pasos seguir para acceder al Wi-Fi institucional?",
+        "¿Cómo se conecta uno al Wi-Fi de la universidad?",
+        "¿Cuál es el método para conectarse al Wi-Fi de la institución?"
+      ],
+      "synonyms": [
+        "WiFi",
+        "conexión",
+        "inalámbrica",
+        "internet",
+        "universitario"
+      ],
+      "answer": "Deberas conectarte a la red COMUNIDAD UMA con la contraseña @uMa.2024@"
+    },
+    {
+      "category": "Tecnología de la Información",
+      "question": "¿Cómo recupero mi acceso a la plataforma si olvidé mi contraseña?",
+      "variations": [
+        "¿Cómo puedo restablecer mi contraseña de la plataforma?",
+        "Olvidé mi contraseña para la plataforma, ¿qué hago?",
+        "¿Cuál es el proceso para recuperar mi acceso a la plataforma?",
+        "¿Cómo restablezco mi contraseña en la plataforma?",
+        "¿Cómo puedo acceder a la plataforma si no recuerdo mi contraseña?",
+        "¿Qué debo hacer si olvidé mi contraseña de la plataforma?",
+        "¿Cómo puedo obtener un nuevo acceso a la plataforma?",
+        "¿Qué pasos debo seguir para recuperar mi cuenta en la plataforma?",
+        "¿Cómo recupero mi contraseña para acceder a la plataforma?",
+        "¿Cómo puedo reestablecer el acceso a la plataforma si olvidé mi contraseña?",
+        "¿Puedo solicitar un reset de mi contraseña en la plataforma?",
+        "¿Cuál es el método para recuperar mi contraseña en la plataforma?",
+        "¿Cómo puedo restablecer mi cuenta en la plataforma?",
+        "¿Cómo recupero mi acceso sin mi contraseña?",
+        "¿Qué hago para reestablecer mi acceso a la plataforma?"
+      ],
+      "synonyms": [
+        "recuperar",
+        "restablecer",
+        "reset",
+        "nuevo",
+        "solicitar"
+      ],
+      "answer": "Puedes restablecerla en la opción 'Olvidé mi contraseña' en la plataforma. Si persiste el problema, contáctanos."
+    },
+    {
+      "category": "Tecnología de la Información",
+      "question": "¿Qué hago si no puedo acceder a mi correo institucional?",
+      "variations": [
+        "¿Cómo puedo solucionar problemas para acceder a mi correo institucional?",
+        "No puedo entrar a mi correo institucional, ¿qué debo hacer?",
+        "¿Cómo recupero el acceso a mi correo institucional?",
+        "¿Qué hacer si mi correo institucional no funciona?",
+        "¿Cómo puedo restablecer mi acceso al correo institucional?",
+        "¿Qué hago si no logro ingresar a mi correo institucional?",
+        "¿Cómo solucionar problemas de acceso a mi correo institucional?",
+        "¿Por qué no puedo acceder a mi correo institucional y qué hago?",
+        "¿Cómo puedo arreglar el acceso a mi correo institucional?",
+        "¿Qué indicios hay de que mi correo institucional está fallando?",
+        "¿Cómo puedo recuperar mi cuenta de correo institucional?",
+        "¿Cuál es el procedimiento para solucionar problemas con mi correo institucional?",
+        "¿Cómo soluciono el problema de acceso a mi correo?",
+        "¿Qué hago si mi email institucional está caído?",
+        "¿Cómo puedo restablecer el acceso a mi email institucional?"
+      ],
+      "synonyms": [
+        "correo",
+        "email",
+        "inactivo",
+        "solución",
+        "restablecer"
+      ],
+      "answer": "Verifica tu conexión a internet e intenta restablecer la contraseña. Si sigues teniendo problemas, contacta a Tecnología de la Información."
+    },
+    {
+      "category": "Tecnología de la Información",
+      "question": "¿Dónde reporto problemas con la red Wi-Fi de la universidad?",
+      "variations": [
+        "¿Cómo puedo reportar un problema con el Wi-Fi de la universidad?",
+        "¿A quién puedo contactar si tengo problemas con el Wi-Fi?",
+        "¿Dónde puedo notificar un fallo en la red Wi-Fi?",
+        "¿Cómo reporto que el Wi-Fi de la universidad no funciona?",
+        "¿Qué hago si la red Wi-Fi falla y a quién reportarlo?",
+        "¿Dónde informo problemas de conexión al Wi-Fi?",
+        "¿A quién debo llamar en caso de problemas con el Wi-Fi?",
+        "¿Cómo puedo comunicar un fallo en el Wi-Fi universitario?",
+        "¿Dónde puedo reportar un inconveniente con la red Wi-Fi?",
+        "¿Cómo notificar problemas con el Wi-Fi de la universidad?",
+        "¿Puedo enviar un reporte sobre fallos del Wi-Fi?",
+        "¿A quién puedo dirigir un reclamo por problemas de Wi-Fi?",
+        "¿Cómo puedo reportar un fallo en mi conexión Wi-Fi?",
+        "¿Cuál es el canal para reportar problemas de Wi-Fi?",
+        "¿Cómo notifico la caída del Wi-Fi en la universidad?"
+      ],
+      "synonyms": [
+        "reportar",
+        "fallo",
+        "problema",
+        "reclamo",
+        "notificar"
+      ],
+      "answer": "Puedes reportarlo directamente en el área de Tecnología de la Información o a través del correo de soporte."
+    },
+    {
+      "category": "Mesa de Partes",
+      "question": "¿Cómo presento una solicitud en Mesa de Partes?",
+      "variations": [
+        "¿Cómo puedo presentar una solicitud en Mesa de Partes?",
+        "¿Cuál es el proceso para enviar una solicitud en Mesa de Partes?",
+        "¿Cómo hago para tramitar una solicitud en Mesa de Partes?",
+        "¿De qué manera se presenta una solicitud en Mesa de Partes?",
+        "¿Cómo puedo gestionar mi solicitud en Mesa de Partes?",
+        "¿Qué debo hacer para presentar mi solicitud en Mesa de Partes?",
+        "¿Cómo se presenta una solicitud en Mesa de Partes?",
+        "¿Cuál es el procedimiento para solicitar en Mesa de Partes?",
+        "¿Cómo puedo enviar una solicitud a Mesa de Partes?",
+        "¿Qué pasos debo seguir para tramitar una solicitud en Mesa de Partes?",
+        "¿Cómo puedo gestionar mi trámite en Mesa de Partes?",
+        "¿Cuál es la forma de presentar una solicitud en Mesa de Partes?",
+        "¿Cómo realizo una solicitud en Mesa de Partes?",
+        "¿Qué trámite debo seguir en Mesa de Partes?",
+        "¿Cómo puedo iniciar un proceso de solicitud en Mesa de Partes?"
+      ],
+      "synonyms": [
+        "solicitud",
+        "enviar",
+        "tramitar",
+        "gestionar",
+        "presentar"
+      ],
+      "answer": "Puedes presentar tu solicitud presencialmente o enviarla por correo electrónico a: 📞 (01) 389-1212 Anexo 322, 📱 WhatsApp: 982 887 539, 📧 mesadepartes@uma.edu.pe"
+    },
+    {
+      "category": "Mesa de Partes",
+      "question": "¿Cuánto tiempo tarda en procesarse mi trámite?",
+      "variations": [
+        "¿Cuál es el tiempo de procesamiento de mi trámite?",
+        "¿Cuánto demora el trámite?",
+        "¿En cuánto tiempo se procesa mi trámite?",
+        "¿Cuánto se tarda en procesar mi solicitud?",
+        "¿Qué duración tiene el proceso de mi trámite?",
+        "¿Cuántos días tarda en procesarse mi trámite?",
+        "¿Cuál es el plazo para que se procese mi trámite?",
+        "¿Cuánto tiempo lleva procesar mi trámite?",
+        "¿En qué plazo se procesa mi trámite?",
+        "¿Cuál es el tiempo estimado para procesar mi trámite?",
+        "¿Cuánto tardan en finalizar mis trámites?",
+        "¿En qué tiempo se resuelve mi trámite?",
+        "¿Cuál es la duración promedio de un trámite?",
+        "¿Cuánto demora el proceso de mi trámite?",
+        "¿Qué tiempo toma la tramitación de mi solicitud?"
+      ],
+      "synonyms": [
+        "tiempo",
+        "procesamiento",
+        "duración",
+        "plazo",
+        "respuesta"
+      ],
+      "answer": "El tiempo de respuesta varía según el tipo de trámite. Puedes hacer seguimiento comunicándote con Mesa de Partes o en tu plataforma SIGU en la opción Mis tramites y pagos – Mis tramites."
+    },
+    {
+      "category": "Mesa de Partes",
+      "question": "¿Qué tipo de documentos puedo presentar en Mesa de Partes?",
+      "variations": [
+        "¿Cuáles documentos son aceptados en Mesa de Partes?",
+        "¿Qué documentación se puede presentar en Mesa de Partes?",
+        "¿Qué tipos de documentos debo presentar en Mesa de Partes?",
+        "¿Qué documentación es requerida en Mesa de Partes?",
+        "¿Qué clase de documentos se solicitan en Mesa de Partes?",
+        "¿Qué documentos se admiten en Mesa de Partes?",
+        "¿Cuál es la documentación que puedo presentar?",
+        "¿Qué documentos oficiales puedo entregar en Mesa de Partes?",
+        "¿Qué tipo de papeleo se acepta en Mesa de Partes?",
+        "¿Qué documentos necesito para realizar un trámite en Mesa de Partes?",
+        "¿Qué archivos son necesarios para el trámite?",
+        "¿Cuáles son los requisitos documentales para un trámite?",
+        "¿Qué información debo adjuntar para mi solicitud?",
+        "¿Qué documentos debo presentar para el trámite?",
+        "¿Cuáles son los papeles requeridos para un trámite?"
+      ],
+      "synonyms": [
+        "documentos",
+        "papeleo",
+        "requisitos",
+        "oficial",
+        "archivos"
+      ],
+      "answer": "Puedes presentar solicitudes académicas, administrativas y documentos oficiales dirigidos a las diferentes áreas de la universidad."
+    },
+    {
+      "category": "Mesa de Partes",
+      "question": "¿Puedo hacer un trámite de forma virtual?",
+      "variations": [
+        "¿Es posible realizar un trámite en línea en Mesa de Partes?",
+        "¿Puedo gestionar un trámite de forma virtual?",
+        "¿Cómo puedo hacer un trámite digitalmente en Mesa de Partes?",
+        "¿Se puede hacer un trámite en línea?",
+        "¿Puedo enviar mi trámite de forma virtual?",
+        "¿Es posible tramitar mi solicitud en línea?",
+        "¿Cómo realizo un trámite virtual en Mesa de Partes?",
+        "¿Puedo hacer el trámite de forma digital?",
+        "¿Se permiten trámites virtuales en Mesa de Partes?",
+        "¿Cómo puedo gestionar un trámite de forma online?",
+        "¿Puedo gestionar mi trámite vía internet?",
+        "¿Cuál es el proceso para hacer un trámite online?",
+        "¿Cómo puedo realizar mi trámite por internet?",
+        "¿Puedo realizar mi solicitud en línea?",
+        "¿Cuál es el método para tramitar virtualmente?"
+      ],
+      "synonyms": [
+        "online",
+        "virtual",
+        "digital",
+        "internet",
+        "electrónico"
+      ],
+      "answer": "Sí, todos los trámites pueden ser generados por tu plataforma SIGU. Contacta con Mesa de Partes para conocer los requisitos."
+    },
+    {
+      "category": "Mesa de Partes",
+      "question": "¿Cómo sé si mi trámite ha sido aprobado?",
+      "variations": [
+        "¿Cómo puedo saber si mi trámite fue aprobado?",
+        "¿Dónde puedo verificar el estado de mi trámite?",
+        "¿Cómo confirmo la aprobación de mi trámite?",
+        "¿Se puede comprobar si mi trámite fue aprobado?",
+        "¿Cómo verificar el resultado de mi trámite?",
+        "¿Cuál es el procedimiento para saber si mi trámite fue aprobado?",
+        "¿Cómo me entero si mi solicitud fue aprobada?",
+        "¿Cómo confirmar el estado de aprobación de mi trámite?",
+        "¿Qué método tengo para saber si mi trámite fue aceptado?",
+        "¿Cómo puedo consultar la aprobación de mi trámite?",
+        "¿Cómo puedo estar seguro de que mi trámite fue aprobado?",
+        "¿Cuál es la forma de confirmar el estado de mi trámite?",
+        "¿Cómo reviso el progreso de mi trámite?",
+        "¿Puedo recibir una notificación de aprobación?",
+        "¿Cómo se confirma la aceptación de mi trámite?"
+      ],
+      "synonyms": [
+        "estado",
+        "verificar",
+        "confirmar",
+        "seguimiento",
+        "resultado"
+      ],
+      "answer": "Puedes hacer el seguimiento a través de tu plataforma SIGU en la opción Mis Tramites o contactando a Mesa de Partes."
+    },
+    {
+      "category": "Mesa de Partes",
+      "question": "¿Cuál es el horario de atención de Mesa de Partes?",
+      "variations": [
+        "¿Cuándo atiende Mesa de Partes?",
+        "¿Cuál es el horario de servicio de Mesa de Partes?",
+        "¿En qué horario está abierta Mesa de Partes?",
+        "¿Cuáles son las horas de atención de Mesa de Partes?",
+        "¿Qué horario maneja Mesa de Partes?",
+        "¿A qué hora atiende Mesa de Partes?",
+        "¿Cuál es el horario de funcionamiento de Mesa de Partes?",
+        "¿Cuándo se atienden solicitudes en Mesa de Partes?",
+        "¿Qué horas de atención tiene Mesa de Partes?",
+        "¿Cuál es el horario operativo de Mesa de Partes?",
+        "¿En qué horario puedo acudir a Mesa de Partes?",
+        "¿Cuál es el horario de atención oficial de Mesa de Partes?",
+        "¿A qué hora abre y cierra Mesa de Partes?",
+        "¿Cuál es el horario laboral de Mesa de Partes?",
+        "¿En qué horario se gestionan los trámites en Mesa de Partes?"
+      ],
+      "synonyms": [
+        "horario",
+        "atención",
+        "servicio",
+        "oficina",
+        "operativo"
+      ],
+      "answer": "El horario de atención es de lunes a viernes en horario de oficina."
+    },
+    {
+      "category": "Educación Virtual",
+      "question": "¿Cómo accedo a mis clases virtuales?",
+      "variations": [
+        "¿Cómo puedo ingresar a mis clases virtuales?",
+        "¿Cuál es el proceso para acceder a mis clases en línea?",
+        "¿De qué manera entro a mis clases virtuales?",
+        "¿Cómo ingreso a mi aula virtual?",
+        "¿Cómo puedo conectarme a mis clases virtuales?",
+        "¿Dónde encuentro el enlace para mis clases virtuales?",
+        "¿Cómo acceder a las clases en la plataforma virtual?",
+        "¿Cómo puedo ver mis clases virtuales?",
+        "¿Cuál es el método para ingresar a mis clases virtuales?",
+        "¿Cómo me conecto a mis clases online?",
+        "¿Qué pasos debo seguir para acceder a mi aula virtual?",
+        "¿Cómo puedo ingresar al entorno virtual de clases?",
+        "¿Cómo logro entrar a mis clases virtuales?",
+        "¿Cuál es el procedimiento para acceder a mi aula en línea?",
+        "¿Cómo puedo conectarme al campus virtual?"
+      ],
+      "synonyms": [
+        "ingresar",
+        "acceder",
+        "conexión",
+        "entrar",
+        "online"
+      ],
+      "answer": "Debes ingresar a la plataforma virtual de la universidad con tu usuario y contraseña. Si tienes problemas, contacta a Educación Virtual: 📞 (01) 389-1212 Anexo 304, 📧 educacion.virtual@uma.edu.pe"
+    },
+    {
+      "category": "Educación Virtual",
+      "question": "¿Dónde encuentro el material de mis cursos en la plataforma?",
+      "variations": [
+        "¿Cómo accedo al material de mis cursos?",
+        "¿Dónde puedo ver el contenido de mis cursos?",
+        "¿En qué sección encuentro los materiales de mis clases?",
+        "¿Dónde se encuentran los recursos de mis cursos?",
+        "¿Cómo puedo obtener el material de mis cursos?",
+        "¿Dónde se ubica el material de los cursos en la plataforma?",
+        "¿Cómo puedo acceder a los recursos de mis cursos?",
+        "¿Dónde se publican los materiales de mis cursos?",
+        "¿Cuál es la ubicación del material de mis cursos?",
+        "¿Dónde están disponibles los recursos de mi curso?",
+        "¿Cómo puedo localizar el material de mis cursos?",
+        "¿En qué apartado se encuentran los recursos académicos?",
+        "¿Cómo accedo a los documentos de mis cursos?",
+        "¿Dónde puedo encontrar los materiales didácticos?",
+        "¿Cómo obtengo los recursos de mis clases?"
+      ],
+      "synonyms": [
+        "material",
+        "recursos",
+        "contenido",
+        "documentos",
+        "didáctico"
+      ],
+      "answer": "Puedes encontrar el material en la sección \"Recursos\" dentro de cada curso en tu Aula Virtual."
+    },
+    {
+      "category": "Educación Virtual",
+      "question": "¿Qué hago si mi examen virtual no se envió correctamente?",
+      "variations": [
+        "¿Qué puedo hacer si mi examen virtual falló al enviarse?",
+        "¿Cómo soluciono que mi examen virtual no se envió?",
+        "¿Qué pasos seguir si mi examen virtual no se transmitió correctamente?",
+        "¿Cómo reporto un error en el envío de mi examen virtual?",
+        "¿Qué debo hacer si mi examen virtual no se envía correctamente?",
+        "¿Cómo puedo arreglar un error en el envío de mi examen virtual?",
+        "¿Qué acción tomar si mi examen virtual falla en el envío?",
+        "¿Cómo gestionar el fallo en el envío de mi examen virtual?",
+        "¿Qué hago si se presenta un error en el envío de mi examen online?",
+        "¿Cómo puedo solucionar un problema en el envío de mi examen virtual?",
+        "¿Cuál es el procedimiento para reportar un fallo en el envío de mi examen?",
+        "¿Cómo notifico un error en el envío de mi examen virtual?",
+        "¿Qué hago si mi examen no se envía en línea?",
+        "¿Cómo puedo resolver el error de envío de mi examen?",
+        "¿Qué hago si hay un fallo en el envío de mi examen?"
+      ],
+      "synonyms": [
+        "error",
+        "fallo",
+        "problema",
+        "noenviado",
+        "revisión"
+      ],
+      "answer": "Debes reportarlo de inmediato a Educación Virtual con una captura de pantalla del problema."
+    },
+    {
+      "category": "Educación Virtual",
+      "question": "¿Cómo accedo a mi aula virtual?",
+      "variations": [
+        "¿Cómo puedo ingresar a mi aula virtual?",
+        "¿Dónde encuentro mi aula virtual?",
+        "¿Cómo acceder a la plataforma de aula virtual?",
+        "¿Cuál es el proceso para entrar a mi aula virtual?",
+        "¿Cómo logro ingresar a mi aula virtual?",
+        "¿Dónde puedo acceder a mi aula virtual?",
+        "¿Cómo puedo conectarme a mi aula virtual?",
+        "¿Cuál es el método para acceder a mi aula virtual?",
+        "¿Cómo entro a mi aula virtual?",
+        "¿De qué forma accedo a mi aula virtual?",
+        "¿Cómo ingreso a mi espacio virtual de clases?",
+        "¿Cuál es la manera de conectarme a mi aula virtual?",
+        "¿Cómo me conecto al salón virtual?",
+        "¿Cómo puedo ingresar a mi aula en línea?",
+        "¿Cuál es el canal para acceder a mi aula virtual?"
+      ],
+      "synonyms": [
+        "ingresar",
+        "acceder",
+        "entrar",
+        "conexión",
+        "ingreso"
+      ],
+      "answer": "Debes ingresar a la plataforma con tu usuario y contraseña institucional."
+    },
+    {
+      "category": "Educación Virtual",
+      "question": "¿Qué hago si mi videoconferencia no carga correctamente?",
+      "variations": [
+        "¿Cómo soluciono que mi videoconferencia no se inicie?",
+        "¿Qué puedo hacer si mi videoconferencia falla al cargar?",
+        "¿Cómo arreglar problemas con la videoconferencia?",
+        "¿Qué pasos seguir si la videoconferencia no se carga?",
+        "¿Cómo puedo solucionar que mi videoconferencia no funcione?",
+        "¿Qué debo hacer si no se inicia mi videoconferencia?",
+        "¿Cómo puedo corregir un fallo en la videoconferencia?",
+        "¿Qué hago si la videoconferencia no aparece?",
+        "¿Cómo resolver un error de carga en mi videoconferencia?",
+        "¿Qué acción tomar si mi videoconferencia no carga?",
+        "¿Cómo puedo reiniciar mi videoconferencia?",
+        "¿Qué alternativas tengo si mi videoconferencia falla?",
+        "¿Cómo soluciono problemas de conexión en mi videoconferencia?",
+        "¿Qué debo hacer si mi videoconferencia se interrumpe?",
+        "¿Cómo puedo restablecer mi videoconferencia?"
+      ],
+      "synonyms": [
+        "videoconferencia",
+        "error",
+        "problema",
+        "fallo",
+        "interrumpida"
+      ],
+      "answer": "Verifica tu conexión a internet e intenta ingresar nuevamente. Si el problema persiste, contacta a Educación Virtual."
+    },
+    {
+      "category": "Educación Virtual",
+      "question": "¿Cómo me comunico con mis docentes en la plataforma?",
+      "variations": [
+        "¿Cómo puedo contactar a mis profesores en la plataforma?",
+        "¿Cuál es el método para comunicarme con mis docentes?",
+        "¿Cómo puedo enviar un mensaje a mis profesores?",
+        "¿De qué forma puedo comunicarme con los docentes?",
+        "¿Cómo uso la mensajería interna para hablar con mis profesores?",
+        "¿Cómo puedo contactar a mis docentes a través de la plataforma?",
+        "¿Qué debo hacer para comunicarme con mis docentes?",
+        "¿Cómo me comunico con los profesores en la plataforma?",
+        "¿Cuál es la forma de comunicarme con mis docentes en línea?",
+        "¿Cómo puedo enviar un mensaje a mis docentes?",
+        "¿Cómo establecer comunicación con mis profesores?",
+        "¿Cuál es el canal de comunicación para mis docentes?",
+        "¿Cómo puedo interactuar con mis docentes en la plataforma?",
+        "¿Qué sistema utilizo para contactar a mis profesores?",
+        "¿Cómo puedo enviar un correo o mensaje a mi docente?"
+      ],
+      "synonyms": [
+        "contactar",
+        "mensajería",
+        "comunicación",
+        "enviar",
+        "institucional"
+      ],
+      "answer": "Puedes utilizar la mensajería interna del aula virtual o el correo institucional del docente."
+    },
+    {
+      "category": "Educación Virtual",
+      "question": "¿Cómo sé si mi tarea fue enviada correctamente?",
+      "variations": [
+        "¿Cómo puedo confirmar que mi tarea se envió correctamente?",
+        "¿Qué debo hacer para verificar el envío de mi tarea?",
+        "¿Cómo sé si mi tarea fue entregada con éxito?",
+        "¿Cómo puedo comprobar que mi tarea se envió?",
+        "¿Qué señal indica que mi tarea fue enviada correctamente?",
+        "¿Cómo confirmar el envío de mi tarea?",
+        "¿De qué manera sé que mi tarea fue entregada?",
+        "¿Cómo puedo verificar el envío de mi tarea?",
+        "¿Cómo me entero si mi tarea se envió correctamente?",
+        "¿Qué indicativo hay de que mi tarea se envió con éxito?",
+        "¿Cómo puedo estar seguro de que mi tarea se entregó?",
+        "¿Qué confirmación recibo al enviar mi tarea?",
+        "¿Cómo reviso el estado de entrega de mi tarea?",
+        "¿Puedo ver una notificación de entrega de mi tarea?",
+        "¿Cómo puedo comprobar el envío de mi trabajo?"
+      ],
+      "synonyms": [
+        "envío",
+        "confirmación",
+        "entrega",
+        "verificar",
+        "estado"
+      ],
+      "answer": "La plataforma te enviará una confirmación. Si no la recibes, revisa tu conexión y vuelve a intentarlo."
+    },
+    {
+      "question": "¿Hay examen de admisión en la UMA?",
+      "synonyms": [
+        "examen",
+        "exam",
+        "próximo examen",
+        "fechas de examen",
+        "admision exam",
+        "examen de admisión",
+        "próximo examen de admisión"
+      ],
+      "answer": "📝 Prepárate para nuestro próximo examen de admisión. Conoce las fechas y requisitos en:\n<a href='https://uma.edu.pe/admisionpregrado/'>Examen de Admisión UMA</a>"
+    },
+    {
+      "question": "¿Qué carreras ofrece la UMA?",
+      "synonyms": [
+        "carreras",
+        "programas de pregrado",
+        "opciones de carrera",
+        "licenciaturas",
+        "qué se estudia en UMA"
+      ],
+      "answer": "📚 En la UMA ofrecemos diversas carreras de pregrado en Ingeniería, Negocios, Ciencias de la Salud y más.\nConsulta nuestra lista completa aquí: <a href='https://uma.edu.pe/'>Carreras UMA</a>"
+    },
+    {
+      "question": "¿Ofrecen maestrías en la UMA?",
+      "synonyms": [
+        "maestrías",
+        "estudios de posgrado",
+        "MBA",
+        "salud pública",
+        "maestría"
+      ],
+      "answer": "🎓 La UMA ofrece maestrías como MBA y Salud Pública. \nEncuentra más información en:\n<a href='https://uma.edu.pe/mba/'>Maestría en Administración de Empresas - MBA</a><br>\n<a href='https://uma.edu.pe/maestria-en-salud-publica/'>Maestría en Salud Pública UMA</a>"
+    },
+    {
+      "question": "¿Tienen programas de especialización?",
+      "synonyms": [
+        "especialización",
+        "programas especializados",
+        "segunda especialidad",
+        "posgrado enfermería",
+        "posgrado farmacia"
+      ],
+      "answer": "🏥 Contamos con programas de Segunda Especialización Profesional en Enfermería, Farmacia y más. \nRevisa nuestros programas aquí: <a href='https://uma.edu.pe/psee/'>Especializaciones UMA</a>"
+    },
+    {
+      "question": "¿Ofrecen diplomados en la UMA?",
+      "synonyms": [
+        "diplomado",
+        "diplomados",
+        "estudios cortos posgrado",
+        "especialización corta"
+      ],
+      "answer": "📜 Explora nuestros diplomados en:\n- Toxicología Ambiental y Seguridad Alimentaria\n- Seguridad Alimentaria\n- Asuntos Regulatorios del Sector Farmacéutico\n- Enfermedades crónicas no transmisibles\n- Salud Mental Comunitaria."
+    },
+    {
+      "question": "¿Cómo es la admisión en la UMA?",
+      "synonyms": [
+        "admisión",
+        "admision",
+        "ingreso a la UMA",
+        "requisitos de admisión"
+      ],
+      "answer": "📄 ¿Quieres estudiar en la UMA? Conoce nuestros requisitos y procesos de admisión en:\n<a href='https://uma.edu.pe/admisionpregrado/'>Admisión UMA</a>"
+    },
+    {
+      "question": "¿Qué carreras de ingeniería tienen?",
+      "synonyms": [
+        "ingeniería",
+        "facultad de ingeniería",
+        "ingeniería de sistemas",
+        "industrial",
+        "inteligencia artificial"
+      ],
+      "answer": "🖥️ Nuestra Facultad de Ingeniería y Negocios ofrece carreras como:\n- Ingeniería de Inteligencia Artificial\n- Ingeniería de Sistemas (Nuevo)\n- Ingeniería Industrial (Nuevo)\n📌"
+    },
+    {
+      "question": "¿Ofrecen la carrera de Derecho?",
+      "synonyms": [
+        "derecho",
+        "facultad de derecho",
+        "leyes",
+        "carrera legal"
+      ],
+      "answer": "⚖️ La carrera de Derecho ahora está disponible en la UMA. \nConsulta más información aquí: <a href='https://uma.edu.pe/derecho/'>Derecho UMA</a>"
+    },
+    {
+      "question": "¿Tienen programas de administración?",
+      "synonyms": [
+        "administración",
+        "negocios",
+        "marketing",
+        "contabilidad y finanzas",
+        "administración de empresas"
+      ],
+      "answer": "📊 La Facultad de Ingeniería y Negocios ofrece Administración en:\n- Empresas (Nuevo)\n- Negocios Internacionales\n- Marketing\n- Contabilidad y Finanzas\n📌"
+    },
+    {
+      "question": "¿Ofrecen la carrera de Farmacia?",
+      "synonyms": [
+        "farmacia",
+        "bioquímica",
+        "facultad de farmacia",
+        "farmacéutico"
+      ],
+      "answer": "💊 Nuestra Facultad de Farmacia y Bioquímica ofrece la carrera de Farmacia y Bioquímica.\nConsulta más información aquí: <a href='https://uma.edu.pe/'>Farmacia UMA</a>"
+    },
+    {
+      "question": "¿Qué carreras de salud ofrece la UMA?",
+      "synonyms": [
+        "salud",
+        "ciencias de la salud",
+        "carrera de enfermería",
+        "nutrición y dietética",
+        "psicología"
+      ],
+      "answer": "🏥 La Facultad de Ciencias de la Salud de la UMA incluye programas como:\n- Tecnología Médica en Laboratorio Clínico\n- Tecnología Médica en Terapia Física y Rehabilitación\n- Enfermería\n- Nutrición y Dietética\n- Psicología\n📌"
+    },
+    {
+      "question": "¿Hay un MBA en la UMA?",
+      "synonyms": [
+        "mba",
+        "maestría en administración",
+        "posgrado administración"
+      ],
+      "answer": "🎓 La UMA ofrece la Maestría en Administración de Empresas (MBA) (Nuevo). \n📌 Más información: <a href='https://uma.edu.pe/mba/'>UMA MBA</a>"
+    },
+    {
+      "question": "¿Tienen la carrera de Psicología?",
+      "synonyms": [
+        "psicología",
+        "facultad de psicología",
+        "carrera de psicología"
+      ],
+      "answer": "🧠 La carrera de Psicología en la UMA prepara profesionales para trabajar en hospitales, \nempresas y centros educativos. Más información aquí: <a href='https://uma.edu.pe/psicologia/'>Psicología UMA</a>"
+    },
+    {
+      "question": "¿Ofrecen especializaciones en Enfermería?",
+      "synonyms": [
+        "enfermería",
+        "especialización en enfermería",
+        "cuidados intensivos",
+        "centro quirúrgico"
+      ],
+      "answer": "🏥 La UMA ofrece especializaciones en Enfermería, incluyendo:\n- Cuidados Intensivos\n- Salud Familiar y Comunitaria\n- Emergencias y Desastres\n- Centro Quirúrgico\n📌 Más información aquí: <a href='https://uma.edu.pe/psee/'>Especialización en Enfermería</a>"
+    },
+    {
+      "question": "¿Qué hay sobre Urología?",
+      "synonyms": [
+        "urología",
+        "especialidad urología",
+        "cirugía urológica"
+      ],
+      "answer": "🩺 La UMA ahora ofrece la especialización en Urología (Nuevo). \n📌 Más información aquí: <a href='https://uma.edu.pe/see-en-urologia/'>Especialización en Urología</a>"
+    },
+    {
+      "question": "¿Tienen especialidad en Farmacia?",
+      "synonyms": [
+        "farmacia especialidad",
+        "asuntos regulatorios farmacia",
+        "segunda especialidad farmacia"
+      ],
+      "answer": "💊 Segunda Especialidad en Farmacia:\n- Asuntos Regulatorios del Sector Farmacéutico (Nuevo)\n📌 Más información: <a href='https://uma.edu.pe/asuntos-regulatorios-en-el-sector-farmaceutico/'>Especialización en Farmacia</a>"
+    },
+    {
+      "question": "¿Cómo puedo contact a la UMA?",
+      "synonyms": [
+        "contactor",
+        "teléfono admisión",
+        "oficina de admisión",
+        "ayuda"
+        
+      ],
+      "answer": "📞 ¿Necesitas ayuda? Puedes contactar con nuestra oficina de admisión:<br><br>\n- Ms. Katya Aponte: <a href=\"#\" class=\"phone-link\" data-phone=\"51982887246\">982 887 246</a> | <a href=\"mailto:katia.aponte@uma.edu.pe\">katia.aponte@uma.edu.pe</a><br>\n- Ms. Sandy León: <a href=\"#\" class=\"phone-link\" data-phone=\"51923032722\">923 032 722</a> | <a href=\"mailto:sandy.leon@uma.edu.pe\">sandy.leon@uma.edu.pe</a><br>\n- Ms. Esperanza Pérez: <a href=\"#\" class=\"phone-link\" data-phone=\"51923319253\">923 319 253</a> | <a href=\"mailto:esperanza.perez@uma.edu.pe\">esperanza.perez@uma.edu.pe</a><br>\n- Ms. Antuanette Fernández: <a href=\"#\" class=\"phone-link\" data-phone=\"51922821832\">922 821 832</a> | <a href=\"mailto:jahaira.fernandez@uma.edu.pe\">jahaira.fernandez@uma.edu.pe</a><br>\n- Ms. Karol Padilla: <a href=\"#\" class=\"phone-link\" data-phone=\"51914569310\">914 569 310</a> | <a href=\"mailto:karol.padilla@uma.edu.pe\">karol.padilla@uma.edu.pe</a><br>"
+    }
+  ]
+  

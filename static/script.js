@@ -16,61 +16,10 @@ const API_KEYS = [
 ];
 let currentKeyIndex = 0;
 
-// Predefined fallback responses
-const universityResponses = {
-  "examen": "📝 Prepárate para nuestro próximo examen de admisión. Conoce las fechas y requisitos en: <a href='https://uma.edu.pe/admisionpregrado/'>Examen de Admisión UMA</a>",
-  
-  "carreras": "📚 En la UMA ofrecemos diversas carreras de pregrado en Ingeniería, Negocios, Ciencias de la Salud y más. Consulta nuestra lista completa aquí: <a href='https://uma.edu.pe/'>Carreras UMA</a>",
-
-  "maestrías": "🎓 La UMA ofrece maestrías como MBA y Salud Pública. Encuentra más información en: <a href='https://uma.edu.pe/mba/'>Maestría en Administraciónde Empresas - MBA</a><br><a href='https://uma.edu.pe/maestria-en-salud-publica/'>Maestría en Salud Pública UMA</a>",
-
-  "especialización": "🏥 Contamos con programas de Segunda Especialización Profesional en Enfermería, Farmacia y más. Revisa nuestros programas aquí: <a href='https://uma.edu.pe/psee/'>Especializaciones UMA</a>",
-
-  "diplomado": "📜 Explora nuestros diplomados en Especialización en Toxicología Ambiental y Seguridad Alimentaria, Seguridad Alimentaria,Asuntos Regulatorios del Sector Farmacéutico,enfermedades crónicas no transmisibles y Salud Mental Comunitaria.",
-
-  "admisión": "📄 ¿Quieres estudiar en la UMA? Conoce nuestros requisitos y procesos de admisión en: <a href='https://uma.edu.pe/admisionpregrado/'>Admisión UMA</a>",
-
-
-
-  "ingeniería": "🖥️ Nuestra Facultad de Ingeniería y Negocios ofrece carreras como:\n- Ingeniería de Inteligencia Artificial\n- Ingeniería de Sistemas (Nuevo)\n- Ingeniería Industrial (Nuevo)\n📌",
-
-  "derecho": "⚖️ La carrera de Derecho ahora está disponible en la UMA. Consulta más información aquí: <a href='https://uma.edu.pe/derecho/'>Derecho UMA</a>",
-
-  "administración": "📊 La Facultad de Ingeniería y Negocios ofrece Administración en:\n- Empresas (Nuevo)\n- Negocios Internacionales\n- Marketing\n- Contabilidad y Finanzas\n📌",
-
-  "farmacia": "💊 Nuestra Facultad de Farmacia y Bioquímica ofrece la carrera de Farmacia y Bioquímica. Consulta más información aquí: <a href='https://uma.edu.pe/'>Farmacia UMA</a>",
-
-  "salud": "🏥 La Facultad de Ciencias de la Salud de la UMA incluye programas como:\n- Tecnología Médica en Laboratorio Clínico\n- Tecnología Médica en Terapia Física y Rehabilitación\n- Enfermería\n- Nutrición y Dietética\n- Psicología\n📌",
-
-  "mba": "🎓 La UMA ofrece la Maestría en Administración de Empresas (MBA) (Nuevo). 📌 Más información: <a href='https://uma.edu.pe/mba/'>UMA MBA</a>",
-
-  "psicología": "🧠 La carrera de Psicología en la UMA prepara profesionales para trabajar en hospitales, empresas y centros educativos. Más información aquí: <a href='https://uma.edu.pe/psicologia/'>Psicología UMA</a>",
-
-  "enfermería": "🏥 La UMA ofrece especializaciones en Enfermería, incluyendo:\n- Cuidados Intensivos\n- Salud Familiar y Comunitaria\n- Emergencias y Desastres\n- Centro Quirúrgico\n📌 Más información aquí: <a href='https://uma.edu.pe/psee/'>Especialización en Enfermería</a>",
-
-  "urología": "🩺 La UMA ahora ofrece la especialización en Urología (Nuevo). 📌 Más información aquí: <a href='https://uma.edu.pe/see-en-urologia/'>Especialización en Urología</a>",
-
-  "farmacia especialidad": "💊 Segunda Especialidad en Farmacia:\n- Asuntos Regulatorios del Sector Farmacéutico (Nuevo)\n📌 Más información: <a href='https://uma.edu.pe/asuntos-regulatorios-en-el-sector-farmaceutico/'>Especialización en Farmacia</a>",
-
-  
-
-  "contacto": `
-  📞 ¿Necesitas ayuda? Puedes contactar con nuestra oficina de admisión:<br><br>
-  - Ms. Katya Aponte: <a href="#" class="phone-link" data-phone="51982887246">982 887 246</a> | <a href="mailto:katia.aponte@uma.edu.pe">katia.aponte@uma.edu.pe</a><br>
-  - Ms. Sandy León: <a href="#" class="phone-link" data-phone="51923032722">923 032 722</a> | <a href="mailto:sandy.leon@uma.edu.pe">sandy.leon@uma.edu.pe</a><br>
-  - Ms. Esperanza Pérez: <a href="#" class="phone-link" data-phone="51923319253">923 319 253</a> | <a href="mailto:esperanza.perez@uma.edu.pe">esperanza.perez@uma.edu.pe</a><br>
-  - Ms. Antuanette Fernández: <a href="#" class="phone-link" data-phone="51922821832">922 821 832</a> | <a href="mailto:jahaira.fernandez@uma.edu.pe">jahaira.fernandez@uma.edu.pe</a><br>
-  - Ms. Karol Padilla: <a href="#" class="phone-link" data-phone="51914569310">914 569 310</a> | <a href="mailto:karol.padilla@uma.edu.pe">karol.padilla@uma.edu.pe</a><br>
-  `
- 
-};
-
-
 document.addEventListener("DOMContentLoaded", function () {
-  // Attach event listener to all phone number links
   document.body.addEventListener("click", function (event) {
     if (event.target.classList.contains("phone-link")) {
-      event.preventDefault(); // Prevent default link behavior
+      event.preventDefault();
       const phoneNumber = event.target.getAttribute("data-phone");
       openPhoneOptions(phoneNumber);
     }
@@ -80,12 +29,9 @@ document.addEventListener("DOMContentLoaded", function () {
 function openPhoneOptions(phoneNumber) {
   document.getElementById("phoneOverlay").style.display = "block";
   document.getElementById("phoneOptions").style.display = "block";
-
-  // Set actions for Call and WhatsApp buttons
   document.getElementById("callButton").onclick = function () {
     window.location.href = `tel:${phoneNumber}`;
   };
-
   document.getElementById("whatsappButton").onclick = function () {
     window.location.href = `https://wa.me/${phoneNumber}`;
   };
@@ -98,22 +44,19 @@ function closePhoneOptions() {
 
 async function correctSpelling(userInput) {
   try {
-      const response = await fetch('/correct_spelling', {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ query: userInput })
-      });
-
-      const data = await response.json();
-      return data.corrected_query; // Return corrected query
+    const response = await fetch('/correct_spelling', {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ query: userInput })
+    });
+    const data = await response.json();
+    return data.corrected_query;
   } catch (error) {
-      console.error("Spelling Correction Error:", error);
-      return userInput; // If API fails, return original input
+    console.error("Spelling Correction Error:", error);
+    return userInput;
   }
 }
 
-
-// Toggle chatbot popup
 chatbotToggler.addEventListener("click", () => {
   document.body.classList.toggle("show-chatbot");
 });
@@ -121,12 +64,10 @@ closeChatbot.addEventListener("click", () => {
   document.body.classList.remove("show-chatbot");
 });
 
-// Handle sending messages
 const handleSendMessage = (e) => {
   e.preventDefault();
   const userMessage = messageInput.value.trim();
   if (!userMessage) return;
-
   displayUserMessage(userMessage);
   messageInput.value = "";
   generateBotResponse(userMessage);
@@ -140,7 +81,6 @@ messageInput.addEventListener("keypress", (e) => {
   }
 });
 
-// Display user message
 const displayUserMessage = (message) => {
   const userMessageContainer = document.createElement("div");
   userMessageContainer.classList.add("user-message-container");
@@ -153,101 +93,77 @@ const displayUserMessage = (message) => {
   chatBody.scrollTo({ top: chatBody.scrollHeight, behavior: "smooth" });
 };
 
-// Generate bot response
 const generateBotResponse = async (userMessage) => {
   const botMessageContainer = document.createElement("div");
   botMessageContainer.classList.add("bot-message-container");
   botMessageContainer.innerHTML = `
-      <div class="logo-container">
-          <img src="girltalk.gif" alt="Chatbot Avatar" class="bot-gif">
-      </div>
-      <div class="bot-message-card">
-          <div class="message-text">🤔</div>
-      </div>
+    <div class="logo-container">
+      <img src="girltalk.gif" alt="Chatbot Avatar" class="bot-gif">
+    </div>
+    <div class="bot-message-card">
+      <div class="message-text">🤔</div>
+    </div>
   `;
   chatBody.appendChild(botMessageContainer);
   chatBody.scrollTo({ top: chatBody.scrollHeight, behavior: "smooth" });
 
-  // Replace GIF with static image after 4 seconds
   const botGif = botMessageContainer.querySelector(".bot-gif");
   setTimeout(() => {
     botGif.src = "girltalks.png";
   }, 4000);
 
-  // First, check for predefined keywords
-  let responseText = null;
-  const lowerCaseMessage = userMessage.toLowerCase();
-
-// Correct spelling before searching for predefined responses
-const correctedMessage = await correctSpelling(lowerCaseMessage);
-
-
-for (const key in universityResponses) {
-    if (correctedMessage.includes(key)) {
-        responseText = universityResponses[key];
-        break;
-    }
-}
-
-  for (const key in universityResponses) {
-    if (lowerCaseMessage.includes(key)) {
-      responseText = universityResponses[key];
-      break;
-    }
-  }
-  if (responseText) {
-    // Convert predefined response text into bullet points if applicable
-    const formattedResponse = convertDoubleAsteriskToBullets(responseText);
-
-    setTimeout(() => {
-        botMessageContainer.querySelector(".message-text").innerHTML = formattedResponse;
-    }, 4000);
-    return;
-}
-
+  const correctedMessage = await correctSpelling(userMessage);
 
   try {
-    // 1) Call your Flask endpoint
     const mlRes = await fetch("/get_response", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ query: userMessage }),
+      body: JSON.stringify({ query: correctedMessage }),
     });
     const mlData = await mlRes.json();
     const bestDoc = mlData.best_doc;
     const bestScore = mlData.best_score;
 
-    // 2) Decide if the doc is relevant
-    const THRESHOLD = 0.2; // tweak as needed
-    let promptText;
-
-    if (bestScore > THRESHOLD) {
-      // If relevant, include the website text in the prompt
-      promptText = `
-        Utiliza la siguiente información de la Universidad María Auxiliadora si te resulta útil:
-        ${bestDoc}
-        Ahora responde la pregunta del usuario: ${userMessage}
-      `;
-    } else {
-      // If not relevant, skip the doc
-      promptText = userMessage;
+    if (mlData.is_faq) {
+      setTimeout(() => {
+        botMessageContainer.querySelector(".message-text").innerHTML = bestDoc;
+      }, 4000);
+      return;
     }
 
-    // 3) Prepare the Gemini API request
+    const THRESHOLD = 0.3;
+    if (bestScore > THRESHOLD) {
+      const formattedResponse = formatResponse(bestDoc);
+      setTimeout(() => {
+        botMessageContainer.querySelector(".message-text").innerHTML =
+          `<strong>📌 Información relevante encontrada:</strong><br>${formattedResponse}`;
+      }, 4000);
+      return;
+    }
+
     const requestBody = {
       contents: [
         {
           role: "user",
           parts: [
             {
-              text: promptText,
+              text: `
+              Responde exclusivamente en español. 
+              - NO uses expresiones como “la información proporcionada no indica...” o “no se encuentra información”.
+              - Si es sobre la Universidad María Auxiliadora, usa la siguiente información de referencia:
+              ${bestDoc}
+    
+              Si no está en la información, usa tu conocimiento general para crear una respuesta lo más útil y directa posible. 
+              Evita oraciones de desconocimiento o falta de datos.
+    
+              Pregunta del usuario: ${correctedMessage}
+              `
             },
           ],
         },
       ],
     };
-
-    // 4) Try each Gemini API key
+    
     let response, data, success = false;
     while (!success && currentKeyIndex < API_KEYS.length) {
       const currentKey = API_KEYS[currentKeyIndex];
@@ -261,27 +177,17 @@ for (const key in universityResponses) {
       if (response.ok) {
         success = true;
       } else {
-        console.error(
-          `Key ${currentKey} failed: ${
-            data.error ? data.error.message : "Unknown error"
-          }`
-        );
+        console.error(`Key ${currentKey} failed: ${data.error ? data.error.message : "Unknown error"}`);
         currentKeyIndex++;
       }
     }
 
     if (!success) {
-      throw new Error("All API keys have been exhausted or are invalid.");
+      throw new Error("All API keys are exhausted or invalid.");
     }
 
-    // 5) Extract the final Gemini response
-    const botResponse = data.candidates[0].content.parts[0].text.trim();
-
-    // Convert the raw text with asterisks into bullet points (only if >= 4 lines)
-    const formattedResponse = convertDoubleAsteriskToBullets(botResponse);
-
-    // Render as HTML
-    botMessageContainer.querySelector(".message-text").innerHTML = formattedResponse;
+    const botResponse = formatResponse(data.candidates[0].content.parts[0].text.trim());
+    botMessageContainer.querySelector(".message-text").innerHTML = botResponse;
 
   } catch (error) {
     console.error("Chatbot API Error:", error);
@@ -290,59 +196,29 @@ for (const key in universityResponses) {
   }
 };
 
-/**
- * Converts lines starting with **Some Title** into bullet points,
- * BUT only if the text has >= 4 non-empty lines.
- * Uses list-style-position: inside to ensure the bullet is fully visible.
- */
-function convertDoubleAsteriskToBullets(rawText) {
-  // Split text by newlines
-  const lines = rawText.split('\n');
-  // Filter out empty lines
-  const nonEmptyLines = lines.filter(line => line.trim());
-
-  // If message has fewer than 4 lines, just replace newlines with <br>
-  if (nonEmptyLines.length < 4) {
-    return rawText.replace(/\n/g, '<br>');
-  }
-
-  // Convert to bullet points
-  const listItems = [];
+function formatResponse(text) {
+  const lines = text.split('\n');
+  const formattedLines = [];
   for (let line of lines) {
     line = line.trim();
     if (!line) continue;
-
-    // Try to match the pattern **Title**: rest
     const match = line.match(/\*\*(.*?)\*\*(.*)/);
     if (match) {
-      const boldPart = match[1].trim();
-      const rest = match[2].trim();
-      listItems.push(
-        `<li><strong>${boldPart}</strong>${rest ? ': ' + rest : ''}</li>`
-      );
+      formattedLines.push(`<li><strong>${match[1]}</strong>${match[2] ? ": " + match[2] : ""}</li>`);
+    } else if (line.startsWith("-") || line.startsWith("*")) {
+      formattedLines.push(`<li>${line.replace(/^[-*]\s*/, '')}</li>`);
     } else {
-      listItems.push(`<li>${line}</li>`);
+      formattedLines.push(`<p>${line}</p>`);
     }
   }
-
-  // Return a <ul> with bullet points fully visible
-  return `
-    <ul style="list-style-type: disc; list-style-position: inside; margin-left: 0; padding-left: 0;">
-      ${listItems.join('')}
-    </ul>
-  `;
+  if (formattedLines.length > 3) {
+    return `<ul style="list-style-type: disc; margin-left: 15px;">${formattedLines.join('')}</ul>`;
+  } else {
+    return formattedLines.join('<br>');
+  }
 }
 
-
-
-
-
-
-
-
-
-
-// Voice recognition functions
+// ----------------- VOICE RECOGNITION -----------------
 const startVoiceRecognition = () => {
   if (!("SpeechRecognition" in window || "webkitSpeechRecognition" in window)) {
     alert("Your browser does not support voice recognition.");
@@ -353,20 +229,17 @@ const startVoiceRecognition = () => {
   recognition.interimResults = true;
   recognition.continuous = true;
   recognition.maxAlternatives = 1;
-
   recognition.start();
-
   const listeningIndicator = document.createElement("div");
   listeningIndicator.classList.add("listening-indicator");
   listeningIndicator.innerHTML = `<div class="wave-container">
-      <span class="wave"></span>
-      <span class="wave"></span>
-      <span class="wave"></span>
-      <span class="wave"></span>
-      <span class="wave"></span>
+    <span class="wave"></span>
+    <span class="wave"></span>
+    <span class="wave"></span>
+    <span class="wave"></span>
+    <span class="wave"></span>
   </div><p>Escucha...</p>`;
   document.body.appendChild(listeningIndicator);
-
   recognition.onresult = (event) => {
     let transcript = "";
     for (let i = 0; i < event.results.length; i++) {
@@ -374,11 +247,9 @@ const startVoiceRecognition = () => {
     }
     messageInput.value = transcript.trim();
   };
-
   recognition.onerror = (event) => {
     console.error("Speech recognition error:", event.error);
   };
-
   recognition.onend = () => {
     listeningIndicator.remove();
   };
@@ -407,98 +278,84 @@ recordVoiceButton.addEventListener("mouseup", () => {
   recordVoiceButton.classList.remove("recording");
 });
 
-
-
+// ----------------- WHISPER STREAMING -----------------
 let mediaRecorder;
 let audioStream;
 
 async function startLiveWhisper() {
-    try {
-        audioStream = await navigator.mediaDevices.getUserMedia({ audio: true });
-        mediaRecorder = new MediaRecorder(audioStream);
-
-        mediaRecorder.ondataavailable = async (event) => {
-            if (event.data.size > 0) {
-                sendAudioToBackend(event.data);
-            }
-        };
-
-        mediaRecorder.start(200); // Send chunks every 200ms
-    } catch (error) {
-        console.error("Microphone access error:", error);
-    }
+  try {
+    audioStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+    mediaRecorder = new MediaRecorder(audioStream);
+    mediaRecorder.ondataavailable = async (event) => {
+      if (event.data.size > 0) {
+        sendAudioToBackend(event.data);
+      }
+    };
+    mediaRecorder.start(200);
+  } catch (error) {
+    console.error("Microphone access error:", error);
+  }
 }
 
 async function sendAudioToBackend(audioBlob) {
   const reader = new FileReader();
   reader.readAsArrayBuffer(audioBlob);
   reader.onloadend = async () => {
-      const audioData = reader.result;
-      try {
-          const response = await fetch("/speech_to_text_stream", {
-              method: "POST",
-              body: audioData,
-              headers: { "Content-Type": "application/octet-stream" }
-          });
-
-          const reader = response.body.getReader();
-          reader.read().then(function processText({ done, value }) {
-              if (done) return;
-              let text = new TextDecoder("utf-8").decode(value);
-              messageInput.value = text.trim(); // Update chat input in real-time
-              reader.read().then(processText);
-          });
-      } catch (error) {
-          console.error("Streaming error:", error);
-      }
+    const audioData = reader.result;
+    try {
+      const response = await fetch("/speech_to_text_stream", {
+        method: "POST",
+        body: audioData,
+        headers: { "Content-Type": "application/octet-stream" }
+      });
+      const reader = response.body.getReader();
+      reader.read().then(function processText({ done, value }) {
+        if (done) return;
+        let text = new TextDecoder("utf-8").decode(value);
+        messageInput.value = text.trim();
+        reader.read().then(processText);
+      });
+    } catch (error) {
+      console.error("Streaming error:", error);
+    }
   };
 }
+
 function stopLiveWhisper() {
   if (mediaRecorder) {
-      mediaRecorder.stop();
+    mediaRecorder.stop();
   }
   if (audioStream) {
-      audioStream.getTracks().forEach(track => track.stop());
+    audioStream.getTracks().forEach(track => track.stop());
   }
 }
 
-
-// Ensure we only detect Spanish voice
 function startWebSpeechRecognition() {
   if (!("SpeechRecognition" in window || "webkitSpeechRecognition" in window)) {
-      alert("Your browser does not support live speech recognition.");
-      return;
+    alert("Your browser does not support live speech recognition.");
+    return;
   }
-
   let recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
-  recognition.lang = "es-ES"; // **Force Spanish-only speech recognition**
+  recognition.lang = "es-ES";
   recognition.interimResults = true;
   recognition.continuous = true;
-
   recognition.onresult = (event) => {
-      let transcript = "";
-      for (let i = 0; i < event.results.length; i++) {
-          transcript += event.results[i][0].transcript + " ";
-      }
-      messageInput.value = transcript.trim();
+    let transcript = "";
+    for (let i = 0; i < event.results.length; i++) {
+      transcript += event.results[i][0].transcript + " ";
+    }
+    messageInput.value = transcript.trim();
   };
-
   recognition.onerror = (event) => {
-      console.error("Speech recognition error:", event.error);
+    console.error("Speech recognition error:", event.error);
   };
-
   recognition.start();
 }
 
-// Attach listeners for Whisper AI (Live speech-to-text in Spanish)
 recordVoiceButton.addEventListener("mousedown", startLiveWhisper);
 recordVoiceButton.addEventListener("mouseup", stopLiveWhisper);
-
-// Attach fallback Web Speech API for Spanish recognition
 recordVoiceButton.addEventListener("dblclick", startWebSpeechRecognition);
 
-
-// Stop initial GIF after 4 seconds
 document.addEventListener("DOMContentLoaded", () => {
   const initialBotGif = document.querySelector("#initial-bot-gif");
   if (initialBotGif) {
@@ -508,14 +365,12 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-// Canvas Animation (Stars) for Background
+// ----------------- CANVAS ANIMATIONS -----------------
 const canvas = document.getElementById("starsCanvas");
 const ctx = canvas.getContext("2d");
-
 let stars = [];
 const numStars = 200;
 
-// Resize canvas to match the window size
 function resizeCanvas() {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
@@ -523,34 +378,30 @@ function resizeCanvas() {
 resizeCanvas();
 window.addEventListener("resize", resizeCanvas);
 
-// Create Star Object
 class Star {
   constructor(x, y, size, speed) {
     this.x = x;
     this.y = y;
     this.size = size;
     this.speed = speed;
-    this.opacity = Math.random(); // For twinkle effect
+    this.opacity = Math.random();
   }
-
   draw() {
     ctx.beginPath();
     ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
     ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
     ctx.fill();
   }
-
   update() {
     this.y += this.speed;
     if (this.y > canvas.height) {
-      this.y = 0; // Reset star to the top
+      this.y = 0;
       this.x = Math.random() * canvas.width;
     }
-    this.opacity = Math.random(); // Twinkle effect
+    this.opacity = Math.random();
   }
 }
 
-// Initialize Stars
 function createStars() {
   stars = [];
   for (let i = 0; i < numStars; i++) {
@@ -563,7 +414,6 @@ function createStars() {
 }
 createStars();
 
-// Animate Stars
 function animateStars() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   stars.forEach(star => {
@@ -574,7 +424,6 @@ function animateStars() {
 }
 animateStars();
 
-// Click Effect - Generate Burst of Stars
 function createBurst(x, y) {
   let burstStars = [];
   for (let i = 0; i < 20; i++) {
@@ -586,14 +435,12 @@ function createBurst(x, y) {
       opacity: 1
     });
   }
-
   function animateBurst() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     stars.forEach(star => {
       star.update();
       star.draw();
     });
-
     burstStars.forEach((star, index) => {
       ctx.beginPath();
       ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
@@ -604,7 +451,6 @@ function createBurst(x, y) {
       star.opacity -= 0.02;
       if (star.opacity <= 0) burstStars.splice(index, 1);
     });
-
     if (burstStars.length > 0) {
       requestAnimationFrame(animateBurst);
     }
@@ -612,7 +458,6 @@ function createBurst(x, y) {
   animateBurst();
 }
 
-// Add Event Listener for Click Effects on the Canvas
 canvas.addEventListener("click", (event) => {
   createBurst(event.clientX, event.clientY);
 });
@@ -634,28 +479,26 @@ class ChatbotStar {
     this.y = y;
     this.size = size;
     this.speed = speed;
-    this.opacity = Math.random() * 0.3 + 0.1; // Lower opacity for faded effect
+    this.opacity = Math.random() * 0.3 + 0.1;
   }
-
   draw() {
     chatbotCtx.beginPath();
     chatbotCtx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
     chatbotCtx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
     chatbotCtx.fill();
   }
-
   update() {
     this.y += this.speed;
     if (this.y > chatbotCanvas.height) {
       this.y = 0;
       this.x = Math.random() * chatbotCanvas.width;
     }
-    this.opacity = Math.random() * 0.3 + 0.1; // Ensures dim glow effect
+    this.opacity = Math.random() * 0.3 + 0.1;
   }
 }
 
 let chatbotStars = [];
-const numChatbotStars = 80; // Keep the number lower for smooth effect
+const numChatbotStars = 80;
 
 function createChatbotStars() {
   chatbotStars = [];
