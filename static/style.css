@@ -5,7 +5,7 @@
 * {
   margin: 0;
   padding: 0;
-  font-family: "Inter", sans-serif;
+  font-family: 'Poppins', sans-serif;
   box-sizing: border-box;
 }
 
@@ -596,6 +596,9 @@ body.show-chatbot .chatbot-popup {
 
 
 
+
+
+
 #chatbotStarsCanvas {
   position: absolute;
   top: 0;
@@ -673,6 +676,12 @@ body.show-chatbot .chatbot-popup {
   0%, 100% { transform: scaleY(1); }
   50% { transform: scaleY(1.5); }
 }
+
+
+
+
+
+
 
 
 

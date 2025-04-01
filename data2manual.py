@@ -1,7 +1,3 @@
-# Improved chatbot backend with enhanced accuracy (up to 98%)
-# Changes: Dual-encoder upgraded, BM25 integration, cross-encoder threshold tuned,
-# synonym expansion, and scoring enhancements.
-
 import os
 import json
 from flask import Flask, request, jsonify, Response
@@ -22,6 +18,10 @@ import re
 from sentence_transformers import SentenceTransformer, util, CrossEncoder
 from rank_bm25 import BM25Okapi
 from unidecode import unidecode
+
+# Additional imports for ML training feature
+from transformers import AutoTokenizer, AutoModelForSequenceClassification, Trainer, TrainingArguments
+from datasets import Dataset
 
 app = Flask(__name__, static_folder='static', static_url_path='')
 CORS(app)
@@ -86,6 +86,12 @@ bm25_model = BM25Okapi(bm25_docs)
 vectorizer = TfidfVectorizer(stop_words=spanish_stopwords)
 doc_vectors = vectorizer.fit_transform(documents)
 
+def normalize_text(text):
+    text = text.lower()
+    text = unidecode(text)
+    text = re.sub(r'[^\w\s]', '', text)
+    return re.sub(r'\s+', ' ', text).strip()
+
 def get_best_doc_and_score(query):
     normalized_query = normalize_text(query)
     query_vec = vectorizer.transform([normalized_query])
@@ -105,21 +111,16 @@ def get_best_doc_and_score(query):
     final_score = max(best_score, bm25_best_score / 10)
     return best_doc, final_score
 
-def normalize_text(text):
-    text = text.lower()
-    text = unidecode(text)
-    text = re.sub(r'[^\w\s]', '', text)
-    return re.sub(r'\s+', ' ', text).strip()
-
 # ----------------------------- FAQ EMBEDDING -----------------------------
-with open("data1.json", "r", encoding="utf-8") as f:
+# Load the modified JSON dataset that uses "variations" as the list of examples
+with open("data2manual_train.json", "r", encoding="utf-8") as f:
     raw_data = json.load(f)
     faq_list = [faq for faq in raw_data if isinstance(faq, dict)]
 
+# Updated to use only the "variations" field as examples.
 def create_faq_embedding_text(faq):
-    variations = " ".join(faq.get("variations", []))
-    synonyms = " ".join(faq.get("synonyms", []))
-    return normalize_text(faq["question"] + " " + variations + " " + synonyms)
+    examples = " ".join(faq.get("variations", []))
+    return normalize_text(examples)
 
 faq_model = SentenceTransformer("intfloat/e5-large")
 faq_texts = [create_faq_embedding_text(faq) for faq in faq_list]
@@ -127,65 +128,113 @@ faq_embeddings = faq_model.encode(faq_texts, convert_to_tensor=True)
 
 cross_encoder = CrossEncoder("cross-encoder/ms-marco-MiniLM-L-6-v2")
 
+# ----------------------------- ML TRAINING FEATURE -----------------------------
+def train_classifier():
+    texts = []
+    labels = []
+    # For the new JSON format, use the "variations" field as training examples.
+    for i, faq in enumerate(faq_list):
+        text = " ".join(faq.get("variations", []))
+        texts.append(normalize_text(text))
+        labels.append(i)
+    train_data = {"text": texts, "label": labels}
+    dataset = Dataset.from_dict(train_data)
+    split_dataset = dataset.train_test_split(test_size=0.2, seed=42)
+    train_dataset = split_dataset["train"]
+    eval_dataset = split_dataset["test"]
+    
+    model_name = "bert-base-multilingual-cased"
+    tokenizer_ml = AutoTokenizer.from_pretrained(model_name)
+    def tokenize_function(example):
+        return tokenizer_ml(example["text"], truncation=True, padding="max_length")
+    train_dataset = train_dataset.map(tokenize_function, batched=True)
+    eval_dataset = eval_dataset.map(tokenize_function, batched=True)
+    
+    train_dataset = train_dataset.remove_columns(["text"])
+    eval_dataset = eval_dataset.remove_columns(["text"])
+    
+    num_labels = len(faq_list)
+    model_ml = AutoModelForSequenceClassification.from_pretrained(model_name, num_labels=num_labels)
+    
+    training_args = TrainingArguments(
+        output_dir="./results",
+        num_train_epochs=3,
+        per_device_train_batch_size=4,
+        per_device_eval_batch_size=4,
+        evaluation_strategy="epoch",
+        save_strategy="epoch",
+        logging_steps=10,
+        disable_tqdm=True,
+    )
+    
+    def compute_metrics(eval_pred):
+        logits, labels = eval_pred
+        predictions = np.argmax(logits, axis=-1)
+        accuracy = np.mean(predictions == labels)
+        return {"accuracy": accuracy}
+    
+    trainer_ml = Trainer(
+        model=model_ml,
+        args=training_args,
+        train_dataset=train_dataset,
+        eval_dataset=eval_dataset,
+        compute_metrics=compute_metrics,
+    )
+    
+    trainer_ml.train()
+    eval_results = trainer_ml.evaluate()
+    accuracy = eval_results["eval_accuracy"]
+    
+    model_ml.save_pretrained("./trained_faq_model")
+    tokenizer_ml.save_pretrained("./trained_faq_model")
+    
+    with open("model_accuracy.txt", "w") as f:
+        f.write(str(accuracy))
+        
+    return accuracy, model_ml, tokenizer_ml
+
+if not os.path.exists("./trained_faq_model"):
+    model_accuracy, trained_model, trained_tokenizer = train_classifier()
+else:
+    if os.path.exists("model_accuracy.txt"):
+        with open("model_accuracy.txt", "r") as f:
+            model_accuracy = float(f.read())
+    else:
+        model_accuracy = 0.0
+    trained_tokenizer = AutoTokenizer.from_pretrained("./trained_faq_model")
+    trained_model = AutoModelForSequenceClassification.from_pretrained("./trained_faq_model")
+
+# ----------------------------- GET RESPONSE (ML CLASSIFIER) -----------------------------
 @app.route('/get_response', methods=['POST'])
 def get_response():
     data = request.get_json()
     query = data.get("query", "")
     corrected_query = correct_spelling(query)
     normalized_query = normalize_text(corrected_query)
-
-    query_embedding = faq_model.encode(normalized_query, convert_to_tensor=True)
-    scores = util.pytorch_cos_sim(query_embedding, faq_embeddings).cpu().numpy().flatten()
-
-    top_k = 5
-    top_indices = np.argsort(-scores)[:top_k]
-
-    candidate_pairs = []
-    candidate_indices = []
-    for idx in top_indices:
-        candidate_text = faq_list[idx]["question"] + " " + faq_list[idx]["answer"]
-        candidate_pairs.append((corrected_query, candidate_text))
-        candidate_indices.append(idx)
-
-    cross_scores = cross_encoder.predict(candidate_pairs)
-    best_cross_idx = int(np.argmax(cross_scores))
-    best_cross_score = float(cross_scores[best_cross_idx])
-    best_faq_index = candidate_indices[best_cross_idx]
-
-    THRESHOLD_CROSS = 1.7
-    if best_cross_score >= THRESHOLD_CROSS:
-        return jsonify({
-            "best_doc": faq_list[best_faq_index]["answer"],
-            "best_score": best_cross_score,
-            "corrected_query": corrected_query,
-            "is_faq": True,
-            "is_tramite": False
-        })
-
-    best_doc, tfidf_score = get_best_doc_and_score(corrected_query)
-    # Check if the question seems related to a trámite
-    is_tramite = "tramite" in corrected_query.lower()  # or refine this logic as needed
-
-    if tfidf_score > 0.1:
-        return jsonify({
-            "best_doc": best_doc[:1000],
-            "best_score": tfidf_score,
-            "corrected_query": corrected_query,
-            "is_faq": False,
-            "is_tramite": is_tramite
-        })
-    else:
-        return jsonify({
-            "best_doc": "Lo siento, no encontré una respuesta adecuada.",
-            "best_score": 0.0,
-            "corrected_query": corrected_query,
-            "is_faq": False,
-            "is_tramite": False
-        })
+    
+    # Use the trained ML classifier to predict FAQ index
+    inputs = trained_tokenizer(normalized_query, return_tensors="pt", truncation=True, padding=True)
+    with torch.no_grad():
+        outputs = trained_model(**inputs)
+    logits = outputs.logits
+    probs = torch.softmax(logits, dim=-1)
+    pred_label = int(torch.argmax(probs, dim=-1).item())
+    confidence = float(probs[0][pred_label])
+    
+    ml_answer = faq_list[pred_label]["answer"]
+    
+    return jsonify({
+        "best_doc": ml_answer,
+        "model_accuracy": model_accuracy,
+        "confidence": confidence,
+        "corrected_query": corrected_query,
+        "is_faq": True,
+        "method": "ml_classifier"
+    })
 
 # ----------------------------- SPEECH TO TEXT -----------------------------
 device = "cuda" if torch.cuda.is_available() else "cpu"
-whisper_model = whisper.load_model("large").to(device)
+whisper_model = whisper.load_model("tiny").to(device)
 
 def transcribe_audio(audio_data):
     try:

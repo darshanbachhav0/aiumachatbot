@@ -4,15 +4,14 @@ requests
 beautifulsoup4
 scikit-learn
 symspellpy
-
-
+whisper
+ffmpeg-python
 nltk
-torch==2.0.1 --extra-index-url https://download.pytorch.org/whl/cpu
-
-
+torch
 numpy
 soundfile
 sentence-transformers
+
 
 
 

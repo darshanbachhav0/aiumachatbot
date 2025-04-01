@@ -38145,7 +38145,7 @@ renzo 250
 galo 250
 superados 250
 organizaste 250
-wifi 250
+wifi 550
 lloraban 250
 asbesto 250
 baúles 250
@@ -49998,3 +49998,631 @@ maniática 155
 ist 155
 oirla 155
 atraparía 155
+UMA 1000
+SIGU 800
+SSO 500
+zoom 600
+yape 400
+BBVA 400
+matrícula 700
+trámite 700
+tramites 700
+intranet 700
+alumno 600
+inscribirse 400
+OSAR 600
+tramite 700
+tesoreria
+
+
+
+Maria 300
+Carmen 250
+Rosa 250
+Ana 200
+Juana 200
+Lucia 200
+Elena 200
+Adriana 150
+Beatriz 150
+Gabriela 150
+Silvia 150
+Diana 150
+Paula 150
+Veronica 150
+Patricia 150
+Marta 150
+Sofia 150
+Teresa 100
+Alejandra 100
+Claudia 100
+Carla 100
+Flor 100
+Natalia 100
+Susana 100
+Vanessa 100
+Andrea 100
+Daniela 100
+Cecilia 100
+Laura 100
+Ines 100
+Irene 100
+Yolanda 100
+Gloria 100
+Luciana 90
+Estefania 90
+Miriam 90
+Pilar 90
+Rebeca 90
+Mariana 90
+Francisca 90
+Leticia 90
+Mónica 90
+Rita 90
+Paola 90
+Fabiola 90
+Lidia 90
+Graciela 90
+Esther 90
+Norma 90
+Rocío 90
+Abril 90
+Noelia 90
+Carolina 90
+Jimena 90
+Valentina 85
+Miranda 85
+Ximena 85
+Antonella 85
+Milagros 85
+Brenda 85
+Regina 85
+Elisa 85
+Adrianna 85
+Estela 85
+Fernanda 85
+Julieta 85
+Magdalena 85
+Noemi 85
+Sonia 85
+Raquel 85
+Abigail 85
+Amelia 85
+Aurora 85
+Bianca 85
+Celeste 85
+Dora 85
+Esperanza 85
+Fátima 85
+Hortensia 85
+Jacinta 85
+Katerina 85
+Leonor 85
+Marisol 85
+Nerea 85
+Ofelia 85
+Paulina 85
+Querida 85
+Rosalba 85
+Teodora 85
+Ursula 85
+Violeta 85
+Wendy 85
+Zulema 85
+Jose 300
+Juan 300
+Luis 250
+Carlos 250
+Jorge 200
+Pedro 200
+Raul 200
+Rafael 150
+Roberto 150
+Miguel 150
+Victor 150
+Fernando 150
+Oscar 150
+Eduardo 150
+Alberto 150
+Ricardo 150
+Cesar 150
+Mario 150
+Enrique 150
+Julio 150
+Martin 100
+Andres 100
+Ivan 100
+Arturo 100
+Hugo 100
+Diego 100
+Antonio 100
+Marcos 100
+Adrian 100
+Sergio 100
+Daniel 100
+Felipe 100
+Gonzalo 100
+Christian 100
+Fabian 100
+Rodrigo 100
+Esteban 100
+Armando 100
+Leonel 100
+Mauricio 100
+Alfredo 100
+Ramiro 100
+Guillermo 100
+Edgardo 100
+Hector 100
+Santiago 100
+René 100
+Lorenzo 100
+Ismael 100
+Ariel 100
+Kevin 100
+Samuel 90
+Vicente 90
+Marcelo 90
+Nelson 90
+Franklin 90
+Wilmer 90
+Edgar 90
+Claudio 90
+Benjamin 90
+Julian 90
+Gustavo 90
+Mariano 90
+Patricio 90
+Ernesto 90
+Federico 90
+Luciano 90
+Maximiliano 90
+Leonardo 90
+Mauro 90
+Damián 90
+Teodoro 90
+Simón 90
+Ulises 90
+Ruperto 90
+Jacobo 90
+Orlando 90
+Washington 90
+Wilfredo 90
+Alonso 90
+Agustín 90
+Iker 85
+Emiliano 85
+Octavio 85
+Gerardo 85
+Efrain 85
+Amador 85
+Cristobal 85
+Estanislao 85
+Genaro 85
+Humberto 85
+Isidoro 85
+Jacinto 85
+Leandro 85
+Narciso 85
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Aarav 100
+Vivaan 100
+Aditya 100
+Vihaan 100
+Arjun 100
+Shaurya 100
+Atharv 100
+Krishna 100
+Rohan 100
+Aryan 100
+Dhruv 100
+Yash 100
+Kunal 100
+Raj 100
+Mohit 100
+Siddharth 100
+Amit 100
+Rishi 100
+Pranav 100
+Tejas 100
+Raghav 100
+Harsh 100
+Rahul 100
+Rohit 100
+Abhishek 100
+Sanjay 100
+Varun 100
+Manav 100
+Karan 100
+Arnav 100
+Dev 100
+Aniket 100
+Tushar 100
+Kartik 100
+Nishant 100
+Uday 100
+Harshit 100
+Ishaan 100
+Samar 100
+Kshitij 100
+Rituraj 100
+Parth 100
+Darshan 100
+Gaurav 100
+Nikhil 100
+Akshay 100
+Saurabh 100
+Vikas 100
+Vijay 100
+Jay 100
+Abhinav 100
+Chetan 100
+Dinesh 100
+Eshan 100
+Firoz 100
+Girish 100
+Hemant 100
+Jatin 100
+Keshav 100
+Lalit 100
+Madhav 100
+Naresh 100
+Om 100
+Pradeep 100
+Rakesh 100
+Sandeep 100
+Tarun 100
+Vimal 100
+Yuvraj 100
+Zubin 100
+Anirudh 100
+Arpit 100
+Bhavesh 100
+Chaitanya 100
+Dhiraj 100
+Ekagra 100
+Falgun 100
+Govind 100
+Hitesh 100
+Inder 100
+Jai 100
+Kalyan 100
+Mohan 100
+Nilesh 100
+Ojas 100
+Pratik 100
+Shubham 100
+Tanmay 100
+Umesh 100
+Vikram 100
+Yashwant 100
+Zorawar 100
+Aakash 100
+Abhay 100
+Abhimanyu 100
+Achintya 100
+Advaith 100
+Akhil 100
+Amar 100
+Amol 100
+Anand 100
+Anil 100
+Anirban 100
+Ankit 100
+Anmol 100
+Arav 100
+Archit 100
+Arindam 100
+Ariv 100
+Arjit 100
+Ashish 100
+Ashwin 100
+Atul 100
+Avinash 100
+Ayush 100
+Balaji 100
+Bhargav 100
+Bharat 100
+Bhaskar 100
+Chandresh 100
+Darsh 100
+Deepak 100
+Devansh 100
+Devesh 100
+Dhairya 100
+Dhananjay 100
+Dhanush 100
+Divyansh 100
+Gagan 100
+Gauransh 100
+Gyan 100
+Hardik 100
+Hemendra 100
+Hriday 100
+Ishwar 100
+Jignesh 100
+Jitendra 100
+Kabir 100
+Kairav 100
+Kamal 100
+Kanak 100
+Kavin 100
+Krish 100
+Krishiv 100
+Lakshya 100
+Mahesh 100
+Mahit 100
+Manoj 100
+Mayank 100
+Mihir 100
+Milind 100
+Nakul 100
+Nandan 100
+Naren 100
+Nitin 100
+Omkar 100
+Pankaj 100
+Parag 100
+Parikshit 100
+Prabal 100
+Pradyumna 100
+Prashant 100
+Praveen 100
+Prithvi 100
+Rajat 100
+Rajeev 100
+Rajendra 100
+Rajiv 100
+Ranjit 100
+Roshan 100
+Sagar 100
+Sahil 100
+Samir 100
+Sanjeev 100
+Santosh 100
+Sarvesh 100
+Shailesh 100
+Shankar 100
+Sharad 100
+Shashi 100
+Shekhar 100
+Shirish 100
+Shlok 100
+Shreyas 100
+Siddharth 100
+Somesh 100
+Yash 100
+Abhiraj 100
+Preet 200
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+James 100
+John 100
+Robert 100
+Michael 100
+William 100
+David 100
+Richard 100
+Joseph 100
+Thomas 100
+Charles 100
+Christopher 100
+Daniel 100
+Matthew 100
+Anthony 100
+Mark 100
+Donald 100
+Steven 100
+Paul 100
+Andrew 100
+Joshua 100
+Kenneth 100
+Kevin 100
+Brian 100
+George 100
+Timothy 100
+Ronald 100
+Edward 100
+Jason 100
+Jeffrey 100
+Ryan 100
+Jacob 100
+Gary 100
+Nicholas 100
+Eric 100
+Stephen 100
+Larry 100
+Justin 100
+Scott 100
+Brandon 100
+Benjamin 100
+Samuel 100
+Gregory 100
+Frank 100
+Alexander 100
+Raymond 100
+Patrick 100
+Jack 100
+Dennis 100
+Jerry 100
+Tyler 100
+Aaron 100
+Adam 100
+Henry 100
+Nathan 100
+Douglas 100
+Peter 100
+Kyle 100
+Walter 100
+Ethan 100
+Jeremy 100
+Harold 100
+Keith 100
+Christian 100
+Roger 100
+Terry 100
+Gerald 100
+Sean 100
+Arthur 100
+Austin 100
+Carl 100
+Lawrence 100
+Cameron 100
+Jordan 100
+Randy 100
+Bryan 100
+Roy 100
+Eugene 100
+Ralph 100
+Juan 100
+Antonio 100
+Noah 100
+Caleb 100
+Logan 100
+Owen 100
+Elijah 100
+Connor 100
+Dylan 100
+Gabriel 100
+Lucas 100
+Mason 100
+Carter 100
+Jayden 100
+Isaac 100
+Liam 100
+Oliver 100
+Evan 100
+Adrian 100
+Carlos 100
+Diego 100
+Miguel 100
+Fernando 100
+Sergio 100
+Luis 100
+Martin 100
+Sebastian 100
+Julian 100
+Victor 100
+Leonardo 100
+Gavin 100
+Miles 100
+Xavier 100
+Colin 100
+Zachary 100
+Oscar 100
+Santiago 100
+Felix 100
+Ivan 100
+Andre 100
+Calvin 100
+Dominic 100
+Marcus 100
+Derek 100
+Shawn 100
+Curtis 100
+Brady 100
+Allen 100
+Trevor 100
+Zane 100
+Jared 100
+Mario 100
+Damian 100
+Felipe 100
+Rafael 100
+Hector 100
+Enrique 100
+Salvador 100
+Armando 100
+Ernesto 100
+Orlando 100
+Ramon 100
+Eduardo 100
+Lorenzo 100
+Rosalind 100
+Glenn 100
+Ivan 100
+Max 100
+Oscar 100
+Preston 100
+Quentin 100
+Reid 100
+Spencer 100
+Travis 100
+Ulysses 100
+Vernon 100
+Wade 100
+Xander 100
+Yuri 100
+Zane 100

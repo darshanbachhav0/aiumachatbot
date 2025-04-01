@@ -16,6 +16,11 @@ const API_KEYS = [
 ];
 let currentKeyIndex = 0;
 
+
+
+// Flag to track whether the chatbot is still responding
+let isBotResponding = false; //new
+
 document.addEventListener("DOMContentLoaded", function () {
   document.body.addEventListener("click", function (event) {
     if (event.target.classList.contains("phone-link")) {
@@ -64,14 +69,33 @@ closeChatbot.addEventListener("click", () => {
   document.body.classList.remove("show-chatbot");
 });
 
-const handleSendMessage = (e) => {
+const handleSendMessage = async (e) => {
   e.preventDefault();
+
+  // Prevent sending a new message if the bot is still responding.
+  if (isBotResponding) return;
+
   const userMessage = messageInput.value.trim();
   if (!userMessage) return;
+
+  // Set flag and disable input and send button.
+  isBotResponding = true;
+  messageInput.disabled = true;
+  sendMessageButton.disabled = true;
+
   displayUserMessage(userMessage);
   messageInput.value = "";
-  generateBotResponse(userMessage);
+
+  // Wait for the bot's response.
+  await generateBotResponse(userMessage);
+
+  // Re-enable input and reset flag.
+  isBotResponding = false;
+  messageInput.disabled = false;
+  sendMessageButton.disabled = false;
+  messageInput.focus();
 };
+
 
 sendMessageButton.addEventListener("click", handleSendMessage);
 messageInput.addEventListener("keypress", (e) => {
@@ -123,13 +147,21 @@ const generateBotResponse = async (userMessage) => {
     const mlData = await mlRes.json();
     const bestDoc = mlData.best_doc;
     const bestScore = mlData.best_score;
+    if (mlData.is_faq) {     setTimeout(() => {      
+      // Apply bullet formatting only for FAQ responses (from data1.json)     
+       botMessageContainer.querySelector(".message-text").innerHTML = formatResponse(bestDoc);     
+    }, 
+    4000);   
+      return;   }
 
-    if (mlData.is_faq) {
-      setTimeout(() => {
-        botMessageContainer.querySelector(".message-text").innerHTML = bestDoc;
-      }, 4000);
-      return;
-    }
+
+
+
+
+
+
+
+    
 
     const THRESHOLD = 0.3;
     if (bestScore > THRESHOLD) {
@@ -163,6 +195,7 @@ const generateBotResponse = async (userMessage) => {
         },
       ],
     };
+    
     
     let response, data, success = false;
     while (!success && currentKeyIndex < API_KEYS.length) {
@@ -364,6 +397,55 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 4000);
   }
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// ------------- TRÁMITES CARD LOGIC -------------
+let currentCardIndex = 0;
+// Seleccionamos todas las tarjetas
+const cards = document.querySelectorAll(".tramite-card");
+
+function showNextCard() {
+  // Ocultamos la tarjeta actual
+  cards[currentCardIndex].classList.remove("active");
+
+  // Aumentamos el índice (si no estamos en la última tarjeta)
+  if (currentCardIndex < cards.length - 1) {
+    currentCardIndex++;
+    cards[currentCardIndex].classList.add("active");
+  }
+}
+
+function closeCards() {
+  // Oculta todo el contenedor de tarjetas
+  document.querySelector(".tramites-card-container").style.display = "none";
+}
+
+
+
 
 // ----------------- CANVAS ANIMATIONS -----------------
 const canvas = document.getElementById("starsCanvas");
