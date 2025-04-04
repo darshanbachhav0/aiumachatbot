@@ -1,7 +1,7 @@
 
 # UMA AI Chatbot
 
-An advanced AI-powered chatbot developed for Universidad María Auxiliadora (UMA) that provides academic support through natural language interactions. This project integrates Natural Language Processing (NLP), Machine Learning (ML), and Speech Recognition to assist students in obtaining accurate responses to their queries. It is designed with a robust backend using Python Flask and offers both text and voice-based communication.
+An advanced AI-powered chatbot developed for Universidad María Auxiliadora (UMA) that provides academic support through natural language interactions. This project integrates Gemini AI,  Natural Language Processing (NLP), Machine Learning (ML), and Speech Recognition to assist students in obtaining accurate responses to their queries. It is designed with a robust backend using Python Flask and offers both text and voice-based communication.
 
 ---
 
