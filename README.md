@@ -16,11 +16,11 @@ An advanced AI-powered chatbot developed for Universidad María Auxiliadora (UMA
 - [Usage](#usage)
 - [Data and Training](#data-and-training)
 - [Speech-to-Text Integration](#speech-to-text-integration)
-- [Technologies and Dependencies](#technologies-and-dependencies)
-- [Future Enhancements](#future-enhancements)
-- [Contributing](#contributing)
-- [License](#license)
-- [Contact and Support](#contact-and-support)
+- [Gemini Integration](#gemini-integration)
+
+
+
+
 
 ---
 
@@ -71,23 +71,23 @@ The project follows a modular architecture using Python Flask as the web framewo
 
 ```
 UMA-AI-Chatbot/
-├── .vscode/                         # VS Code configuration files
+├── .vscode/
 │   └── settings.json
-├── static/                          # Frontend assets (HTML, CSS, JS, images)
-│   ├── index.html                   # Main user interface for the chatbot
-│   ├── script.js                    # Frontend JavaScript logic
-│   ├── style.css                    # UI styling
-│   ├── logo.png                     # Project logo
-│   └── other assets (e.g., gifs, banners)
-├── app1.py                          # Main Flask application handling routing and API endpoints
-├── data1.json                       # Initial FAQ dataset (structured Q&A)
-├── data1withoutcategory.json        # Raw user queries without pre-assigned categories
-├── data2manual_train.json           # Enhanced training data with question variations
-├── data2manual.py                   # Script for processing and embedding training data
-├── es_50k.txt                       # Spanish word frequency file for spell correction (SymSpell)
-├── requirements.txt                 # List of Python dependencies
-├── README.md                        # Project documentation (this file)
-└── PDF Documents/                   # Institutional documents and references used for FAQ content
+├── static/
+│   ├── index.html
+│   ├── script.js
+│   ├── style.css
+│   ├── logo.png
+│   └── other assets
+├── app1.py
+├── data1.json
+├── data1withoutcategory.json
+├── data2manual_train.json
+├── data2manual.py
+├── es_50k.txt
+├── requirements.txt
+├── README.md
+└── PDF Documents/
     ├── _Activa tu Cuenta UMA ZOOM - 2025.pdf
     ├── alumno-intranet.pdf
     ├── GUIA_NUEVO INGRESO A UMA - ZOOM.pdf
@@ -101,25 +101,18 @@ UMA-AI-Chatbot/
 
 ## API Endpoints
 
-The Flask backend exposes several endpoints:
-
 - **GET /**  
   Loads the static UI for user interaction.
 
 - **POST /get_response**  
-  Processes a user query and returns:
-  - `best_doc`: The best matching FAQ answer.
-  - `confidence`: Confidence score from the ML classifier.
-  - `model_accuracy`: Overall performance metric of the trained model.
-  - `corrected_query`: The user’s query after spell correction.
-  - `is_faq`: Boolean indicating if the response is from the FAQ database.
-  - `method`: Indicates whether the response was generated via the ML classifier or fallback retrieval.
+  Returns:
+  - `best_doc`, `confidence`, `model_accuracy`, `corrected_query`, `is_faq`, `method`
 
 - **POST /correct_spelling**  
-  Accepts a query in JSON format and returns a spell-corrected version of the input text.
+  Corrects and normalizes user input.
 
 - **POST /speech_to_text_stream**  
-  Handles streaming audio input and converts it to text in real time using Whisper.
+  Streams audio and converts it to text using Whisper.
 
 ---
 
@@ -127,128 +120,84 @@ The Flask backend exposes several endpoints:
 
 ### Prerequisites
 
-- Python 3.8 or higher
-- [FFmpeg](https://ffmpeg.org/) (required by Whisper)
+- Python 3.8+
+- [FFmpeg](https://ffmpeg.org/)
 - Git
 
-### Installation Steps
+### Steps
 
-1. **Clone the Repository**
-   ```bash
-   git clone https://github.com/your_username/UMA-AI-Chatbot.git
-   cd UMA-AI-Chatbot
-   ```
+```bash
+git clone https://github.com/your_username/UMA-AI-Chatbot.git
+cd UMA-AI-Chatbot
+python -m venv venv
+source venv/bin/activate  # Windows: venv\Scripts\activate
+pip install -r requirements.txt
+```
 
-2. **Set Up a Virtual Environment**
-   ```bash
-   python -m venv venv
-   source venv/bin/activate  # On Windows: venv\Scriptsctivate
-   ```
-
-3. **Install Dependencies**
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-4. **Download NLTK Stopwords**
-   Run the following Python commands to download necessary NLTK data:
-   ```python
-   import nltk
-   nltk.download('stopwords')
-   ```
+```python
+import nltk
+nltk.download('stopwords')
+```
 
 ---
 
 ## Usage
 
-### Running the Application
-
-Start the Flask server with:
 ```bash
 python app1.py
 ```
-By default, the server runs on `http://0.0.0.0:10000` (or on port defined by the `PORT` environment variable).
-
-### Interacting with the Chatbot
-
-- **Text Interaction**: Open your web browser and navigate to the URL provided by the Flask server. Type your query and receive real-time responses.
-- **Voice Interaction**: Use the integrated speech-to-text feature for hands-free query input.
+Navigate to `http://0.0.0.0:10000`
 
 ---
 
 ## Data and Training
 
-### Data Files
-
-- **FAQ Datasets**:  
-  - `data1.json` contains the initial set of FAQs.
-  - `data1withoutcategory.json` holds raw queries without explicit categorization.
-  - `data2manual_train.json` provides enriched training examples with multiple variations per question.
-
-- **Data Processing**:  
-  The script `data2manual.py` preprocesses and embeds training data using the SentenceTransformer model. It normalizes the text, generates embeddings, and prepares data for training the ML classifier.
-
-### Model Training
-
-The project employs a fine-tuned ML classifier:
-- **ML Pipeline**:  
-  Uses the `transformers` library with a model like `bert-base-multilingual-cased` for classification.
-- **Training and Evaluation**:  
-  The training script splits data into training and evaluation sets, tokenizes the text, and fine-tunes the model using the Hugging Face Trainer API. Model accuracy and performance metrics are saved and used during inference.
+- `data1.json`, `data1withoutcategory.json`, `data2manual_train.json`
+- Training uses transformers and SentenceTransformer for embeddings.
+- Evaluation metrics saved and logged.
 
 ---
 
 ## Speech-to-Text Integration
 
-- **Whisper Model**:  
-  OpenAI’s Whisper (tiny or large version) is used to transcribe incoming audio streams. This feature enables the chatbot to convert voice inputs into text seamlessly.
-- **Streaming Endpoint**:  
-  The `/speech_to_text_stream` endpoint continuously reads audio chunks from the client, processes them, and returns real-time transcription data.
+- OpenAI Whisper used for Spanish audio.
+- Real-time transcription via `/speech_to_text_stream`.
 
 ---
 
-## Technologies and Dependencies
-
-- **Backend Framework**: Flask, Flask-CORS
-- **NLP and ML**: scikit-learn, SentenceTransformers, transformers, torch, numpy
-- **Spell Correction**: symspellpy with a Spanish frequency file (`es_50k.txt`)
-- **Web Scraping**: requests, BeautifulSoup
-- **Speech Recognition**: OpenAI Whisper, soundfile, ffmpeg-python
-- **Data Processing**: nltk, unidecode, regex
-
-Refer to `requirements.txt` for the complete list of dependencies.
 
 ---
 
-## Future Enhancements
 
-- **Text-to-Speech (TTS)**:  
-  Integrate a TTS module for voice output responses.
-- **Dynamic Data Integration**:  
-  Connect to UMA’s student intranet for real-time academic information.
-- **Enhanced Admin Dashboard**:  
-  Develop an interface for managing FAQs and training data.
-- **Improved ML Models**:  
-  Experiment with larger transformer models for improved accuracy.
-- **User Analytics**:  
-  Implement logging and analytics to monitor chatbot performance and user satisfaction.
+## Gemini Integration
 
----
+To further enhance the chatbot’s intelligence and language understanding capabilities, a **Gemini AI** module is integrated as a core feature of the chatbot.
 
-## Contributing
+### 🔷 Overview
 
-Contributions are welcome! To contribute:
+Gemini is used as an auxiliary engine when:
+- The local model confidence is extremely low.
+- The FAQ database has no semantically relevant match.
+- A query appears open-ended or conversational in nature.
 
-1. Fork the repository.
-2. Create a new branch (`git checkout -b feature/your-feature`).
-3. Commit your changes (`git commit -m 'Add some feature'`).
-4. Push to the branch (`git push origin feature/your-feature`).
-5. Open a pull request.
+### 🔧 Technical Workflow
 
-Please follow the coding guidelines and ensure tests pass before submitting your pull request.
+1. **Precheck Layer**:
+   - If both ML and BM25 return low confidence, Gemini API is triggered.
+2. **Prompting**:
+   - The user query is sent to Gemini with contextual instructions based on the institution’s FAQ data.
+3. **Postprocessing**:
+   - Gemini's answer is validated against university policy filters.
+   - The result is merged with source links or suggestions if applicable.
+
+> **Note:** Gemini is currently used only when absolutely necessary to avoid latency and cost implications.
 
 ---
 
 
 
-*This documentation is subject to updates as the project evolves. Thank you for supporting UMA’s academic innovation!*
+
+
+
+
+*This README evolves as the project matures.*
