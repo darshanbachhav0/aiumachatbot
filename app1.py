@@ -69,8 +69,8 @@ urls = [
     "https://uma.edu.pe/admisionpregrado/",
 ]
 
-nltk.download('stopwords')
-spanish_stopwords = stopwords.words('spanish')
+#nltk.download('stopwords')
+#spanish_stopwords = stopwords.words('spanish')
 
 documents = []
 for url in urls:
@@ -80,23 +80,23 @@ for url in urls:
 if not documents:
     documents.append("No data available.")
 
-bm25_docs = [doc.lower().split() for doc in documents]
-bm25_model = BM25Okapi(bm25_docs)
+#bm25_docs = [doc.lower().split() for doc in documents]
+#bm25_model = BM25Okapi(bm25_docs)
 
-vectorizer = TfidfVectorizer(stop_words=spanish_stopwords)
-doc_vectors = vectorizer.fit_transform(documents)
+#vectorizer = TfidfVectorizer(stop_words=spanish_stopwords)
+#doc_vectors = vectorizer.fit_transform(documents)
 
 def get_best_doc_and_score(query):
     normalized_query = normalize_text(query)
-    query_vec = vectorizer.transform([normalized_query])
+    #query_vec = vectorizer.transform([normalized_query])
     similarities = cosine_similarity(query_vec, doc_vectors).flatten()
 
     best_idx = similarities.argmax()
     best_doc = documents[best_idx]
     best_score = similarities[best_idx]
 
-    bm25_scores = bm25_model.get_scores(normalized_query.split())
-    bm25_best_score = max(bm25_scores)
+    #bm25_scores = bm25_model.get_scores(normalized_query.split())
+   # bm25_best_score = max(bm25_scores)
     
     UMA_KEYWORDS = ["curso", "cursos", "admisión", "facultad", "estudios", "clases", "universidad"]
     if any(keyword in normalized_query for keyword in UMA_KEYWORDS) and best_score < 0.3:
@@ -107,7 +107,7 @@ def get_best_doc_and_score(query):
 
 def normalize_text(text):
     text = text.lower()
-    text = unidecode(text)
+    #text = unidecode(text)
     text = re.sub(r'[^\w\s]', '', text)
     return re.sub(r'\s+', ' ', text).strip()
 
@@ -121,11 +121,11 @@ def create_faq_embedding_text(faq):
     synonyms = " ".join(faq.get("synonyms", []))
     return normalize_text(faq["question"] + " " + variations + " " + synonyms)
 
-faq_model = SentenceTransformer("intfloat/e5-large")
+#faq_model = SentenceTransformer("intfloat/e5-large")
 faq_texts = [create_faq_embedding_text(faq) for faq in faq_list]
-faq_embeddings = faq_model.encode(faq_texts, convert_to_tensor=True)
+#faq_embeddings = faq_model.encode(faq_texts, convert_to_tensor=True)
 
-cross_encoder = CrossEncoder("cross-encoder/ms-marco-MiniLM-L-6-v2")
+#cross_encoder = CrossEncoder("cross-encoder/ms-marco-MiniLM-L-6-v2")
 
 @app.route('/get_response', methods=['POST'])
 def get_response():
@@ -134,11 +134,11 @@ def get_response():
     corrected_query = correct_spelling(query)
     normalized_query = normalize_text(corrected_query)
 
-    query_embedding = faq_model.encode(normalized_query, convert_to_tensor=True)
-    scores = util.pytorch_cos_sim(query_embedding, faq_embeddings).cpu().numpy().flatten()
+    #query_embedding = faq_model.encode(normalized_query, convert_to_tensor=True)
+    #scores = util.pytorch_cos_sim(query_embedding, faq_embeddings).cpu().numpy().flatten()
 
     top_k = 5
-    top_indices = np.argsort(-scores)[:top_k]
+    #top_indices = np.argsort(-scores)[:top_k]
 
     candidate_pairs = []
     candidate_indices = []
@@ -147,7 +147,7 @@ def get_response():
         candidate_pairs.append((corrected_query, candidate_text))
         candidate_indices.append(idx)
 
-    cross_scores = cross_encoder.predict(candidate_pairs)
+    #cross_scores = cross_encoder.predict(candidate_pairs)
     best_cross_idx = int(np.argmax(cross_scores))
     best_cross_score = float(cross_scores[best_cross_idx])
     best_faq_index = candidate_indices[best_cross_idx]
@@ -184,14 +184,14 @@ def get_response():
         })
 
 # ----------------------------- SPEECH TO TEXT -----------------------------
-device = "cuda" if torch.cuda.is_available() else "cpu"
+#device = "cuda" if torch.cuda.is_available() else "cpu"
 #whisper_model = whisper.load_model("tiny").to(device)
 
 def transcribe_audio(audio_data):
     try:
-        audio, _ = sf.read(io.BytesIO(audio_data))
-        audio = np.array(audio, dtype=np.float32)
-        result = whisper_model.transcribe(audio, language="es")
+        #audio, _ = sf.read(io.BytesIO(audio_data))
+        #audio = np.array(audio, dtype=np.float32)
+        #result = whisper_model.transcribe(audio, language="es")
         return result["text"]
     except Exception as e:
         print("Error in transcription:", str(e))
