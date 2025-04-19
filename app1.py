@@ -211,9 +211,9 @@ def index():
 
 
 #only gemini, remove it in the final deployment and uncomment the other code
-@app.route('/')
-def index():
-    return "Gemini-ready Chatbot Backend"
+# @app.route('/')
+# def index():
+#     return "Gemini-ready Chatbot Backend"
 
 @app.route('/get_response', methods=['POST'])
 def get_response():
