@@ -11,7 +11,8 @@ torch
 numpy
 soundfile
 sentence-transformers
-
+rank-bm25
+unidecode
 
 
 
