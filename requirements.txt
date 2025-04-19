@@ -6,7 +6,7 @@ scikit-learn
 symspellpy
 #whisper
 #ffmpeg-python
-#nltk
+nltk
 #torch
 #numpy
 soundfile

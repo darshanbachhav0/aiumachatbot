@@ -16,7 +16,7 @@ from symspellpy import SymSpell, Verbosity
 import io
 #import torch
 #import numpy as np
-#import nltk
+import nltk
 from nltk.corpus import stopwords
 import re
 #from sentence_transformers import SentenceTransformer, util, CrossEncoder
