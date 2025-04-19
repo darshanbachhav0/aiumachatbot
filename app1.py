@@ -11,7 +11,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 from flask_cors import CORS
 from symspellpy import SymSpell, Verbosity
-import whisper
+#import whisper
 import soundfile as sf
 import io
 import torch
@@ -185,7 +185,7 @@ def get_response():
 
 # ----------------------------- SPEECH TO TEXT -----------------------------
 device = "cuda" if torch.cuda.is_available() else "cpu"
-whisper_model = whisper.load_model("large").to(device)
+#whisper_model = whisper.load_model("tiny").to(device)
 
 def transcribe_audio(audio_data):
     try:
