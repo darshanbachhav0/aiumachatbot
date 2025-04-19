@@ -134,11 +134,11 @@ def get_response():
     corrected_query = correct_spelling(query)
     normalized_query = normalize_text(corrected_query)
 
-    #query_embedding = faq_model.encode(normalized_query, convert_to_tensor=True)
-    #scores = util.pytorch_cos_sim(query_embedding, faq_embeddings).cpu().numpy().flatten()
+    query_embedding = faq_model.encode(normalized_query, convert_to_tensor=True)
+    scores = util.pytorch_cos_sim(query_embedding, faq_embeddings).cpu().numpy().flatten()
 
     top_k = 5
-    #top_indices = np.argsort(-scores)[:top_k]
+    top_indices = np.argsort(-scores)[:top_k]
 
     candidate_pairs = []
     candidate_indices = []
