@@ -214,6 +214,7 @@ def index():
 # @app.route('/')
 # def index():
 #     return "Gemini-ready Chatbot Backend"
+#     return "Gemini-ready Chatbot Backend"
 
 @app.route('/get_response', methods=['POST'])
 def get_response():
