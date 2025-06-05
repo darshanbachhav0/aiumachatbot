@@ -1,18 +1,18 @@
 flask
 flask-cors
 requests
-#beautifulsoup4
-#scikit-learn
-#symspellpy
-#whisper
-#ffmpeg-python
-#nltk
-#torch
-#numpy
-#soundfile
-#sentence-transformers
-#rank-bm25
-#unidecode
+beautifulsoup4
+scikit-learn
+symspellpy
+whisper
+ffmpeg-python
+nltk
+torch
+numpy
+soundfile
+sentence-transformers
+rank-bm25
+unidecode
 
 
 
