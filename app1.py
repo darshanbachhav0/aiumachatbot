@@ -10,7 +10,7 @@ from bs4 import BeautifulSoup
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 from flask_cors import CORS
-from symspellpy import SymSpell, Verbosity
+#from symspellpy import SymSpell, Verbosity
 #import whisper
 #import soundfile as sf
 import io
@@ -26,9 +26,9 @@ import re
 app = Flask(__name__, static_folder='static', static_url_path='')
 CORS(app)
 
-@app.route('/')
-def index():
-    return app.send_static_file('index.html')
+# @app.route('/')
+# def index():
+#     return app.send_static_file('index.html')
 
 # ----------------------------- SPELLING CORRECTION -----------------------------
 # sym_spell = SymSpell(max_dictionary_edit_distance=2, prefix_length=7)
