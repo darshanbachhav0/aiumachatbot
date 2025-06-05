@@ -26,9 +26,9 @@ import re
 app = Flask(__name__, static_folder='static', static_url_path='')
 CORS(app)
 
-# @app.route('/')
-# def index():
-#     return app.send_static_file('index.html')
+@app.route('/')
+def index():
+    return app.send_static_file('index.html')
 
 # ----------------------------- SPELLING CORRECTION -----------------------------
 # sym_spell = SymSpell(max_dictionary_edit_distance=2, prefix_length=7)
@@ -211,11 +211,11 @@ CORS(app)
 
 
 # only gemini, remove it in the final deployment and uncomment the other code
-@app.route('/')
-def index():
-    return "Gemini-ready Chatbot Backend"
-    return "Gemini-ready Chatbot Backend"
-    return "Gemini-ready Chatbot Backend"
+# @app.route('/')
+# def index():
+#     return "Gemini-ready Chatbot Backend"
+#     return "Gemini-ready Chatbot Backend"
+#     return "Gemini-ready Chatbot Backend"
 
 @app.route('/get_response', methods=['POST'])
 def get_response():
