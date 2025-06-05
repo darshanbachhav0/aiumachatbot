@@ -15,9 +15,9 @@ from symspellpy import SymSpell, Verbosity
 #import soundfile as sf
 import io
 #import torch
-import numpy as np
-import nltk
-from nltk.corpus import stopwords
+#import numpy as np
+#import nltk
+#from nltk.corpus import stopwords
 import re
 #from sentence_transformers import SentenceTransformer, util, CrossEncoder
 #from rank_bm25 import BM25Okapi
