@@ -21,7 +21,7 @@ import io
 import re
 #from sentence_transformers import SentenceTransformer, util, CrossEncoder
 #from rank_bm25 import BM25Okapi
-from unidecode import unidecode
+#from unidecode import unidecode
 
 app = Flask(__name__, static_folder='static', static_url_path='')
 CORS(app)
@@ -31,23 +31,23 @@ def index():
     return app.send_static_file('index.html')
 
 # ----------------------------- SPELLING CORRECTION -----------------------------
-sym_spell = SymSpell(max_dictionary_edit_distance=2, prefix_length=7)
-sym_spell.load_dictionary("es_50k.txt", term_index=0, count_index=1)
+# sym_spell = SymSpell(max_dictionary_edit_distance=2, prefix_length=7)
+# sym_spell.load_dictionary("es_50k.txt", term_index=0, count_index=1)
 
-def correct_spelling(text):
-    corrected_words = []
-    for word in text.split():
-        suggestions = sym_spell.lookup(word, Verbosity.CLOSEST, max_edit_distance=2)
-        corrected_word = suggestions[0].term if suggestions else word
-        corrected_words.append(corrected_word)
-    return " ".join(corrected_words)
+# def correct_spelling(text):
+#     corrected_words = []
+#     for word in text.split():
+#         suggestions = sym_spell.lookup(word, Verbosity.CLOSEST, max_edit_distance=2)
+#         corrected_word = suggestions[0].term if suggestions else word
+#         corrected_words.append(corrected_word)
+#     return " ".join(corrected_words)
 
-@app.route('/correct_spelling', methods=['POST'])
-def correct_spelling_route():
-    data = request.get_json()
-    user_input = data.get("query", "")
-    corrected_query = correct_spelling(user_input)
-    return jsonify({"corrected_query": corrected_query})
+# @app.route('/correct_spelling', methods=['POST'])
+# def correct_spelling_route():
+#     data = request.get_json()
+#     user_input = data.get("query", "")
+#     corrected_query = correct_spelling(user_input)
+#     return jsonify({"corrected_query": corrected_query})
 
 #----------------------------- SCRAPING & BM25 -----------------------------
 # def scrape_page(url):
