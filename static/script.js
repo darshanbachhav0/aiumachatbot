@@ -9,10 +9,8 @@ const chatFooter = document.querySelector(".chat-footer");
 
 // Gemini API Keys (preserved)
 const API_KEYS = [
-  "AIzaSyDArqnsWAtexq94vTi-fbMt3FtvgEYcPeg",
-  "AIzaSyB1Ex3LXaO32GaxIpLxTaCH4q0HJE4iASA",
-  "AIzaSyBv4cWgsoeiPqkrAvrZTxwezoD7JLh8BBI",
-  "AIzaSyD6gi_wcgD3kXmk_QXNcxHeMCMGGxph8Hc"
+  "AIzaSyBGm1yQQbEptvJqQfxi7d2Byn0Sc9MrMjQ"
+ 
 ];
 let currentKeyIndex = 0;
 
