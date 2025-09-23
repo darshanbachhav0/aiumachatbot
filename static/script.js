@@ -4,16 +4,12 @@ const messageInput = document.querySelector(".message-input");
 const sendMessageButton = document.querySelector("#send-message");
 const recordVoiceButton = document.querySelector("#record-voice");
 
-// (optional toggler hooks – unused but kept harmless)
-const chatbotToggler = document.querySelector("#chatbot-toggler");
-const closeChatbot = document.querySelector("#close-chatbot");
-
-// Gemini API Keys (preserved)
+// Gemini API Keys (kept)
 const API_KEYS = ["AIzaSyBGm1yQQbEptvJqQfxi7d2Byn0Sc9MrMjQ"];
 let currentKeyIndex = 0;
 let isBotResponding = false;
 
-/* ===== Auth token helpers (Android WebView sets localStorage.uma_token) ===== */
+/* ===== Auth token helpers (Android injects localStorage.uma_token) ===== */
 function getAuthToken() {
   let t = localStorage.getItem("uma_token");
   if (!t) {
@@ -31,37 +27,19 @@ function authHeaders() {
   };
 }
 
-/* ===== Mobile viewport height fix (prevents footer overlap) ===== */
+/* ===== Mobile viewport fix ===== */
 function setVh() {
   const vh = window.innerHeight * 0.01;
   document.documentElement.style.setProperty("--vh", `${vh}px`);
 }
 setVh();
-window.addEventListener("resize", setVh);
+addEventListener("resize", setVh);
 if (window.visualViewport) {
   visualViewport.addEventListener("resize", setVh);
   visualViewport.addEventListener("scroll", setVh);
 }
 
-/* ===== Phone overlay ===== */
-function openPhoneOptions(phoneNumber) {
-  phoneOverlay.style.display = "block";
-  phoneOptions.style.display = "block";
-  callButton.onclick = () => (location.href = `tel:${phoneNumber}`);
-  whatsappButton.onclick = () => (location.href = `https://wa.me/${phoneNumber}`);
-}
-function closePhoneOptions() {
-  phoneOverlay.style.display = "none";
-  phoneOptions.style.display = "none";
-}
-document.addEventListener("click", (e) => {
-  if (e.target.classList?.contains("phone-link")) {
-    e.preventDefault();
-    openPhoneOptions(e.target.getAttribute("data-phone"));
-  }
-});
-
-/* ===== Spelling helper (server endpoint) ===== */
+/* ===== Spelling (lightweight server echo) ===== */
 async function correctSpelling(userInput) {
   try {
     const res = await fetch("/correct_spelling", {
@@ -70,7 +48,7 @@ async function correctSpelling(userInput) {
       body: JSON.stringify({ query: userInput }),
     });
     const data = await res.json();
-    return data.corrected_query;
+    return data.corrected_query || userInput;
   } catch {
     return userInput;
   }
@@ -82,7 +60,7 @@ messageInput.addEventListener("input", () => {
   messageInput.style.height = Math.min(messageInput.scrollHeight, 140) + "px";
 });
 
-/* ===== send handling ===== */
+/* ===== send ===== */
 const handleSendMessage = async (e) => {
   e.preventDefault();
   if (isBotResponding) return;
@@ -131,48 +109,22 @@ const generateBotResponse = async (userMessage) => {
   const corrected = await correctSpelling(userMessage);
 
   try {
-    // 1) Ask backend for retrieval + PERSONAL CONTEXT
-    const mlRes = await fetch("/get_response", {
+    // 1) get personalized context from backend (uses Authorization header)
+    const ctxRes = await fetch("/get_response", {
       method: "POST",
       headers: authHeaders(),
       body: JSON.stringify({ query: corrected }),
     });
-    const mlData = await mlRes.json();
-    const bestDoc = mlData.best_doc;
-    const bestScore = mlData.best_score || 0;
-    const personalContext = (mlData.personal_context || "").trim();
+    const ctxData = await ctxRes.json();
+    const personalContext = (ctxData.personal_context || "").trim();
 
-    // 2) If pure FAQ hit — answer directly (prepend personal context if relevant)
-    if (mlData.is_faq) {
-      setTimeout(() => {
-        const html = [
-          personalContext ? `<p><strong>Contexto personal:</strong> ${escapeHtml(personalContext)}</p>` : "",
-          formatResponse(bestDoc)
-        ].join("");
-        wrap.querySelector(".message-text").innerHTML = html;
-      }, 4000);
-      return;
-    }
-
-    // 3) If retrieval is strong — display it directly (with context)
-    const THRESHOLD = 0.3;
-    if (bestScore > THRESHOLD) {
-      const formatted = formatResponse(bestDoc);
-      setTimeout(() => {
-        wrap.querySelector(".message-text").innerHTML =
-          `${personalContext ? `<p><strong>Contexto personal:</strong> ${escapeHtml(personalContext)}</p>` : ""}` +
-          `<strong>📌 Información relevante encontrada:</strong><br>${formatted}`;
-      }, 4000);
-      return;
-    }
-
-    // 4) Otherwise call Gemini with BOTH bestDoc and personalContext
+    // 2) ask Gemini using ONLY personalContext + the user's question
     const preamble = `
 Responde exclusivamente en español.
 - Personaliza la respuesta con los datos del estudiante si son relevantes.
 - NO inventes montos, fechas ni calificaciones. Si falta información, indica cómo obtenerla.
-- Si es sobre la Universidad María Auxiliadora, usa primero el contexto institucional.
-`;
+- Sé claro y breve.`;
+
     const requestBody = {
       contents: [{
         role: "user",
@@ -180,11 +132,8 @@ Responde exclusivamente en español.
           text: `
 ${preamble.trim()}
 
-Datos personales (úsalos para contextualizar, no los reveles completos):
+Contexto personal del estudiante (úsalo para contextualizar, no lo reveles completo):
 ${personalContext || "—"}
-
-Contexto institucional (RAG):
-${bestDoc || "—"}
 
 Pregunta del usuario:
 ${corrected}`.trim()
@@ -206,9 +155,8 @@ ${corrected}`.trim()
     }
     if (!success) throw new Error("Gemini error");
 
-    const botResponse = formatResponse((data.candidates?.[0]?.content?.parts?.[0]?.text || "").trim());
-    wrap.querySelector(".message-text").innerHTML =
-      `${personalContext ? `<p><strong>Contexto personal:</strong> ${escapeHtml(personalContext)}</p>` : ""}${botResponse}`;
+    const text = (data.candidates?.[0]?.content?.parts?.[0]?.text || "").trim();
+    wrap.querySelector(".message-text").innerHTML = formatResponse(text);
 
   } catch (err) {
     console.error(err);
@@ -229,11 +177,8 @@ function formatResponse(text) {
   }
   return out.length > 3 ? `<ul style="list-style:disc;margin-left:16px">${out.join('')}</ul>` : out.join('<br>');
 }
-function escapeHtml(s) {
-  return s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-}
 
-/* ===== Voice (WebSpeech) ===== */
+/* ===== Voice (WebSpeech) – client-side only ===== */
 let recognition;
 const startVoiceRecognition = () => {
   if (!("SpeechRecognition" in window || "webkitSpeechRecognition" in window)) {
@@ -268,7 +213,7 @@ recordVoiceButton.addEventListener("touchend", () => { stopVoiceRecognition(); r
 recordVoiceButton.addEventListener("mousedown", () => { startVoiceRecognition(); recordVoiceButton.classList.add("recording"); });
 recordVoiceButton.addEventListener("mouseup", () => { stopVoiceRecognition(); recordVoiceButton.classList.remove("recording"); });
 
-/* ===== Starfields (unchanged) ===== */
+/* ===== Simple starfields (unchanged visuals) ===== */
 const canvas = document.getElementById("starsCanvas");
 const ctx = canvas.getContext("2d");
 let stars = []; const numStars = 200;
@@ -295,7 +240,7 @@ function createChatbotStars(){ chatbotStars=[]; for(let i=0;i<numChatbotStars;i+
 createChatbotStars();
 (function anim2(){ chatbotCtx.clearRect(0,0,chatbotCanvas.width,chatbotCanvas.height); chatbotStars.forEach(s=>{ s.update(); s.draw(); }); requestAnimationFrame(anim2); })();
 
-// Initial avatar swap
+// Avatar swap
 document.addEventListener("DOMContentLoaded", () => {
   const initialBotGif = document.querySelector("#initial-bot-gif");
   if (initialBotGif) setTimeout(() => { initialBotGif.src = "girltalks.png"; }, 4000);
