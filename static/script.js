@@ -106,7 +106,7 @@ const generateBotResponse = async (userMessage) => {
   chatBody.scrollTo({ top: chatBody.scrollHeight, behavior: "smooth" });
 
   const botGif = wrap.querySelector(".bot-gif");
-  setTimeout(() => { botGif.src = "girltalks.png"; }, 4000);
+  setTimeout(() => { botGif.src = "girltalks.png"; }, 2000);
 
   const corrected = await correctSpelling(userMessage);
 
