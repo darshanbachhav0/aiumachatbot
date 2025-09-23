@@ -13,6 +13,24 @@ const API_KEYS = ["AIzaSyBGm1yQQbEptvJqQfxi7d2Byn0Sc9MrMjQ"];
 let currentKeyIndex = 0;
 let isBotResponding = false;
 
+/* ===== Auth token helpers (Android WebView sets localStorage.uma_token) ===== */
+function getAuthToken() {
+  let t = localStorage.getItem("uma_token");
+  if (!t) {
+    const u = new URLSearchParams(location.search);
+    t = u.get("token");
+    if (t) localStorage.setItem("uma_token", t);
+  }
+  return t;
+}
+function authHeaders() {
+  const token = getAuthToken();
+  return {
+    "Content-Type": "application/json",
+    ...(token ? { Authorization: `Bearer ${token}` } : {}),
+  };
+}
+
 /* ===== Mobile viewport height fix (prevents footer overlap) ===== */
 function setVh() {
   const vh = window.innerHeight * 0.01;
@@ -48,12 +66,14 @@ async function correctSpelling(userInput) {
   try {
     const res = await fetch("/correct_spelling", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: authHeaders(),
       body: JSON.stringify({ query: userInput }),
     });
     const data = await res.json();
     return data.corrected_query;
-  } catch { return userInput; }
+  } catch {
+    return userInput;
+  }
 }
 
 /* ===== autoresize textarea ===== */
@@ -111,42 +131,64 @@ const generateBotResponse = async (userMessage) => {
   const corrected = await correctSpelling(userMessage);
 
   try {
+    // 1) Ask backend for retrieval + PERSONAL CONTEXT
     const mlRes = await fetch("/get_response", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: authHeaders(),
       body: JSON.stringify({ query: corrected }),
     });
     const mlData = await mlRes.json();
     const bestDoc = mlData.best_doc;
-    const bestScore = mlData.best_score;
+    const bestScore = mlData.best_score || 0;
+    const personalContext = (mlData.personal_context || "").trim();
 
+    // 2) If pure FAQ hit — answer directly (prepend personal context if relevant)
     if (mlData.is_faq) {
-      setTimeout(() => { wrap.querySelector(".message-text").innerHTML = formatResponse(bestDoc); }, 4000);
-      return;
-    }
-
-    const THRESHOLD = 0.3;
-    if (bestScore > THRESHOLD) {
-      const formatted = formatResponse(bestDoc);
       setTimeout(() => {
-        wrap.querySelector(".message-text").innerHTML = `<strong>📌 Información relevante encontrada:</strong><br>${formatted}`;
+        const html = [
+          personalContext ? `<p><strong>Contexto personal:</strong> ${escapeHtml(personalContext)}</p>` : "",
+          formatResponse(bestDoc)
+        ].join("");
+        wrap.querySelector(".message-text").innerHTML = html;
       }, 4000);
       return;
     }
 
+    // 3) If retrieval is strong — display it directly (with context)
+    const THRESHOLD = 0.3;
+    if (bestScore > THRESHOLD) {
+      const formatted = formatResponse(bestDoc);
+      setTimeout(() => {
+        wrap.querySelector(".message-text").innerHTML =
+          `${personalContext ? `<p><strong>Contexto personal:</strong> ${escapeHtml(personalContext)}</p>` : ""}` +
+          `<strong>📌 Información relevante encontrada:</strong><br>${formatted}`;
+      }, 4000);
+      return;
+    }
+
+    // 4) Otherwise call Gemini with BOTH bestDoc and personalContext
+    const preamble = `
+Responde exclusivamente en español.
+- Personaliza la respuesta con los datos del estudiante si son relevantes.
+- NO inventes montos, fechas ni calificaciones. Si falta información, indica cómo obtenerla.
+- Si es sobre la Universidad María Auxiliadora, usa primero el contexto institucional.
+`;
     const requestBody = {
       contents: [{
         role: "user",
-        parts: [{ text: `
-Responde exclusivamente en español.
-- NO uses expresiones como “la información proporcionada no indica...” o “no se encuentra información”.
-- Si es sobre la Universidad María Auxiliadora, usa la siguiente información de referencia:
-${bestDoc}
+        parts: [{
+          text: `
+${preamble.trim()}
 
-Si no está en la información, usa tu conocimiento general para crear una respuesta lo más útil y directa posible.
-Evita oraciones de desconocimiento o falta de datos.
+Datos personales (úsalos para contextualizar, no los reveles completos):
+${personalContext || "—"}
 
-Pregunta del usuario: ${corrected}`.trim() }]
+Contexto institucional (RAG):
+${bestDoc || "—"}
+
+Pregunta del usuario:
+${corrected}`.trim()
+        }]
       }]
     };
 
@@ -165,7 +207,8 @@ Pregunta del usuario: ${corrected}`.trim() }]
     if (!success) throw new Error("Gemini error");
 
     const botResponse = formatResponse((data.candidates?.[0]?.content?.parts?.[0]?.text || "").trim());
-    wrap.querySelector(".message-text").innerHTML = botResponse;
+    wrap.querySelector(".message-text").innerHTML =
+      `${personalContext ? `<p><strong>Contexto personal:</strong> ${escapeHtml(personalContext)}</p>` : ""}${botResponse}`;
 
   } catch (err) {
     console.error(err);
@@ -185,6 +228,9 @@ function formatResponse(text) {
     else out.push(`<p>${line}</p>`);
   }
   return out.length > 3 ? `<ul style="list-style:disc;margin-left:16px">${out.join('')}</ul>` : out.join('<br>');
+}
+function escapeHtml(s) {
+  return s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 }
 
 /* ===== Voice (WebSpeech) ===== */
@@ -221,13 +267,6 @@ recordVoiceButton.addEventListener("touchstart", () => { startVoiceRecognition()
 recordVoiceButton.addEventListener("touchend", () => { stopVoiceRecognition(); recordVoiceButton.classList.remove("recording"); });
 recordVoiceButton.addEventListener("mousedown", () => { startVoiceRecognition(); recordVoiceButton.classList.add("recording"); });
 recordVoiceButton.addEventListener("mouseup", () => { stopVoiceRecognition(); recordVoiceButton.classList.remove("recording"); });
-
-/* ===== Whisper streaming hooks (optional; keep if your backend exposes /speech_to_text_stream) =====
-let mediaRecorder, audioStream;
-async function startLiveWhisper(){ ... }
-function stopLiveWhisper(){ ... }
-recordVoiceButton.addEventListener("dblclick", startLiveWhisper);
-================================================================= */
 
 /* ===== Starfields (unchanged) ===== */
 const canvas = document.getElementById("starsCanvas");
