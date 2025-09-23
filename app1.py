@@ -8,7 +8,7 @@ import requests
 app = Flask(__name__, static_folder="static", static_url_path="")
 CORS(app, resources={r"/*": {"origins": "*"}})
 
-APP_BASE = "http://37.60.229.241:8085/service-uma"   # same base URL your app uses
+APP_BASE = "http://37.60.229.241:8085/service-uma"  # same base URL your app uses
 
 # -------------------- Static UI --------------------
 @app.route("/")
@@ -70,15 +70,17 @@ def intent_of(q: str) -> str:
 def deep_get(obj: Union[dict, list], keys: List[str]) -> Optional[str]:
     """Search recursively any of the keys; return first string-like match."""
     if isinstance(obj, dict):
-        for k,v in obj.items():
+        for k, v in obj.items():
             if k in keys and isinstance(v, (str, int, float)):
                 return str(v)
             got = deep_get(v, keys)
-            if got: return got
+            if got:
+                return got
     elif isinstance(obj, list):
         for it in obj:
             got = deep_get(it, keys)
-            if got: return got
+            if got:
+                return got
     return None
 
 def extract_student_code(profile: dict) -> Optional[str]:
@@ -105,19 +107,19 @@ def summarize_profile(j):
 
 def summarize_schedule(j):
     if not j: return ""
-    today = datetime.now().strftime("%d/%m")
     classes = j.get("classes") or j.get("data") or j.get("horario") or j.get("items") or []
     if isinstance(classes, dict): classes = [classes]
     if not classes: return ""
+    # pick upcoming/today-ish items if info present
     top = []
-    for c in classes[:4]:
+    for c in classes[:6]:
         course = c.get("course") or c.get("nombre") or c.get("curso") or "Curso"
-        start = c.get("start") or c.get("hora_inicio") or c.get("inicio") or "—"
-        end   = c.get("end")   or c.get("hora_fin")    or c.get("fin")    or "—"
-        room  = c.get("room")  or c.get("aula")        or "—"
+        start = c.get("start") or c.get("hora_inicio") or c.get("inicio") or c.get("horaInicio") or "—"
+        end   = c.get("end")   or c.get("hora_fin")    or c.get("fin")    or c.get("horaFin")    or "—"
+        room  = c.get("room")  or c.get("aula")        or c.get("salon")  or "—"
         day   = c.get("day")   or c.get("dia")         or ""
         top.append(f"{course}: {day+' ' if day else ''}{start}-{end} (Aula {room})")
-    return f"Horario {today}: " + "; ".join(top)
+    return " | ".join(top)
 
 def summarize_payments(j):
     if not j: return ""
@@ -147,73 +149,109 @@ def summarize_qualifications(j):
         top.append(f"{course}: {grade}")
     return "Notas: " + "; ".join(top)
 
-# -------------------- Build personal context with variant payloads --------------------
+# -------------------- Build personal context with extra endpoints --------------------
 def build_personal_context(query: str):
     diag = {"has_bearer": bool(bearer_header()), "endpoints": {}, "used_variants": {}}
     ctx_parts = []
 
-    # 1) Profile (usually free of extra payload)
+    # 1) Profile
     profile, sc, err = http_post("/student/student", {})
     diag["endpoints"]["/student/student"] = {"ok": profile is not None, "status": sc, "err": err[:140]}
     sprof = summarize_profile(profile)
     if sprof: ctx_parts.append(sprof)
 
-    # Extract keys to feed other endpoints
+    # 2) Extract useful keys
     code = extract_student_code(profile or {})
     period = extract_period(profile or {})
 
-    # 2) Intent
     intent = intent_of(query)
 
-    # 3) Schedule
+    # 3) Schedule — try several UMA endpoints
     if intent in ("schedule","general"):
-        variants = [
-            {},  # some APIs resolve from token only
-            {"date": "today"},
-            {"codigo": code or ""},
-            {"c_codalu": code or ""},
-            {"code": code or ""},
-            {"codigo": code or "", "periodCode": period or ""},
-            {"c_codalu": code or "", "periodCode": period or ""},
-            {"code": code or "", "period": period or ""},
+        schedule_candidates = [
+            ("/student/course-schedule", [
+                {}, {"date": "today"},
+                {"codigo": code or ""}, {"c_codalu": code or ""}, {"code": code or ""},
+                {"codigo": code or "", "periodCode": period or ""},
+                {"c_codalu": code or "", "periodCode": period or ""},
+                {"code": code or "", "period": period or ""},
+            ]),
+            ("/student/course-schedules", [
+                {}, {"codigo": code or ""}, {"c_codalu": code or ""}, {"code": code or ""},
+                {"codigo": code or "", "periodCode": period or ""},
+                {"c_codalu": code or "", "periodCode": period or ""},
+                {"code": code or "", "period": period or ""},
+            ]),
+            ("/student/schedule-available", [
+                {}, {"codigo": code or ""}, {"c_codalu": code or ""}, {"code": code or ""},
+            ]),
+            ("/student/enrollment-uma", [
+                {}, {"codigo": code or ""}, {"c_codalu": code or ""}, {"code": code or ""},
+                {"codigo": code or "", "periodCode": period or ""},
+                {"c_codalu": code or "", "periodCode": period or ""},
+                {"code": code or "", "period": period or ""},
+            ]),
+            # Some services keep legacy alias:
+            ("/student/enrollment", [
+                {}, {"codigo": code or ""}, {"c_codalu": code or ""}, {"code": code or ""},
+            ]),
         ]
-        sch, sc, err, used = call_with_variants("/student/course-schedule", variants)
-        diag["endpoints"]["/student/course-schedule"] = {"ok": sch is not None, "status": sc, "err": err[:140]}
-        diag["used_variants"]["/student/course-schedule"] = used
-        ssch = summarize_schedule(sch)
-        if ssch: ctx_parts.append(ssch)
+        schedule_text = ""
+        for path, variants in schedule_candidates:
+            sch, sc, err, used = call_with_variants(path, variants)
+            diag["endpoints"][path] = {"ok": sch is not None, "status": sc, "err": err[:140]}
+            diag["used_variants"][path] = used
+            if sch:
+                schedule_text = summarize_schedule(sch)
+                if schedule_text:
+                    break
+        if schedule_text:
+            ctx_parts.append("Horario: " + schedule_text)
 
-    # 4) Payments
+    # 4) Payments (+ monthly fallback)
     if intent in ("payments","general"):
-        variants = [
-            {},
-            {"codigo": code or ""},
-            {"c_codalu": code or ""},
-            {"code": code or ""},
-            {"range": "current"}
+        pay_candidates = [
+            ("/student/payment", [
+                {}, {"codigo": code or ""}, {"c_codalu": code or ""}, {"code": code or ""},
+                {"range": "current"}
+            ]),
+            ("/student/payment-monthly", [
+                {}, {"codigo": code or ""}, {"c_codalu": code or ""}, {"code": code or ""},
+            ]),
         ]
-        pay, sc, err, used = call_with_variants("/student/payment", variants)
-        diag["endpoints"]["/student/payment"] = {"ok": pay is not None, "status": sc, "err": err[:140]}
-        diag["used_variants"]["/student/payment"] = used
-        spay = summarize_payments(pay)
-        if spay: ctx_parts.append(spay)
+        pay_text = ""
+        for path, variants in pay_candidates:
+            pay, sc, err, used = call_with_variants(path, variants)
+            diag["endpoints"][path] = {"ok": pay is not None, "status": sc, "err": err[:140]}
+            diag["used_variants"][path] = used
+            if pay:
+                pay_text = summarize_payments(pay)
+                if pay_text:
+                    break
+        if pay_text:
+            ctx_parts.append(pay_text)
 
     # 5) Qualifications
     if intent in ("academics","general"):
-        variants = [
-            {},
-            {"codigo": code or ""},
-            {"c_codalu": code or ""},
-            {"code": code or ""},
-            {"codigo": code or "", "periodCode": period or ""},
-            {"c_codalu": code or "", "periodCode": period or ""},
-            {"code": code or "", "period": period or ""},
+        qual_candidates = [
+            ("/student/course-qualifications", [
+                {}, {"codigo": code or ""}, {"c_codalu": code or ""}, {"code": code or ""},
+                {"codigo": code or "", "periodCode": period or ""},
+                {"c_codalu": code or "", "periodCode": period or ""},
+                {"code": code or "", "period": period or ""},
+            ])
         ]
-        q, sc, err, used = call_with_variants("/student/course-qualifications", variants)
-        diag["endpoints"]["/student/course-qualifications"] = {"ok": q is not None, "status": sc, "err": err[:140]}
-        diag["used_variants"]["/student/course-qualifications"] = used
-        sq = summarize_qualifications(q)
-        if sq: ctx_parts.append(sq)
+        qual_text = ""
+        for path, variants in qual_candidates:
+            q, sc, err, used = call_with_variants(path, variants)
+            diag["endpoints"][path] = {"ok": q is not None, "status": sc, "err": err[:140]}
+            diag["used_variants"][path] = used
+            if q:
+                qual_text = summarize_qualifications(q)
+                if qual_text:
+                    break
+        if qual_text:
+            ctx_parts.append(qual_text)
 
     return " | ".join([c for c in ctx_parts if c]), diag
 
