@@ -1,189 +1,230 @@
-// DOM
+// ===== DOM =====
 const chatBody = document.querySelector(".chat-body");
 const messageInput = document.querySelector(".message-input");
 const sendMessageButton = document.querySelector("#send-message");
 const recordVoiceButton = document.querySelector("#record-voice");
 
-// Gemini
-const API_KEYS = ["AIzaSyBGm1yQQbEptvJqQfxi7d2Byn0Sc9MrMjQ"];
-let currentKeyIndex = 0;
+// ===== Config =====
+const THINKING_SWAP_MS = 600;       // was 2000 — faster
+const GEMINI_KEYS = ["YOUR_GEMINI_KEY"]; // keep if you still call Gemini from web
 let isBotResponding = false;
 
-/* ===== Token helpers ===== */
-function getAuthToken() {
-  let t = localStorage.getItem("uma_token");
-  if (!t) {
-    const u = new URLSearchParams(location.search);
-    t = u.get("token");
-    if (t) localStorage.setItem("uma_token", t);
+// ===== Pick credentials coming from Android WebView =====
+const q = new URLSearchParams(location.search);
+const CP = {
+  token: q.get("cpToken") || localStorage.getItem("cpToken") || "",
+  code:  q.get("code")    || localStorage.getItem("cpCode")   || "",
+  period:q.get("period")  || localStorage.getItem("cpPeriod") || ""
+};
+if (q.get("cpToken"))  localStorage.setItem("cpToken", CP.token);
+if (q.get("code"))     localStorage.setItem("cpCode", CP.code);
+if (q.get("period"))   localStorage.setItem("cpPeriod", CP.period);
+
+// ===== In-memory cache (keeps the bot snappy) =====
+const cache = {
+  student: null,
+  schedules: null,
+  when: { student: 0, schedules: 0 }
+};
+const TTL_MS = 1000 * 60; // 1 minute
+
+// ===== Helpers =====
+const authHeader = () => (CP.token ? { "Authorization": `Bearer ${CP.token}` } : {});
+
+async function umaPost(path, body) {
+  const res = await fetch(path, {
+    method: "POST",
+    headers: { "Content-Type": "application/json", ...authHeader() },
+    body: JSON.stringify(body || {})
+  });
+  let data = null;
+  try { data = await res.json(); } catch {}
+  return { ok: res.ok, status: res.status, data };
+}
+
+async function getStudent() {
+  if (cache.student && Date.now() - cache.when.student < TTL_MS) return cache.student;
+  if (!CP.code) throw new Error("missing_code");
+  const { ok, status, data } = await umaPost("/uma/student", { code: CP.code });
+  if (!ok) {
+    const msg404 = status === 404 ? "No se encontró tu ficha con ese código." : "No pudimos traer tus datos ahora.";
+    throw new Error(`student_${status}:${msg404}`);
   }
-  return t;
-}
-function authHeaders() {
-  const token = getAuthToken();
-  return { "Content-Type": "application/json", ...(token ? { Authorization: `Bearer ${token}` } : {}) };
+  cache.student = data;
+  cache.when.student = Date.now();
+  return cache.student;
 }
 
-/* ===== Tiny banner when personalization is off ===== */
-function showBanner(text, tone = "warn") {
-  const el = document.createElement("div");
-  el.className = `mini-banner ${tone}`;
-  el.textContent = text;
-  document.body.appendChild(el);
-  setTimeout(() => el.remove(), 3500);
+async function getCourseSchedules() {
+  if (cache.schedules && Date.now() - cache.when.schedules < TTL_MS) return cache.schedules;
+  if (!CP.code || !CP.period) throw new Error("missing_params");
+  const { ok, status, data } = await umaPost("/uma/course-schedules", { code: CP.code, period: CP.period });
+  if (!ok) {
+    const msg404 = status === 404 ? "No hay horarios para el periodo actual." : "No pudimos sincronizar tu horario.";
+    throw new Error(`sched_${status}:${msg404}`);
+  }
+  cache.schedules = data;
+  cache.when.schedules = Date.now();
+  return cache.schedules;
 }
 
-/* ===== Send flow ===== */
-document.getElementById("chatForm").addEventListener("submit", async (e) => {
-  e.preventDefault();
-  if (isBotResponding) return;
-  const msg = messageInput.value.trim();
-  if (!msg) return;
+function todayISO() {
+  const d = new Date();
+  return d.toISOString().slice(0,10); // YYYY-MM-DD
+}
 
-  isBotResponding = true;
-  messageInput.disabled = true;
-  sendMessageButton.disabled = true;
-
-  addUser(msg);
-  messageInput.value = "";
-  messageInput.style.height = "auto";
-
-  await respond(msg);
-
-  isBotResponding = false;
-  messageInput.disabled = false;
-  sendMessageButton.disabled = false;
-  messageInput.focus();
-});
-
-/* ===== UI helpers ===== */
-function addUser(text) {
+function swiftReply(html) {
   const wrap = document.createElement("div");
-  wrap.className = "user-message-container";
-  wrap.innerHTML = `<div class="user-message-card"><div class="message-text">${text}</div></div>`;
-  chatBody.appendChild(wrap);
-  chatBody.scrollTo({ top: chatBody.scrollHeight, behavior: "smooth" });
-}
-function addBotThinking() {
-  const wrap = document.createElement("div");
-  wrap.className = "bot-message-container";
+  wrap.classList.add("bot-message-container");
   wrap.innerHTML = `
     <div class="logo-container"><img src="girltalk.gif" alt="Bot" class="bot-gif"></div>
     <div class="bot-message-card"><div class="message-text">🤔</div></div>`;
   chatBody.appendChild(wrap);
   chatBody.scrollTo({ top: chatBody.scrollHeight, behavior: "smooth" });
-  setTimeout(() => { wrap.querySelector(".bot-gif").src = "girltalks.png"; }, 2000);
-  return wrap;
-}
-function setBotHtml(wrap, html) {
-  wrap.querySelector(".message-text").innerHTML = html;
+  const botGif = wrap.querySelector(".bot-gif");
+  setTimeout(() => { botGif.src = "girltalks.png"; }, THINKING_SWAP_MS);
+  setTimeout(() => { wrap.querySelector(".message-text").innerHTML = html; }, THINKING_SWAP_MS);
 }
 
-/* ===== Main responder ===== */
-async function respond(userMessage) {
-  const wrap = addBotThinking();
+function displayUserMessage(message) {
+  const wrap = document.createElement("div");
+  wrap.classList.add("user-message-container");
+  wrap.innerHTML = `<div class="user-message-card"><div class="message-text">${message}</div></div>`;
+  chatBody.appendChild(wrap);
+  chatBody.scrollTo({ top: chatBody.scrollHeight, behavior: "smooth" });
+}
 
-  const corrected = await correctSpelling(userMessage);
+// ===== Simple NLU (fast intent matcher) =====
+const intents = [
+  { key: "saludo",  re: /(hola|buen[oa]s|saludo)/i },
+  { key: "quien_soy", re: /(quien soy|mi nombre)/i },
+  { key: "horario_hoy", re: /(horario|pr[oó]xima? clase|clases? hoy|siguiente clase)/i },
+  { key: "pagos", re: /(pagos?|mensualidad|deuda|pendiente)/i }
+];
 
-  // 1) ask backend for personal context + diagnostics
-  let personalContext = "";
-  let diag = {};
-  try {
-    const res = await fetch("/get_response", {
-      method: "POST",
-      headers: authHeaders(),
-      body: JSON.stringify({ query: corrected }),
-    });
-    const data = await res.json();
-    personalContext = (data.personal_context || "").trim();
-    diag = data.diag || {};
-    // console.info("diag:", diag); // open DevTools > Network to inspect
-    if (!diag.has_bearer) showBanner("No estás autenticado: abre el chatbot desde la app UMA.", "warn");
-    if (diag.has_bearer && personalContext === "") showBanner("No pudimos traer tus datos ahora. Inténtalo de nuevo.", "info");
-  } catch (e) {
-    showBanner("Servidor no disponible.", "warn");
-  }
-
-  // 2) craft prompt (handles missing context gracefully)
-  const instructions = `
-Responde en español.
-- Si recibes "personal_context" utilízalo para personalizar (horario, pagos, cursos). 
-- Si "personal_context" está vacío:
-  • Si "has_bearer" es false: explica brevemente que el chat no está conectado a la cuenta y que debe abrirse desde la app UMA para ver datos personales.
-  • Si "has_bearer" es true pero no hay datos: indica que en este momento no se pudo sincronizar y sugiere reintentar.
-- Sé útil y directo. No pidas documentos ni des disclaimers largos.`;
-
-  const hasBearer = !!diag.has_bearer;
-  const prompt = `
-${instructions.trim()}
-
-personal_context:
-${personalContext || "—"}
-
-has_bearer: ${hasBearer}
-
-pregunta:
-${corrected}`.trim();
-
-  try {
-    const body = { contents: [{ role: "user", parts: [{ text: prompt }] }] };
-    let ok = false, data;
-    while (!ok && currentKeyIndex < API_KEYS.length) {
-      const key = API_KEYS[currentKeyIndex];
-      const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${key}`;
-      const r = await fetch(url, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
-      data = await r.json();
-      ok = r.ok;
-      if (!ok) currentKeyIndex++;
+async function handleIntent(text) {
+  const match = intents.find(i => i.re.test(text));
+  switch (match?.key) {
+    case "saludo": {
+      try {
+        const st = await getStudent();
+        const name = (st?.data?.fullName || st?.data?.names || "").trim();
+        const ciclo = (st?.data?.cycle || st?.data?.periodCode || CP.period || "").toString();
+        return `Hola ${name ? `<strong>${name}</strong>` : "👋"}. ¿En qué te puedo ayudar hoy? ${
+          ciclo ? `Recuerda que tu ciclo es <strong>${ciclo}</strong>.` : ""}`;
+      } catch (e) {
+        return "Hola 👋. ¿En qué te ayudo hoy?";
+      }
     }
-    if (!ok) throw new Error("Gemini failed");
-
-    const text = (data.candidates?.[0]?.content?.parts?.[0]?.text || "").trim();
-    setBotHtml(wrap, format(text));
-
-  } catch (err) {
-    console.error(err);
-    setBotHtml(wrap, "⚠️ Error: No se pudo obtener una respuesta.");
+    case "quien_soy": {
+      try {
+        const st = await getStudent();
+        const name = (st?.data?.fullName || st?.data?.names || "").trim();
+        return name ? `Eres <strong>${name}</strong>.` : "No pude leer tu nombre ahora.";
+      } catch {
+        return "Necesito tu sesión UMA para decirte tu nombre.";
+      }
+    }
+    case "horario_hoy": {
+      try {
+        const sc = await getCourseSchedules();
+        const items = (sc?.data || []);
+        const today = todayISO();
+        // Try several common field spellings:
+        const todayClasses = items.filter(it => {
+          const date = (it.date || it.class_date || it.fecha || "").slice(0,10);
+          return date === today;
+        });
+        if (todayClasses.length === 0) {
+          return "Hoy no tienes clases registradas para este periodo.";
+        }
+        const rows = todayClasses.map(c => {
+          const start = c.start_time || c.start || c.horaInicio || "";
+          const end   = c.end_time   || c.end   || c.horaFin    || "";
+          const name  = c.course_name || c.course || c.asignatura || "Curso";
+          const room  = c.classroom   || c.aula   || "";
+          return `<li><strong>${name}</strong> ${start ? `(${start}–${end})` : ""} ${room ? `· Aula ${room}` : ""}</li>`;
+        });
+        return `<strong>Clases de hoy:</strong><ul style="margin-left:16px;list-style:disc">${rows.join("")}</ul>`;
+      } catch (e) {
+        const msg = (e.message || "");
+        if (msg.startsWith("sched_404")) return "No hay horarios para hoy en tu periodo.";
+        if (msg.includes("missing")) return "Faltan credenciales. Abre el chatbot desde la app UMA.";
+        return "No pude sincronizar tu horario ahora. Inténtalo más tarde.";
+      }
+    }
+    case "pagos": {
+      return "Para pagos y deudas, entra a la sección Pagos de la app UMA. Si quieres, puedo guiarte paso a paso aquí.";
+    }
+    default:
+      return null; // fall back to LLM
   }
 }
 
-/* ===== helpers ===== */
-async function correctSpelling(userInput) {
-  try {
-    const res = await fetch("/correct_spelling", {
-      method: "POST",
-      headers: authHeaders(),
-      body: JSON.stringify({ query: userInput }),
-    });
-    const data = await res.json();
-    return data.corrected_query || userInput;
-  } catch { return userInput; }
-}
-function format(text) {
-  const lines = text.split('\n');
-  const out = [];
-  for (let line of lines) {
-    line = line.trim();
-    if (!line) continue;
-    const m = line.match(/\*\*(.*?)\*\*(.*)/);
-    if (m) out.push(`<li><strong>${m[1]}</strong>${m[2] ? ": " + m[2] : ""}</li>`);
-    else if (/^[-*]\s*/.test(line)) out.push(`<li>${line.replace(/^[-*]\s*/, "")}</li>`);
-    else out.push(`<p>${line}</p>`);
-  }
-  return out.length > 2 ? `<ul style="list-style:disc;margin-left:16px">${out.join("")}</ul>` : out.join("<br>");
+// ===== LLM fallback (kept simple, still fast) =====
+async function askGemini(prompt) {
+  const key = GEMINI_KEYS[0];
+  if (!key) return "No tengo acceso al modelo en este momento.";
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${key}`;
+  const body = {
+    contents: [{
+      role: "user",
+      parts: [{ text: `Responde en español, breve y directo.\nUsuario: ${prompt}` }]
+    }]
+  };
+  const res = await fetch(url, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
+  const data = await res.json();
+  return (data?.candidates?.[0]?.content?.parts?.[0]?.text || "").trim() || "No tengo una respuesta clara ahora.";
 }
 
-/* ===== small UX bits ===== */
-messageInput.addEventListener("input", () => {
-  messageInput.style.height = "auto";
-  messageInput.style.height = Math.min(messageInput.scrollHeight, 140) + "px";
+// ===== Send flow =====
+document.getElementById("chatForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  if (isBotResponding) return;
+
+  const userMessage = messageInput.value.trim();
+  if (!userMessage) return;
+
+  isBotResponding = true;
+  messageInput.disabled = true; sendMessageButton.disabled = true;
+
+  displayUserMessage(userMessage);
+  messageInput.value = ""; messageInput.style.height = "auto";
+
+  // try intent first (instant)
+  let reply = await handleIntent(userMessage);
+  if (!reply) reply = await askGemini(userMessage);
+
+  swiftReply(reply);
+
+  isBotResponding = false;
+  messageInput.disabled = false; sendMessageButton.disabled = false;
+  messageInput.focus();
 });
 
-// optional mini styles for banner (put in your CSS if you prefer)
-const style = document.createElement("style");
-style.textContent = `
-.mini-banner{position:fixed;left:50%;bottom:95px;transform:translateX(-50%);padding:8px 12px;border-radius:10px;font-size:.9rem;color:#fff;z-index:9999;opacity:.95}
-.mini-banner.warn{background:#e11d48}
-.mini-banner.info{background:#2563eb}
-`;
-document.head.appendChild(style);
+// ===== Voice (unchanged) =====
+let recognition;
+const startVoiceRecognition = () => {
+  if (!("SpeechRecognition" in window || "webkitSpeechRecognition" in window)) {
+    alert("Tu navegador no soporta reconocimiento de voz."); return;
+  }
+  recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+  recognition.lang = "es-ES"; recognition.interimResults = true; recognition.continuous = true; recognition.maxAlternatives = 1; recognition.start();
+  recognition.onresult = (e) => {
+    let transcript = "";
+    for (let i = 0; i < e.results.length; i++) transcript += e.results[i][0].transcript + " ";
+    messageInput.value = transcript.trim();
+    messageInput.dispatchEvent(new Event("input"));
+  };
+};
+const stopVoiceRecognition = () => { if (recognition) recognition.stop(); };
+recordVoiceButton.addEventListener("mousedown", startVoiceRecognition);
+recordVoiceButton.addEventListener("mouseup", stopVoiceRecognition);
+recordVoiceButton.addEventListener("touchstart", startVoiceRecognition);
+recordVoiceButton.addEventListener("touchend", stopVoiceRecognition);
+
+// ===== Startup: if we have CP data, prefetch cache (asynchronously) =====
+(async () => {
+  if (CP.code) { try { getStudent(); } catch {} }
+  if (CP.code && CP.period) { try { getCourseSchedules(); } catch {} }
+})();
