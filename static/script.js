@@ -11,7 +11,20 @@ const API_KEYS = ["AIzaSyBGm1yQQbEptvJqQfxi7d2Byn0Sc9MrMjQ"];
 let currentKeyIndex = 0;
 let isBotResponding = false;
 
-/* phone overlay */
+/* ===== Mobile viewport height fix (keeps footer visible) ===== */
+function setVh() {
+  // 1vh in px based on innerHeight
+  const vh = window.innerHeight * 0.01;
+  document.documentElement.style.setProperty("--vh", `${vh}px`);
+}
+setVh();
+window.addEventListener("resize", setVh);
+if (window.visualViewport) {
+  visualViewport.addEventListener("resize", setVh);
+  visualViewport.addEventListener("scroll", setVh);
+}
+
+/* ===== Phone overlay ===== */
 document.addEventListener("DOMContentLoaded", function () {
   document.body.addEventListener("click", function (event) {
     if (event.target.classList.contains("phone-link")) {
@@ -32,7 +45,7 @@ function closePhoneOptions() {
   phoneOptions.style.display = "none";
 }
 
-/* helpers */
+/* ===== Helpers ===== */
 async function correctSpelling(userInput) {
   try {
     const res = await fetch("/correct_spelling", {
@@ -48,12 +61,13 @@ async function correctSpelling(userInput) {
 chatbotToggler.addEventListener("click", () => document.body.classList.toggle("show-chatbot"));
 closeChatbot.addEventListener("click", () => document.body.classList.remove("show-chatbot"));
 
+// autoresize textarea so it never covers the mic/send
 messageInput.addEventListener("input", () => {
   messageInput.style.height = "auto";
   messageInput.style.height = Math.min(messageInput.scrollHeight, 140) + "px";
 });
 
-/* send */
+/* ===== Send handling ===== */
 const handleSendMessage = async (e) => {
   e.preventDefault();
   if (isBotResponding) return;
@@ -78,6 +92,7 @@ const handleSendMessage = async (e) => {
 };
 document.getElementById("chatForm").addEventListener("submit", handleSendMessage);
 
+/* ===== Renderers ===== */
 const displayUserMessage = (message) => {
   const wrap = document.createElement("div");
   wrap.classList.add("user-message-container");
@@ -90,7 +105,7 @@ const generateBotResponse = async (userMessage) => {
   const wrap = document.createElement("div");
   wrap.classList.add("bot-message-container");
   wrap.innerHTML = `
-    <div class="logo-container"><img src="girltalk.gif" alt="Chatbot Avatar" class="bot-gif"></div>
+    <div class="logo-container"><img src="girltalk.gif" alt="Bot" class="bot-gif"></div>
     <div class="bot-message-card"><div class="message-text">🤔</div></div>`;
   chatBody.appendChild(wrap);
   chatBody.scrollTo({ top: chatBody.scrollHeight, behavior: "smooth" });
@@ -144,9 +159,14 @@ Pregunta del usuario: ${corrected}`.trim() }]
     while (!success && currentKeyIndex < API_KEYS.length) {
       const key = API_KEYS[currentKeyIndex];
       const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${key}`;
-      response = await fetch(url, { method:"POST", headers:{ "Content-Type":"application/json" }, body: JSON.stringify(requestBody) });
+      response = await fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(requestBody),
+      });
       data = await response.json();
-      if (response.ok) success = true; else currentKeyIndex++;
+      if (response.ok) success = true;
+      else currentKeyIndex++;
     }
     if (!success) throw new Error("Gemini error");
 
@@ -173,7 +193,7 @@ function formatResponse(text) {
   return out.length > 3 ? `<ul style="list-style:disc;margin-left:16px">${out.join('')}</ul>` : out.join('<br>');
 }
 
-/* voice (kept) */
+/* ===== Voice (kept) ===== */
 let recognition;
 const startVoiceRecognition = () => {
   if (!("SpeechRecognition" in window || "webkitSpeechRecognition" in window)) { alert("Your browser does not support voice recognition."); return; }
@@ -202,7 +222,7 @@ recordVoiceButton.addEventListener("touchend", () => { stopVoiceRecognition(); r
 recordVoiceButton.addEventListener("mousedown", () => { startVoiceRecognition(); recordVoiceButton.classList.add("recording"); });
 recordVoiceButton.addEventListener("mouseup", () => { stopVoiceRecognition(); recordVoiceButton.classList.remove("recording"); });
 
-/* Whisper streaming (kept) */
+/* ===== Whisper streaming (kept) ===== */
 let mediaRecorder, audioStream;
 async function startLiveWhisper(){ try{ audioStream = await navigator.mediaDevices.getUserMedia({ audio:true }); mediaRecorder = new MediaRecorder(audioStream); mediaRecorder.ondataavailable = async (e)=>{ if(e.data.size>0) sendAudioToBackend(e.data); }; mediaRecorder.start(200); }catch(err){ console.error("Microphone access error:", err); } }
 async function sendAudioToBackend(audioBlob){
@@ -221,7 +241,7 @@ function stopLiveWhisper(){ if(mediaRecorder) mediaRecorder.stop(); if(audioStre
 function startWebSpeechRecognition(){ if(!("SpeechRecognition" in window || "webkitSpeechRecognition" in window)){ alert("Your browser does not support live speech recognition."); return; } let rec = new (window.SpeechRecognition || window.webkitSpeechRecognition)(); rec.lang="es-ES"; rec.interimResults=true; rec.continuous=true; rec.onresult=(e)=>{ let t=""; for(let i=0;i<e.results.length;i++) t+=e.results[i][0].transcript+" "; messageInput.value=t.trim(); messageInput.dispatchEvent(new Event("input")); }; rec.onerror=(e)=>console.error("Speech recognition error:", e.error); rec.start(); }
 recordVoiceButton.addEventListener("dblclick", startWebSpeechRecognition);
 
-/* starfields (kept) */
+/* ===== Starfields (kept) ===== */
 const canvas = document.getElementById("starsCanvas");
 const ctx = canvas.getContext("2d");
 let stars = []; const numStars = 200;
@@ -234,7 +254,12 @@ class Star{ constructor(x,y,s,speed){ this.x=x; this.y=y; this.size=s; this.spee
 function createStars(){ stars=[]; for(let i=0;i<numStars;i++){ stars.push(new Star(Math.random()*canvas.width,Math.random()*canvas.height,Math.random()*2,Math.random()*0.5)); } }
 createStars();
 (function anim(){ ctx.clearRect(0,0,canvas.width,canvas.height); stars.forEach(s=>{ s.update(); s.draw(); }); requestAnimationFrame(anim); })();
-function createBurst(x,y){ let burst=[]; for(let i=0;i<20;i++){ burst.push({x,y,size:Math.random()*3+1,speedX:(Math.random()-0.5)*4,speedY:(Math.random()-0.5)*4,opacity:1}); } (function a(){ ctx.clearRect(0,0,canvas.width,canvas.height); stars.forEach(s=>{ s.update(); s.draw(); }); burst.forEach((b,i)=>{ ctx.beginPath(); ctx.arc(b.x,b.y,b.size,0,Math.PI*2); ctx.fillStyle=`rgba(255,255,255,${b.opacity})`; ctx.fill(); b.x+=b.speedX; b.y+=b.speedY; b.opacity-=0.02; if(b.opacity<=0) burst.splice(i,1); }); if(burst.length>0) requestAnimationFrame(a); })(); }
+function createBurst(x,y){ let burst=[]; for(let i=0;i<20;i++){ burst.push({x,y,size:Math.random()*3+1,speedX:(Math.random()-0.5)*4,speedY:(Math.random()-0.5)*4,opacity:1}); }
+  (function a(){ ctx.clearRect(0,0,canvas.width,canvas.height); stars.forEach(s=>{ s.update(); s.draw(); });
+    burst.forEach((b,i)=>{ ctx.beginPath(); ctx.arc(b.x,b.y,b.size,0,Math.PI*2); ctx.fillStyle=`rgba(255,255,255,${b.opacity})`; ctx.fill(); b.x+=b.speedX; b.y+=b.speedY; b.opacity-=0.02; if(b.opacity<=0) burst.splice(i,1); });
+    if(burst.length>0) requestAnimationFrame(a);
+  })();
+}
 canvas.addEventListener("click",(e)=>createBurst(e.clientX,e.clientY));
 
 const chatbotCanvas = document.getElementById("chatbotStarsCanvas");
@@ -250,7 +275,7 @@ function createChatbotStars(){ chatbotStars=[]; for(let i=0;i<numChatbotStars;i+
 createChatbotStars();
 (function anim2(){ chatbotCtx.clearRect(0,0,chatbotCanvas.width,chatbotCanvas.height); chatbotStars.forEach(s=>{ s.update(); s.draw(); }); requestAnimationFrame(anim2); })();
 
-// swap initial gif
+// initial gif swap
 document.addEventListener("DOMContentLoaded", () => {
   const initialBotGif = document.querySelector("#initial-bot-gif");
   if (initialBotGif) setTimeout(() => { initialBotGif.src = "girltalks.png"; }, 4000);
