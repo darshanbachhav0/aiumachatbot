@@ -11,17 +11,17 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 from flask_cors import CORS
 from symspellpy import SymSpell, Verbosity
-import whisper
-import soundfile as sf
-import io
-import torch
-import numpy as np
-import nltk
+# import whisper
+# import soundfile as sf
+# import io
+# import torch
+# import numpy as np
+# import nltk
 from nltk.corpus import stopwords
-import re
-from sentence_transformers import SentenceTransformer, util, CrossEncoder
+# import re
+# from sentence_transformers import SentenceTransformer, util, CrossEncoder
 from rank_bm25 import BM25Okapi
-from unidecode import unidecode
+# from unidecode import unidecode
 
 app = Flask(__name__, static_folder='static', static_url_path='')
 CORS(app)
