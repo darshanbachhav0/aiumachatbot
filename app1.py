@@ -26,9 +26,9 @@ import re
 app = Flask(__name__, static_folder='static', static_url_path='')
 CORS(app)
 
-@app.route('/')
-def index():
-    return app.send_static_file('index.html')
+# @app.route('/')
+# def index():
+#     return app.send_static_file('index.html')
 
 # ----------------------------- SPELLING CORRECTION -----------------------------
 # sym_spell = SymSpell(max_dictionary_edit_distance=2, prefix_length=7)
