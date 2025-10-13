@@ -43,8 +43,8 @@ HTML = """
 <body>
   <div class="card">
     <h1>🤖 Chatbot en producción</h1>
-    <p>Esta API está desplegada y funcionando.</p>
-    <p>Página de estado: <code>/</code></p>
+    <p></p>
+    <p> <code>/</code></p>
     <small>© UMA</small>
   </div>
 </body>
