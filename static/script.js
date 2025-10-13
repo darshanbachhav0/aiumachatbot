@@ -9,7 +9,7 @@ const chatbotToggler = document.querySelector("#chatbot-toggler");
 const closeChatbot = document.querySelector("#close-chatbot");
 
 // Gemini API Keys (preserved)
-const API_KEYS = ["AIzaSyBGm1yQQbEptvJqQfxi7d2Byn0Sc9MrMjQ"];
+const API_KEYS = ["AIzaSyADdaEiprd5PrM_e9tQdj5KTzoenWHTcjc"];
 let currentKeyIndex = 0;
 let isBotResponding = false;
 
