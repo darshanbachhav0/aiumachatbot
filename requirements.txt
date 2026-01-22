@@ -1,3 +1,0 @@
-Flask>=3.0,<4
-flask-cors>=4.0,<5
-gunicorn>=22,<23  # recommended for production serving
