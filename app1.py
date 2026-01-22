@@ -1,4 +1,10 @@
-<!DOCTYPE html>
+from flask import Flask, Response
+import threading
+import webbrowser
+
+app = Flask(__name__)
+
+HTML_PAGE = """<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -36,3 +42,20 @@
   </noscript>
 </body>
 </html>
+"""
+
+@app.get("/")
+def index():
+    return Response(HTML_PAGE, mimetype="text/html")
+
+
+def open_browser():
+    webbrowser.open_new("http://127.0.0.1:5000/")
+
+
+if __name__ == "__main__":
+    # Auto-open the page in your default browser (optional)
+    threading.Timer(0.8, open_browser).start()
+
+    # Start the web server
+    app.run(host="127.0.0.1", port=5000, debug=True)
